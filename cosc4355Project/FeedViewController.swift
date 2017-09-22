@@ -17,7 +17,9 @@ class FeedViewController: UIViewController {
       performSegue(withIdentifier: "logoutSegue", sender: self)
     } catch let error {
       print("Sign out failed: \(error)")
+      return
     }
+    print("Sign out successful")
   }
   
   override func viewDidLoad() {
