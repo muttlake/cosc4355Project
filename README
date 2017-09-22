@@ -1,0 +1,13 @@
+To run:
+Go to the directory with the .xcodeproj is located
+
+First install the cocoapods with
+sudo gem install cocoapods
+
+Then run
+pod install
+
+or if you need to update the pods run
+pod update
+
+ONLY work with .xcworkspace file
