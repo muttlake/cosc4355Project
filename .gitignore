@@ -4,4 +4,4 @@
 .DS_Store
 
 # xcode
-/cosc4355Project.xcworkspace/xcuserdata/ronborneo.xcuserdatad/UserInterfaceState.xcuserstate
+*.xcuserstate
