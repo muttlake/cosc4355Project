@@ -26,6 +26,7 @@
 		CBE9B1541F884754000C8A4D /* ProjectCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B1531F884754000C8A4D /* ProjectCategory.swift */; };
 		CBE9B1561F884828000C8A4D /* BasicListingsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B1551F884828000C8A4D /* BasicListingsProtocol.swift */; };
 		CBE9B15A1F896C46000C8A4D /* ListingsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B1591F896C46000C8A4D /* ListingsProtocol.swift */; };
+		CBE9B15F1F89973C000C8A4D /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B15E1F89973C000C8A4D /* CustomImageView.swift */; };
 		E3950CE0F55F346EABA1675E /* Pods_cosc4355Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C9482FDCBA72DEE67A530A1 /* Pods_cosc4355Project.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		CBE9B1531F884754000C8A4D /* ProjectCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectCategory.swift; sourceTree = "<group>"; };
 		CBE9B1551F884828000C8A4D /* BasicListingsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicListingsProtocol.swift; sourceTree = "<group>"; };
 		CBE9B1591F896C46000C8A4D /* ListingsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingsProtocol.swift; sourceTree = "<group>"; };
+		CBE9B15E1F89973C000C8A4D /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		FB241CDE99B71EED06FF72C3 /* Pods-cosc4355Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cosc4355Project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cosc4355Project/Pods-cosc4355Project.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				CBE9B1441F879248000C8A4D /* ProjectPostTableViewCell.swift */,
+				CBE9B15E1F89973C000C8A4D /* CustomImageView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				CBE9B14E1F884506000C8A4D /* UserType.swift in Sources */,
 				CBE9B15A1F896C46000C8A4D /* ListingsProtocol.swift in Sources */,
 				CBE9B1541F884754000C8A4D /* ProjectCategory.swift in Sources */,
+				CBE9B15F1F89973C000C8A4D /* CustomImageView.swift in Sources */,
 				CBE9B1501F8845D4000C8A4D /* Posting.swift in Sources */,
 				CBE9B1561F884828000C8A4D /* BasicListingsProtocol.swift in Sources */,
 				CBE9B1451F879248000C8A4D /* ProjectPostTableViewCell.swift in Sources */,

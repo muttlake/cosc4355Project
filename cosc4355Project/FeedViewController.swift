@@ -17,7 +17,10 @@ class FeedViewController: UITableViewController, ListingsProtocol {
   /* Generate cells, customization can be done through here. If generic change, make it in the cell's class */
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "projectCell", for: indexPath) as! ProjectPostTableViewCell
-    cell.userPhoto.image = UIImage(named: "hillsong")
+    
+    let project = listings[indexPath.item] as! Posting
+    
+    cell.projectPhoto.loadImage(url: project.photoUrl)
     cell.projectTitle.text = listings[indexPath.item].title
     cell.projectDescription.text = listings[indexPath.item].description
     return cell

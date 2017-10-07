@@ -199,11 +199,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="434"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hillsong" translatesAutoresizingMaskIntoConstraints="NO" id="FkO-x9-glN">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hillsong" translatesAutoresizingMaskIntoConstraints="NO" id="FkO-x9-glN" customClass="CustomImageView" customModule="cosc4355Project" customModuleProvider="target">
                                             <rect key="frame" x="15" y="13" width="345" height="345"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pp" translatesAutoresizingMaskIntoConstraints="NO" id="iSc-JZ-uFd">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pp" translatesAutoresizingMaskIntoConstraints="NO" id="iSc-JZ-uFd" customClass="CustomImageView" customModule="cosc4355Project" customModuleProvider="target">
                                             <rect key="frame" x="15" y="371" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>

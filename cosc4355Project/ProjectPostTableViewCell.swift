@@ -9,11 +9,9 @@
 import UIKit
 
 class ProjectPostTableViewCell: UITableViewCell {
-  
-  
-  @IBOutlet weak var projectPhoto: UIImageView!
+  @IBOutlet weak var projectPhoto: CustomImageView!
 
-  @IBOutlet weak var userPhoto: UIImageView!
+  @IBOutlet weak var userPhoto: CustomImageView!
   
   @IBOutlet weak var projectTitle: UILabel!
   
