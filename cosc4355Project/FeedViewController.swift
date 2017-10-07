@@ -7,30 +7,63 @@
 //
 
 import UIKit
+import Foundation
 import Firebase
 
-class FeedViewController: UIViewController {
+class FeedViewController: UITableViewController, ListingsProtocol {
   
-  @IBAction func logoutButton(_ sender: Any) {
-    do {
-      try FIRAuth.auth()?.signOut()
-      performSegue(withIdentifier: "logoutSegue", sender: self)
-    } catch let error {
-      print("Sign out failed: \(error)")
-      return
-    }
-    print("Sign out successful")
+  var listings: [BasicListingsProtocol] = []
+  
+  /* Generate cells, customization can be done through here. If generic change, make it in the cell's class */
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "projectCell", for: indexPath) as! ProjectPostTableViewCell
+    cell.userPhoto.image = UIImage(named: "hillsong")
+    cell.projectTitle.text = listings[indexPath.item].title
+    cell.projectDescription.text = listings[indexPath.item].description
+    return cell
   }
+  
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return listings.count
+  }
+  
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
     
-    // Do any additional setup after loading the view.
+    /* Adding refresh feature on newsfeed to reload projects */
+    let refreshControl = UIRefreshControl()
+    refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+    tableView.refreshControl = refreshControl
+    
+    let name = Notification.Name(rawValue: "updateFeed")
+    NotificationCenter.default.addObserver(forName: name, object: nil, queue: nil) { (_) in
+      self.handleRefresh()
+    }
+    
+    fetchProjects()
   }
   
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+  func fetchProjects() {
+    FIRDatabase.database().reference().child("projects").observeSingleEvent(of: .value, with: { (snapshot) in
+      guard let dictionaries = snapshot.value as? [String: Any] else { return }
+      dictionaries.forEach({ (key, value) in
+        guard let dictionary = value as? [String: Any] else { return }
+        let project = Posting(from: dictionary)
+        self.listings.append(project)
+      })
+      self.tableView?.reloadData()
+      self.tableView?.refreshControl?.endRefreshing()
+    }) { (error) in
+      print("Failed to fetch users with error: \(error)")
+    }
+  }
+  
+  func handleRefresh() {
+    listings.removeAll()
+    fetchProjects()
   }
   
   

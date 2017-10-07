@@ -15,6 +15,17 @@
 		CB47BBE81F74B41B00841C92 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB47BBE71F74B41B00841C92 /* RegisterViewController.swift */; };
 		CB47BBEA1F74B78B00841C92 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB47BBE91F74B78B00841C92 /* GoogleService-Info.plist */; };
 		CB47BBEC1F74C0D000841C92 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB47BBEB1F74C0D000841C92 /* FeedViewController.swift */; };
+		CBE9B1431F8791B5000C8A4D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B1421F8791B5000C8A4D /* ProfileViewController.swift */; };
+		CBE9B1451F879248000C8A4D /* ProjectPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B1441F879248000C8A4D /* ProjectPostTableViewCell.swift */; };
+		CBE9B1471F8821E6000C8A4D /* ProjectFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B1461F8821E6000C8A4D /* ProjectFormViewController.swift */; };
+		CBE9B14A1F884453000C8A4D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B1491F884453000C8A4D /* User.swift */; };
+		CBE9B14C1F8844C5000C8A4D /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B14B1F8844C5000C8A4D /* Address.swift */; };
+		CBE9B14E1F884506000C8A4D /* UserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B14D1F884506000C8A4D /* UserType.swift */; };
+		CBE9B1501F8845D4000C8A4D /* Posting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B14F1F8845D4000C8A4D /* Posting.swift */; };
+		CBE9B1521F884605000C8A4D /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B1511F884605000C8A4D /* Status.swift */; };
+		CBE9B1541F884754000C8A4D /* ProjectCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B1531F884754000C8A4D /* ProjectCategory.swift */; };
+		CBE9B1561F884828000C8A4D /* BasicListingsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B1551F884828000C8A4D /* BasicListingsProtocol.swift */; };
+		CBE9B15A1F896C46000C8A4D /* ListingsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B1591F896C46000C8A4D /* ListingsProtocol.swift */; };
 		E3950CE0F55F346EABA1675E /* Pods_cosc4355Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C9482FDCBA72DEE67A530A1 /* Pods_cosc4355Project.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +42,17 @@
 		CB47BBE71F74B41B00841C92 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		CB47BBE91F74B78B00841C92 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB47BBEB1F74C0D000841C92 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		CBE9B1421F8791B5000C8A4D /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		CBE9B1441F879248000C8A4D /* ProjectPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectPostTableViewCell.swift; sourceTree = "<group>"; };
+		CBE9B1461F8821E6000C8A4D /* ProjectFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectFormViewController.swift; sourceTree = "<group>"; };
+		CBE9B1491F884453000C8A4D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CBE9B14B1F8844C5000C8A4D /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		CBE9B14D1F884506000C8A4D /* UserType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserType.swift; sourceTree = "<group>"; };
+		CBE9B14F1F8845D4000C8A4D /* Posting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Posting.swift; sourceTree = "<group>"; };
+		CBE9B1511F884605000C8A4D /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		CBE9B1531F884754000C8A4D /* ProjectCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectCategory.swift; sourceTree = "<group>"; };
+		CBE9B1551F884828000C8A4D /* BasicListingsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicListingsProtocol.swift; sourceTree = "<group>"; };
+		CBE9B1591F896C46000C8A4D /* ListingsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingsProtocol.swift; sourceTree = "<group>"; };
 		FB241CDE99B71EED06FF72C3 /* Pods-cosc4355Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cosc4355Project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cosc4355Project/Pods-cosc4355Project.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,17 +97,44 @@
 		CB47BBD41F74B28000841C92 /* cosc4355Project */ = {
 			isa = PBXGroup;
 			children = (
+				CBE9B1481F88441A000C8A4D /* Models */,
 				CB47BBD51F74B28000841C92 /* AppDelegate.swift */,
 				CB47BBD71F74B28000841C92 /* HomeViewController.swift */,
 				CB47BBE71F74B41B00841C92 /* RegisterViewController.swift */,
 				CB47BBEB1F74C0D000841C92 /* FeedViewController.swift */,
+				CBE9B1421F8791B5000C8A4D /* ProfileViewController.swift */,
+				CBE9B1461F8821E6000C8A4D /* ProjectFormViewController.swift */,
 				CB47BBD91F74B28000841C92 /* Main.storyboard */,
+				CBE9B1441F879248000C8A4D /* ProjectPostTableViewCell.swift */,
 				CB47BBDC1F74B28000841C92 /* Assets.xcassets */,
 				CB47BBDE1F74B28000841C92 /* LaunchScreen.storyboard */,
 				CB47BBE11F74B28000841C92 /* Info.plist */,
 				CB47BBE91F74B78B00841C92 /* GoogleService-Info.plist */,
+				CBE9B1591F896C46000C8A4D /* ListingsProtocol.swift */,
 			);
 			path = cosc4355Project;
+			sourceTree = "<group>";
+		};
+		CBE9B1481F88441A000C8A4D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CBE9B1581F8900BC000C8A4D /* Enums */,
+				CBE9B1491F884453000C8A4D /* User.swift */,
+				CBE9B14B1F8844C5000C8A4D /* Address.swift */,
+				CBE9B14F1F8845D4000C8A4D /* Posting.swift */,
+				CBE9B1551F884828000C8A4D /* BasicListingsProtocol.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		CBE9B1581F8900BC000C8A4D /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				CBE9B14D1F884506000C8A4D /* UserType.swift */,
+				CBE9B1511F884605000C8A4D /* Status.swift */,
+				CBE9B1531F884754000C8A4D /* ProjectCategory.swift */,
+			);
+			name = Enums;
 			sourceTree = "<group>";
 		};
 		F72D1B6EED6E76249A9C41E9 /* Pods */ = {
@@ -231,8 +280,19 @@
 			files = (
 				CB47BBE81F74B41B00841C92 /* RegisterViewController.swift in Sources */,
 				CB47BBD81F74B28000841C92 /* HomeViewController.swift in Sources */,
+				CBE9B1431F8791B5000C8A4D /* ProfileViewController.swift in Sources */,
 				CB47BBEC1F74C0D000841C92 /* FeedViewController.swift in Sources */,
+				CBE9B14A1F884453000C8A4D /* User.swift in Sources */,
 				CB47BBD61F74B28000841C92 /* AppDelegate.swift in Sources */,
+				CBE9B14E1F884506000C8A4D /* UserType.swift in Sources */,
+				CBE9B15A1F896C46000C8A4D /* ListingsProtocol.swift in Sources */,
+				CBE9B1541F884754000C8A4D /* ProjectCategory.swift in Sources */,
+				CBE9B1501F8845D4000C8A4D /* Posting.swift in Sources */,
+				CBE9B1561F884828000C8A4D /* BasicListingsProtocol.swift in Sources */,
+				CBE9B1451F879248000C8A4D /* ProjectPostTableViewCell.swift in Sources */,
+				CBE9B14C1F8844C5000C8A4D /* Address.swift in Sources */,
+				CBE9B1471F8821E6000C8A4D /* ProjectFormViewController.swift in Sources */,
+				CBE9B1521F884605000C8A4D /* Status.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +421,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = team1.cosc4355Project;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -374,6 +435,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = team1.cosc4355Project;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
