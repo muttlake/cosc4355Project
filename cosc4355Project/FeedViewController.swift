@@ -22,18 +22,14 @@ class FeedViewController: UITableViewController, ListingsProtocol {
     cell.projectPhoto.loadImage(url: project.photoUrl)
     cell.projectTitle.text = listings[indexPath.item].title
     
-    let formatter = NumberFormatter()
-    formatter.numberStyle = .currency
+    cell.projectDescription.text = generateProjectDescription(startingBid: project.startingBid, description: listings[indexPath.item].description)
     
-    cell.projectDescription.text =  formatter.string(from: project.startingBid as NSNumber)! + " • " + listings[indexPath.item].description
     return cell
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return listings.count
   }
-  
-  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -48,10 +44,10 @@ class FeedViewController: UITableViewController, ListingsProtocol {
     NotificationCenter.default.addObserver(forName: name, object: nil, queue: nil) { (_) in
       self.handleRefresh()
     }
-    
     fetchProjects()
   }
   
+  /* Fetches all data from projects folder */
   func fetchProjects() {
     FIRDatabase.database().reference().child("projects").observeSingleEvent(of: .value, with: { (snapshot) in
       guard let dictionaries = snapshot.value as? [String: Any] else { return }
@@ -60,6 +56,7 @@ class FeedViewController: UITableViewController, ListingsProtocol {
         let project = Posting(from: dictionary)
         self.listings.append(project)
       })
+      /* Manually all the table view to reload itself and to refresh. Otherwise no changes will be seen */
       self.tableView?.reloadData()
       self.tableView?.refreshControl?.endRefreshing()
     }) { (error) in
@@ -72,15 +69,9 @@ class FeedViewController: UITableViewController, ListingsProtocol {
     fetchProjects()
   }
   
-  
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destinationViewController.
-   // Pass the selected object to the new view controller.
-   }
-   */
-  
+  func generateProjectDescription(startingBid: Double, description: String) -> String {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .currency
+    return formatter.string(from: startingBid as NSNumber)! + " • " + description
+  }
 }

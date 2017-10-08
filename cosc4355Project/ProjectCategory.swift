@@ -12,4 +12,17 @@ enum ProjectCategory {
   case general
   case plumbing
   case gardening
+  
+  static func stringToEnum(string: String) -> ProjectCategory {
+    switch string {
+    case "general":
+      return general
+    case "plumbing":
+      return plumbing
+    case "gardening":
+      return gardening
+    default:
+      return general
+    }
+  }
 }

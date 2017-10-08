@@ -22,12 +22,14 @@ class ProjectFormViewController: UIViewController, UIImagePickerControllerDelega
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    /* Tap gesture utilized when the user taps on the UIImageView above the post button. */
     uploadImage.isUserInteractionEnabled = true
     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handlePhotoUpload))
     self.uploadImage.addGestureRecognizer(tapGesture)
   
   }
   
+  /* Sets the selected imaged based on whether it was edited or not */
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
     var selectedImage: UIImage?
     if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
@@ -35,7 +37,6 @@ class ProjectFormViewController: UIViewController, UIImagePickerControllerDelega
     } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
       selectedImage = originalImage
     }
-    
     if let image = selectedImage {
       uploadImage.image = image
     }
@@ -44,13 +45,11 @@ class ProjectFormViewController: UIViewController, UIImagePickerControllerDelega
   }
   
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-    print("Cancelled Picker")
     dismiss(animated: true, completion: nil)
   }
   
+  /* Sets up a choice between camera roll or using the camera itself. Keep note that the simulator does NOT have a camera. */
   func handlePhotoUpload() {
-    print("uploading")
-    
     let cameraOrPhotoAlbum = UIAlertController(title: "Source", message: "Photo Source", preferredStyle: .actionSheet)
     
     let picker = UIImagePickerController()
@@ -61,53 +60,39 @@ class ProjectFormViewController: UIViewController, UIImagePickerControllerDelega
       picker.sourceType = .camera
       self.present(picker, animated: true, completion: nil)
     }
-    
     let photoAlbumOption = UIAlertAction(title: "Photo Album", style: .default) { (_) in
       self.present(picker, animated: true, completion: nil)
     }
     let cancelOption = UIAlertAction(title: "Cancel", style: .cancel) { (_: UIAlertAction) in print("cancelled") }
     
-    cameraOrPhotoAlbum.addAction(cameraOption)
-    cameraOrPhotoAlbum.addAction(photoAlbumOption)
-    cameraOrPhotoAlbum.addAction(cancelOption)
+    cameraOrPhotoAlbum.addActions(actions: cameraOption, photoAlbumOption, cancelOption)
     present(cameraOrPhotoAlbum, animated: true, completion: nil)
   }
   
   
   @IBAction func postButton(_ sender: UIButton) {
-    if titleInput.text! == "" || categoryInput.text! == "" || descriptionInput.text! == "" {
-      print("Empty Fields")
-      return
-    }
+    guard let title = titleInput.text, let category = categoryInput.text, let description = descriptionInput.text else { return }
+    if !validateFields(fields: title, category, description) { return }
     
     let imageName = NSUUID().uuidString
     let storageRef = FIRStorage.storage().reference().child("projects").child("\(imageName).jpg")
+    
     if let projectImage = uploadImage.image, let uploadData = UIImageJPEGRepresentation(projectImage, 0.1) {
       storageRef.put(uploadData, metadata: nil) { (metadata, error) in
-        print("TEST")
-        if(error != nil) {
-          print("Error Occured: \(error!)")
-          return
-        }
+        if let error = error { print(error); return }
         
         /* Set up date */
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.timeZone = TimeZone(abbreviation: "CDT")
-        formatter.dateFormat = "MM.dd.yyyy hh:mm:ss"
-        let dateString = formatter.string(from: date)
+        let currentDate = Date.currentDate
         
         /* Get current user id */
-        guard let uid = FIRAuth.auth()?.currentUser?.uid else {
-          print("Must be signed in to upload")
-          return
-        }
+        guard let uid = FIRAuth.auth()?.currentUser?.uid else { print("Error: User not signed in"); return }
  
         /* Generate projectId, get values, then store into database */
         if let projectImageUrl = metadata?.downloadURL()?.absoluteString {
           let projectId = UUID().uuidString
-          let values = ["title": self.titleInput.text!, "description": self.descriptionInput.text!, "status": String(describing: Status.pending), "date": dateString, "photoUrl": projectImageUrl, "startingBid": "0", "acceptedBid": "0", "location": Address().toString(), "posting_id": projectId, "user_id": uid]
+          let values = ["title": title, "description": description, "status": String(describing: Status.pending), "category": String(describing: ProjectCategory.general), "date": currentDate, "photoUrl": projectImageUrl, "startingBid": "0", "acceptedBid": "0", "location": Address().toString(), "posting_id": projectId, "user_id": uid]
           self.registerInfoIntoDatabaseWithUID(uid: projectId, values: values as [String: AnyObject])
+          self.navigationController?.popViewController(animated: true)
         }
       }
     }
@@ -124,9 +109,33 @@ class ProjectFormViewController: UIViewController, UIImagePickerControllerDelega
     }
   }
   
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+  /* Makes sure every field is not blank. */
+  private func validateFields(fields: String...) -> Bool {
+    for field in fields {
+      if field == "" {
+        return false
+      }
+    }
+    return true
+  }
+}
+
+/* Generates a date string in the desired format */
+extension Date {
+  static var currentDate: String {
+    let date = Date()
+    let formatter = DateFormatter()
+    formatter.timeZone = TimeZone(abbreviation: "CDT")
+    formatter.dateFormat = "MM.dd.yyyy hh:mm:ss"
+    return formatter.string(from: date)
+  }
+}
+
+/* Adds a list of actions to the alert controller item */
+extension UIAlertController {
+  func addActions(actions: UIAlertAction...) {
+    for action in actions {
+      addAction(action)
+    }
   }
 }
