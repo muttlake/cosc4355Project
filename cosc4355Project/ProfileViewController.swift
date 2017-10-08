@@ -11,6 +11,13 @@ import Firebase
 
 class ProfileViewController: UIViewController {
   
+  
+  @IBOutlet weak var profilePicture: UIImageView!
+  
+  @IBOutlet weak var nameLabel: UILabel!
+  
+  @IBOutlet weak var emailLabel: UILabel!
+  
   @IBAction func logoutButton(_ sender: UIButton) {
     do {
       try FIRAuth.auth()?.signOut()
@@ -24,24 +31,10 @@ class ProfileViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    /* Turns picture into a circle */
+    profilePicture.layer.cornerRadius = 64
+    profilePicture.layer.masksToBounds = true
+  
     // Do any additional setup after loading the view.
   }
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
-  
-  
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destinationViewController.
-   // Pass the selected object to the new view controller.
-   }
-   */
-  
 }

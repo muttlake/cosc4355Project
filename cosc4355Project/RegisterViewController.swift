@@ -10,7 +10,9 @@ import UIKit
 import Firebase
 
 class RegisterViewController: UIViewController {
-
+  
+  @IBOutlet weak var profilePicture: UIImageView!
+  
   @IBOutlet weak var emailText: UITextField!
   
   @IBOutlet weak var passwordText: UITextField!
@@ -48,7 +50,8 @@ class RegisterViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    profilePicture.layer.cornerRadius = 64
+    profilePicture.layer.masksToBounds = true
     // Do any additional setup after loading the view.
   }
 }
