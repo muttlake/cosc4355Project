@@ -21,7 +21,11 @@ class FeedViewController: UITableViewController, ListingsProtocol {
     let project = listings[indexPath.item] as! Posting
     cell.projectPhoto.loadImage(url: project.photoUrl)
     cell.projectTitle.text = listings[indexPath.item].title
-    cell.projectDescription.text = listings[indexPath.item].description
+    
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .currency
+    
+    cell.projectDescription.text =  formatter.string(from: project.startingBid as NSNumber)! + " • " + listings[indexPath.item].description
     return cell
   }
   
