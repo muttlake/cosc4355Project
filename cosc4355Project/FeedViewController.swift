@@ -19,7 +19,6 @@ class FeedViewController: UITableViewController, ListingsProtocol {
     let cell = tableView.dequeueReusableCell(withIdentifier: "projectCell", for: indexPath) as! ProjectPostTableViewCell
     
     let project = listings[indexPath.item] as! Posting
-    
     cell.projectPhoto.loadImage(url: project.photoUrl)
     cell.projectTitle.text = listings[indexPath.item].title
     cell.projectDescription.text = listings[indexPath.item].description
