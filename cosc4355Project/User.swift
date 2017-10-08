@@ -9,11 +9,14 @@
 import Foundation
 import UIKit
 
-struct User {
-  var name: String
-  var address: Address
-  var phoneNumber: String
-  var profilePicture: UIImage
-  var description: String
-  var userType: UserType
+class User {
+  var name: String = "DEFAULT"
+  // var address: Address
+  var profilePicture: UIImage? = nil
+  var userType: UserType = .client
+}
+
+class Contractor: User {
+  var description: String = "DEFAULT"
+  var phoneNumber: String = "NA"
 }
