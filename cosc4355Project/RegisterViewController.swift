@@ -17,6 +17,8 @@ import Firebase
 
 class RegisterViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
   
+  @IBOutlet weak var clientOrContractor: UISegmentedControl!
+  
   @IBOutlet weak var profilePicture: UIImageView!
   
   @IBOutlet weak var emailText: UITextField!
