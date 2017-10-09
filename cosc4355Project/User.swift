@@ -11,6 +11,7 @@ import UIKit
 
 class User {
   var name: String = "DEFAULT"
+  var email: String = "DEFAULT-EMAIL"
   // var address: Address
   var profilePicture: UIImage? = nil
   var userType: UserType = .client

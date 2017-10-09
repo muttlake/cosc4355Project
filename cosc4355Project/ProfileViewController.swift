@@ -11,8 +11,7 @@ import Firebase
 
 class ProfileViewController: UIViewController {
   
-  
-  @IBOutlet weak var profilePicture: UIImageView!
+  @IBOutlet weak var profilePicture: CustomImageView!
   
   @IBOutlet weak var nameLabel: UILabel!
   
@@ -34,7 +33,16 @@ class ProfileViewController: UIViewController {
     /* Turns picture into a circle */
     profilePicture.layer.cornerRadius = 64
     profilePicture.layer.masksToBounds = true
+    emailLabel.text = FIRAuth.auth()?.currentUser?.email!
+    fetchUserProfile()
+  }
   
-    // Do any additional setup after loading the view.
+  func fetchUserProfile() {
+    FIRDatabase.database().reference().child("users").child((FIRAuth.auth()?.currentUser?.uid)!).observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
+      let userValues = FIRDataSnapshot.value as! [String: AnyObject]
+      self.nameLabel.text = userValues["name"] as? String
+      self.profilePicture.loadImage(url: (userValues["profilePicture"] as! String))
+      // print(userValues["profilePicture"])
+    })
   }
 }

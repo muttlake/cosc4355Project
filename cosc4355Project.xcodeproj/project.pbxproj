@@ -603,6 +603,7 @@
 				CBE9B16C1F89C2C0000C8A4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

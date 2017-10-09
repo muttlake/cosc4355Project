@@ -26,7 +26,6 @@ class ProjectFormViewController: UIViewController, UIImagePickerControllerDelega
     uploadImage.isUserInteractionEnabled = true
     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handlePhotoUpload))
     self.uploadImage.addGestureRecognizer(tapGesture)
-  
   }
   
   /* Sets the selected imaged based on whether it was edited or not */
