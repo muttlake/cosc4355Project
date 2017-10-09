@@ -13,17 +13,24 @@ import Firebase
 class FeedViewController: UITableViewController, ListingsProtocol {
   
   var listings: [BasicListingsProtocol] = []
+  var orderedListings: [BasicListingsProtocol] {
+    return listings.sorted(by: { (item1: BasicListingsProtocol, item2: BasicListingsProtocol) -> Bool in
+      let firstItem = item1 as! Posting
+      let secondItem = item2 as! Posting
+      return Date.getDate(from: firstItem.date) > Date.getDate(from: secondItem.date)
+    })
+  }
   var isContractor = false;
   
   /* Generate cells, customization can be done through here. If generic change, make it in the cell's class */
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "projectCell", for: indexPath) as! ProjectPostTableViewCell
     
-    let project = listings[indexPath.item] as! Posting
+    let project = orderedListings[indexPath.item] as! Posting
     cell.projectPhoto.loadImage(url: project.photoUrl)
-    cell.projectTitle.text = listings[indexPath.item].title
+    cell.projectTitle.text = orderedListings[indexPath.item].title
     
-    cell.projectDescription.text = generateProjectDescription(startingBid: project.startingBid, description: listings[indexPath.item].description)
+    cell.projectDescription.text = generateProjectDescription(startingBid: project.startingBid, description: orderedListings[indexPath.item].description)
     
     return cell
   }
@@ -59,8 +66,19 @@ class FeedViewController: UITableViewController, ListingsProtocol {
   
   /* If the user is a client, only fetch the projects they posted */
   func fetchUserProjects() {
-    
-    tableView?.refreshControl?.endRefreshing()
+    let rootRef = FIRDatabase.database().reference().child("projects")
+    rootRef.observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
+      guard let dictionaries = FIRDataSnapshot.value as? [String: AnyObject] else { return }
+      dictionaries.forEach({ (key, value) in
+        guard let dictionary = value as? [String: Any] else { return }
+        let project = Posting(from: dictionary)
+        if project.user_id == FIRAuth.getCurrentUserId() { self.listings.append(project) }
+      })
+      self.tableView?.reloadData()
+      self.tableView?.refreshControl?.endRefreshing()
+    }) { (error) in
+      print("Failed retrieving user projects with error: \(error)")
+    }
   }
   
   /* Fetches all data from projects folder */
@@ -93,5 +111,13 @@ class FeedViewController: UITableViewController, ListingsProtocol {
     let formatter = NumberFormatter()
     formatter.numberStyle = .currency
     return formatter.string(from: startingBid as NSNumber)! + " • " + description
+  }
+}
+
+extension Date {
+  static func getDate(from string: String) -> Date {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "MM.dd.yyyy hh:mm:ss"
+    return dateFormatter.date(from: string)!
   }
 }
