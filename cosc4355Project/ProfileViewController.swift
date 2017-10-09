@@ -38,11 +38,17 @@ class ProfileViewController: UIViewController {
   }
   
   func fetchUserProfile() {
-    FIRDatabase.database().reference().child("users").child((FIRAuth.auth()?.currentUser?.uid)!).observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
-      let userValues = FIRDataSnapshot.value as! [String: AnyObject]
-      self.nameLabel.text = userValues["name"] as? String
-      self.profilePicture.loadImage(url: (userValues["profilePicture"] as! String))
+    FIRDatabase.database().reference().child("users").child(FIRAuth.getCurrentUserId()).observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
+      let userValues = FIRDataSnapshot.value as? [String: AnyObject]
+      self.nameLabel.text = userValues?["name"] as? String
+      self.profilePicture.loadImage(url: (userValues?["profilePicture"] as? String) ?? "")
       // print(userValues["profilePicture"])
     })
+  }
+}
+
+extension FIRAuth {
+  static func getCurrentUserId() -> String {
+    return (auth()?.currentUser?.uid)!
   }
 }

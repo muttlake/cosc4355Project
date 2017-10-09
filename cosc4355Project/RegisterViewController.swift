@@ -49,7 +49,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
           if let error = error { print(error); return }
           print("Succesful Photo Upload")
           if let projectImageUrl = metadata?.downloadURL()?.absoluteString {
-            let values = ["name": self.nameText.text!, "profilePicture": projectImageUrl, "email": user?.email!, "userType": "client"] as [String: AnyObject]
+            let values = ["name": self.nameText.text!, "profilePicture": projectImageUrl, "email": user?.email!, "userType": self.clientOrContractor.getSelectedTitle()] as [String: AnyObject]
             self.registerInfoIntoDatabaseWithUID(uid: uid, values: values)
           }
         }
@@ -146,5 +146,11 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         return
       }
     }
+  }
+}
+
+extension UISegmentedControl {
+  func getSelectedTitle() -> String {
+    return titleForSegment(at: selectedSegmentIndex)!
   }
 }

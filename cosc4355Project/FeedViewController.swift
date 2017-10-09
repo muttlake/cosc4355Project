@@ -13,6 +13,7 @@ import Firebase
 class FeedViewController: UITableViewController, ListingsProtocol {
   
   var listings: [BasicListingsProtocol] = []
+  var isContractor = false;
   
   /* Generate cells, customization can be done through here. If generic change, make it in the cell's class */
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -44,7 +45,22 @@ class FeedViewController: UITableViewController, ListingsProtocol {
     NotificationCenter.default.addObserver(forName: name, object: nil, queue: nil) { (_) in
       self.handleRefresh()
     }
-    fetchProjects()
+    
+    FIRDatabase.database().reference().child("users").child((FIRAuth.auth()?.currentUser?.uid)!).observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
+      guard let userInfo = FIRDataSnapshot.value as? [String : Any] else { return }
+      if (userInfo["userType"] as! String == "Contractor") {
+        self.isContractor = true
+        self.fetchProjects()
+      } else {
+        self.fetchUserProjects()
+      }
+    })
+  }
+  
+  /* If the user is a client, only fetch the projects they posted */
+  func fetchUserProjects() {
+    
+    tableView?.refreshControl?.endRefreshing()
   }
   
   /* Fetches all data from projects folder */
@@ -66,7 +82,11 @@ class FeedViewController: UITableViewController, ListingsProtocol {
   
   func handleRefresh() {
     listings.removeAll()
-    fetchProjects()
+    if isContractor {
+      fetchProjects()
+    } else {
+      fetchUserProjects()
+    }
   }
   
   func generateProjectDescription(startingBid: Double, description: String) -> String {
