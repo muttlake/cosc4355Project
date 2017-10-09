@@ -15,7 +15,7 @@ import Firebase
  */
 
 
-class RegisterViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class RegisterViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
   
   @IBOutlet weak var profilePicture: UIImageView!
   
@@ -85,6 +85,15 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     profilePicture.isUserInteractionEnabled = true
     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handlePhotoUpload))
     profilePicture.addGestureRecognizer(tapGesture)
+    
+    emailText.delegate = self
+    passwordText.delegate = self
+    confirmPasswordText.delegate = self
+    nameText.delegate = self
+  }
+  
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    return true
   }
   
   func handlePhotoUpload() {
@@ -135,12 +144,4 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
       }
     }
   }
-  
-  
-  
-  
-  
-  
-  
-  
 }

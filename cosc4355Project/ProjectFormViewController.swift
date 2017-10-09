@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ProjectFormViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ProjectFormViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
   
   @IBOutlet weak var uploadImage: UIImageView!
   
@@ -26,6 +26,14 @@ class ProjectFormViewController: UIViewController, UIImagePickerControllerDelega
     uploadImage.isUserInteractionEnabled = true
     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handlePhotoUpload))
     self.uploadImage.addGestureRecognizer(tapGesture)
+    
+    titleInput.delegate = self
+    categoryInput.delegate = self
+  }
+  
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    view.endEditing(true)
+    return true
   }
   
   /* Sets the selected imaged based on whether it was edited or not */
