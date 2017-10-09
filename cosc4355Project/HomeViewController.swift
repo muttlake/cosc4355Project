@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UITextFieldDelegate {
 
   @IBOutlet weak var usernameText: UITextField!
   
@@ -29,14 +29,15 @@ class HomeViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    usernameText.delegate = self
+    passwordText.delegate = self
     // Do any additional setup after loading the view, typically from a nib.
   }
-
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+  
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    view.endEditing(true)
+    return true
   }
-
-
 }
 
