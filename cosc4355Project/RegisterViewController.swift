@@ -75,16 +75,26 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         self.present(alertEmptyFields, animated: true, completion: nil)
       return false
     }
+    
+    let clearAction = UIAlertAction(title: "Okay", style: .default, handler: { action in
+        self.passwordText.text = ""
+        self.confirmPasswordText.text = ""
+    })
+    
     if passwordText.text! != confirmPasswordText.text! {
       print("Error: Passwords does not match")
       let alertPasswordsDoNotMatch = UIAlertController(title: "Not Registered", message: "Passwords do not match.", preferredStyle: .alert)
-        let clearAction = UIAlertAction(title: "Okay", style: .default, handler: { action in
-            self.passwordText.text = ""
-            self.confirmPasswordText.text = ""
-        })
         alertPasswordsDoNotMatch.addAction(clearAction);
         self.present(alertPasswordsDoNotMatch, animated: true, completion: nil)
       return false
+    }
+    
+    if passwordText.text!.characters.count < 6 {
+        print("Error: Passwords must be 6 characters long or more.")
+        let alertShortPassword = UIAlertController(title: "Not Registered", message: "Password must be at least 6 characters long.", preferredStyle: .alert)
+        alertShortPassword.addAction(clearAction);
+        self.present(alertShortPassword, animated: true, completion: nil)
+        return false
     }
     return true
   }
