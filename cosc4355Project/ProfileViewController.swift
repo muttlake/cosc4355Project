@@ -57,9 +57,3 @@ class ProfileViewController: UIViewController, ListingsProtocol {
     })
   }
 }
-
-extension FIRAuth {
-  static func getCurrentUserId() -> String {
-    return (auth()?.currentUser?.uid)!
-  }
-}

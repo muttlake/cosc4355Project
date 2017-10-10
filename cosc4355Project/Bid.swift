@@ -9,7 +9,6 @@
 import Foundation
 
 struct Bid {
-    
     var bidAmount: Double
     var posting_id: String
     var expected_time: Date

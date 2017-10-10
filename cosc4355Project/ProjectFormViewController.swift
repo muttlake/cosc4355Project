@@ -126,23 +126,3 @@ class ProjectFormViewController: UIViewController, UIImagePickerControllerDelega
     return true
   }
 }
-
-/* Generates a date string in the desired format */
-extension Date {
-  static var currentDate: String {
-    let date = Date()
-    let formatter = DateFormatter()
-    formatter.timeZone = TimeZone(abbreviation: "CDT")
-    formatter.dateFormat = "MM.dd.yyyy hh:mm:ss"
-    return formatter.string(from: date)
-  }
-}
-
-/* Adds a list of actions to the alert controller item */
-extension UIAlertController {
-  func addActions(actions: UIAlertAction...) {
-    for action in actions {
-      addAction(action)
-    }
-  }
-}

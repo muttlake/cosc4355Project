@@ -148,9 +148,3 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     }
   }
 }
-
-extension UISegmentedControl {
-  func getSelectedTitle() -> String {
-    return titleForSegment(at: selectedSegmentIndex)!
-  }
-}

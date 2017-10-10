@@ -114,11 +114,3 @@ class FeedViewController: UITableViewController, ListingsProtocol {
     return formatter.string(from: startingBid as NSNumber)! + " • " + description
   }
 }
-
-extension Date {
-  static func getDate(from string: String) -> Date {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "MM.dd.yyyy hh:mm:ss"
-    return dateFormatter.date(from: string)!
-  }
-}
