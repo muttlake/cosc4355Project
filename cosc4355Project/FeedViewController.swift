@@ -29,7 +29,8 @@ class FeedViewController: UITableViewController, ListingsProtocol {
     let project = orderedListings[indexPath.item] as! Posting
     cell.projectPhoto.loadImage(url: project.photoUrl)
     cell.projectTitle.text = orderedListings[indexPath.item].title
-    
+    cell.posting_id = orderedListings[indexPath.item].posting_id
+    cell.poster_id = orderedListings[indexPath.item].user_id
     cell.projectDescription.text = generateProjectDescription(startingBid: project.startingBid, description: orderedListings[indexPath.item].description)
     
     return cell
@@ -120,6 +121,8 @@ class FeedViewController: UITableViewController, ListingsProtocol {
       dvc.projectDescriptionString = currentCell.projectDescription.text!
       dvc.projectImagePhoto = currentCell.projectPhoto.image
       dvc.posterImagePhoto = currentCell.userPhoto.image
+      dvc.postingId = currentCell.posting_id
+      dvc.userWhoPostedId = currentCell.poster_id
     }
   }
   

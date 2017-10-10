@@ -28,10 +28,12 @@ class BidFormViewController: UIViewController {
   
   var posterImagePhoto: UIImage?
   
+  var postingId: String?
+  
+  var userWhoPostedId: String?
+  
   @IBAction func makeBid(_ sender: UIButton) {
-    
-    
-    
+    /* Upload Bid */
   }
   
   override func viewDidLoad() {
@@ -42,6 +44,7 @@ class BidFormViewController: UIViewController {
     projectDescription.text = projectDescriptionString ?? "DEFAULT DESC"
     projectImage.image = projectImagePhoto!
     posterImage.image = posterImagePhoto!
-    // Do any additional setup after loading the view.
+    // print(postingId ?? "empty1")
+    // print(userWhoPostedId ?? "empty2")
   }
 }

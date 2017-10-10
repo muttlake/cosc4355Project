@@ -17,6 +17,10 @@ class ProjectPostTableViewCell: UITableViewCell {
   
   @IBOutlet weak var projectDescription: UILabel!
   
+  var posting_id: String?
+  
+  var poster_id: String?
+  
   override func awakeFromNib() {
     super.awakeFromNib()
     userPhoto.layer.cornerRadius = 25
