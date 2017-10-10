@@ -13,7 +13,7 @@ struct Bid {
     var posting_id: String
     var expected_time: Date
     var bidder_id: String
-    var location: String
+    var location: Address
     
     // Default Address
     init() {
@@ -21,10 +21,10 @@ struct Bid {
         posting_id = "DEFAULT"
         expected_time = Date.distantPast
         bidder_id = "DEFAULT"
-        location = "DEFAULT"
+        location = Address()
     }
     
     func toString() -> String {
-        return bidder_id + " bid " + String(bidAmount) + " for posting_id " + posting_id + " for date: " + String(describing: expected_time) + " at location " + location
+        return bidder_id + " bid " + String(bidAmount) + " for posting_id " + posting_id + " for date: " + String(describing: expected_time) + " at location " + location.toString()
     }
 }

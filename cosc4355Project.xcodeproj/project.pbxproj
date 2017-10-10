@@ -16,6 +16,7 @@
 		CB47BBEA1F74B78B00841C92 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB47BBE91F74B78B00841C92 /* GoogleService-Info.plist */; };
 		CB47BBEC1F74C0D000841C92 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB47BBEB1F74C0D000841C92 /* FeedViewController.swift */; };
 		CB523AB11F8D22C30007CCB8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB523AB01F8D22C30007CCB8 /* Extensions.swift */; };
+		CB523AB31F8D25230007CCB8 /* BidFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB523AB21F8D25230007CCB8 /* BidFormViewController.swift */; };
 		CBE9B1431F8791B5000C8A4D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B1421F8791B5000C8A4D /* ProfileViewController.swift */; };
 		CBE9B1451F879248000C8A4D /* ProjectPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B1441F879248000C8A4D /* ProjectPostTableViewCell.swift */; };
 		CBE9B1471F8821E6000C8A4D /* ProjectFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B1461F8821E6000C8A4D /* ProjectFormViewController.swift */; };
@@ -59,6 +60,7 @@
 		CB47BBE91F74B78B00841C92 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB47BBEB1F74C0D000841C92 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		CB523AB01F8D22C30007CCB8 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		CB523AB21F8D25230007CCB8 /* BidFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BidFormViewController.swift; sourceTree = "<group>"; };
 		CBE9B1421F8791B5000C8A4D /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CBE9B1441F879248000C8A4D /* ProjectPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectPostTableViewCell.swift; sourceTree = "<group>"; };
 		CBE9B1461F8821E6000C8A4D /* ProjectFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectFormViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				CB47BBEB1F74C0D000841C92 /* FeedViewController.swift */,
 				CBE9B1421F8791B5000C8A4D /* ProfileViewController.swift */,
 				CBE9B1461F8821E6000C8A4D /* ProjectFormViewController.swift */,
+				CB523AB21F8D25230007CCB8 /* BidFormViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				CBE9B1431F8791B5000C8A4D /* ProfileViewController.swift in Sources */,
 				CB47BBEC1F74C0D000841C92 /* FeedViewController.swift in Sources */,
 				CBE9B14A1F884453000C8A4D /* User.swift in Sources */,
+				CB523AB31F8D25230007CCB8 /* BidFormViewController.swift in Sources */,
 				CB47BBD61F74B28000841C92 /* AppDelegate.swift in Sources */,
 				CBE9B14E1F884506000C8A4D /* UserType.swift in Sources */,
 				FB735DC71F8C9A9000FE6794 /* Bid.swift in Sources */,
