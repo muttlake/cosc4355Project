@@ -108,6 +108,16 @@ class FeedViewController: UITableViewController, ListingsProtocol {
     }
   }
   
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    performSegue(withIdentifier: "makeBidSegue", sender: self)
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "makeBidSegue" {
+      /* Config make bid segue */
+    }
+  }
+  
   func generateProjectDescription(startingBid: Double, description: String) -> String {
     let formatter = NumberFormatter()
     formatter.numberStyle = .currency
