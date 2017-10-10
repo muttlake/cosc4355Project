@@ -50,3 +50,9 @@ extension UISegmentedControl {
     return titleForSegment(at: selectedSegmentIndex)!
   }
 }
+
+extension UITableView {
+  func getSelectedIndex() -> Int {
+    return indexPathForSelectedRow?.item ?? 0
+  }
+}

@@ -114,7 +114,12 @@ class FeedViewController: UITableViewController, ListingsProtocol {
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "makeBidSegue" {
-      /* Config make bid segue */
+      let dvc = segue.destination as! BidFormViewController
+      let currentCell = tableView.cellForRow(at: tableView.indexPathForSelectedRow!) as! ProjectPostTableViewCell
+      dvc.projectTitleString = currentCell.projectTitle.text!
+      dvc.projectDescriptionString = currentCell.projectDescription.text!
+      dvc.projectImagePhoto = currentCell.projectPhoto.image
+      dvc.posterImagePhoto = currentCell.userPhoto.image
     }
   }
   

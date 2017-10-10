@@ -9,12 +9,39 @@
 import UIKit
 
 class BidFormViewController: UIViewController {
+
+  @IBOutlet weak var posterImage: UIImageView!
   
+  @IBOutlet weak var projectTitle: UILabel!
   
+  @IBOutlet weak var projectImage: UIImageView!
+  
+  @IBOutlet weak var projectDescription: UILabel!
+  
+  @IBOutlet weak var bidAmountField: UITextField!
+  
+  var projectTitleString: String?
+  
+  var projectDescriptionString: String?
+  
+  var projectImagePhoto: UIImage?
+  
+  var posterImagePhoto: UIImage?
+  
+  @IBAction func makeBid(_ sender: UIButton) {
+    
+    
+    
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    posterImage.layer.masksToBounds = true
+    posterImage.layer.cornerRadius = 27
+    projectTitle.text = projectTitleString ?? "DEFAULT TITLE"
+    projectDescription.text = projectDescriptionString ?? "DEFAULT DESC"
+    projectImage.image = projectImagePhoto!
+    posterImage.image = posterImagePhoto!
     // Do any additional setup after loading the view.
   }
 }
