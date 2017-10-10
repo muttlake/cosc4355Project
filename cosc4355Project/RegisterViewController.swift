@@ -69,10 +69,21 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
   func isFieldsValid() -> Bool {
     if emailText.text! == "" || passwordText.text! == "" || confirmPasswordText.text! == "" || nameText.text! == "" {
       print("Error: Empty field indicated")
+        let alertEmptyFields = UIAlertController(title: "Not Registered", message: "There are empty fields.", preferredStyle: .alert)
+        let nonAction = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        alertEmptyFields.addAction(nonAction);
+        self.present(alertEmptyFields, animated: true, completion: nil)
       return false
     }
     if passwordText.text! != confirmPasswordText.text! {
       print("Error: Passwords does not match")
+      let alertPasswordsDoNotMatch = UIAlertController(title: "Not Registered", message: "Passwords do not match.", preferredStyle: .alert)
+        let clearAction = UIAlertAction(title: "Okay", style: .default, handler: { action in
+            self.passwordText.text = ""
+            self.confirmPasswordText.text = ""
+        })
+        alertPasswordsDoNotMatch.addAction(clearAction);
+        self.present(alertPasswordsDoNotMatch, animated: true, completion: nil)
       return false
     }
     return true
