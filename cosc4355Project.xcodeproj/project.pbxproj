@@ -29,6 +29,8 @@
 		CBE9B15F1F89973C000C8A4D /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B15E1F89973C000C8A4D /* CustomImageView.swift */; };
 		CBE9B1671F89C2C0000C8A4D /* XCProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B1661F89C2C0000C8A4D /* XCProjectTests.swift */; };
 		E3950CE0F55F346EABA1675E /* Pods_cosc4355Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C9482FDCBA72DEE67A530A1 /* Pods_cosc4355Project.framework */; };
+		FB735DC51F8C967300FE6794 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB735DC41F8C967300FE6794 /* Review.swift */; };
+		FB735DC71F8C9A9000FE6794 /* Bid.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB735DC61F8C9A9000FE6794 /* Bid.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,8 @@
 		CBE9B1661F89C2C0000C8A4D /* XCProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCProjectTests.swift; sourceTree = "<group>"; };
 		CBE9B1681F89C2C0000C8A4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB241CDE99B71EED06FF72C3 /* Pods-cosc4355Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cosc4355Project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cosc4355Project/Pods-cosc4355Project.debug.xcconfig"; sourceTree = "<group>"; };
+		FB735DC41F8C967300FE6794 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		FB735DC61F8C9A9000FE6794 /* Bid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bid.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +143,8 @@
 				CBE9B1491F884453000C8A4D /* User.swift */,
 				CBE9B14B1F8844C5000C8A4D /* Address.swift */,
 				CBE9B14F1F8845D4000C8A4D /* Posting.swift */,
+				FB735DC41F8C967300FE6794 /* Review.swift */,
+				FB735DC61F8C9A9000FE6794 /* Bid.swift */,
 				CBE9B1551F884828000C8A4D /* BasicListingsProtocol.swift */,
 			);
 			name = Models;
@@ -377,12 +383,14 @@
 				CBE9B14A1F884453000C8A4D /* User.swift in Sources */,
 				CB47BBD61F74B28000841C92 /* AppDelegate.swift in Sources */,
 				CBE9B14E1F884506000C8A4D /* UserType.swift in Sources */,
+				FB735DC71F8C9A9000FE6794 /* Bid.swift in Sources */,
 				CBE9B15A1F896C46000C8A4D /* ListingsProtocol.swift in Sources */,
 				CBE9B1541F884754000C8A4D /* ProjectCategory.swift in Sources */,
 				CBE9B15F1F89973C000C8A4D /* CustomImageView.swift in Sources */,
 				CBE9B1501F8845D4000C8A4D /* Posting.swift in Sources */,
 				CBE9B1561F884828000C8A4D /* BasicListingsProtocol.swift in Sources */,
 				CBE9B1451F879248000C8A4D /* ProjectPostTableViewCell.swift in Sources */,
+				FB735DC51F8C967300FE6794 /* Review.swift in Sources */,
 				CBE9B14C1F8844C5000C8A4D /* Address.swift in Sources */,
 				CBE9B1471F8821E6000C8A4D /* ProjectFormViewController.swift in Sources */,
 				CBE9B1521F884605000C8A4D /* Status.swift in Sources */,
