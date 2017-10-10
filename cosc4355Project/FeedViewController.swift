@@ -62,6 +62,7 @@ class FeedViewController: UITableViewController, ListingsProtocol {
         self.fetchUserProjects()
       }
     })
+    
   }
   
   /* If the user is a client, only fetch the projects they posted */

@@ -31,6 +31,7 @@
 		E3950CE0F55F346EABA1675E /* Pods_cosc4355Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C9482FDCBA72DEE67A530A1 /* Pods_cosc4355Project.framework */; };
 		FB735DC51F8C967300FE6794 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB735DC41F8C967300FE6794 /* Review.swift */; };
 		FB735DC71F8C9A9000FE6794 /* Bid.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB735DC61F8C9A9000FE6794 /* Bid.swift */; };
+		FB735DC91F8CA2F100FE6794 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB735DC81F8CA2F100FE6794 /* ReviewTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		FB241CDE99B71EED06FF72C3 /* Pods-cosc4355Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cosc4355Project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cosc4355Project/Pods-cosc4355Project.debug.xcconfig"; sourceTree = "<group>"; };
 		FB735DC41F8C967300FE6794 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		FB735DC61F8C9A9000FE6794 /* Bid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bid.swift; sourceTree = "<group>"; };
+		FB735DC81F8CA2F100FE6794 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				CBE9B1441F879248000C8A4D /* ProjectPostTableViewCell.swift */,
+				FB735DC81F8CA2F100FE6794 /* ReviewTableViewCell.swift */,
 				CBE9B15E1F89973C000C8A4D /* CustomImageView.swift */,
 			);
 			name = Views;
@@ -394,6 +397,7 @@
 				CBE9B14C1F8844C5000C8A4D /* Address.swift in Sources */,
 				CBE9B1471F8821E6000C8A4D /* ProjectFormViewController.swift in Sources */,
 				CBE9B1521F884605000C8A4D /* Status.swift in Sources */,
+				FB735DC91F8CA2F100FE6794 /* ReviewTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

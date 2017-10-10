@@ -13,6 +13,7 @@ struct Review {
     var person_about: String
     var user_id: String
     var reviewWords: String
+    var reviewTime: Date
     
     // Default Address
     init() {
@@ -20,9 +21,10 @@ struct Review {
         person_about = "DEFAULT"
         user_id = "DEFAULT"
         reviewWords = "DEFAULT"
+        reviewTime = Date.distantPast
     }
     
     func toString() -> String {
-        return user_id + " gave rating " + String(star) + " for user " + person_about + " and said:\n" + reviewWords
+        return user_id + " gave rating " + String(star) + " on " + String(describing: reviewTime) + " for user " + person_about + " and said:\n" + reviewWords
     }
 }

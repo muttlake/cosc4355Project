@@ -9,13 +9,23 @@
 import UIKit
 import Firebase
 
-class ProfileViewController: UIViewController {
-  
-  @IBOutlet weak var profilePicture: CustomImageView!
-  
-  @IBOutlet weak var nameLabel: UILabel!
-  
-  @IBOutlet weak var emailLabel: UILabel!
+class ProfileViewController: UIViewController, ListingsProtocol {
+    
+    @IBOutlet weak var profilePicture: CustomImageView!
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var emailLabel: UILabel!
+    
+    var listings: [BasicListingsProtocol] = []
+    var orderedListings: [BasicListingsProtocol] {
+        return listings.sorted(by: { (item1: BasicListingsProtocol, item2: BasicListingsProtocol) -> Bool in
+            let firstItem = item1 as! Posting
+            let secondItem = item2 as! Posting
+            return Date.getDate(from: firstItem.date) > Date.getDate(from: secondItem.date)
+        })
+    }
+
   
   @IBAction func logoutButton(_ sender: UIButton) {
     do {
@@ -27,6 +37,7 @@ class ProfileViewController: UIViewController {
     }
     print("Sign out successful")
   }
+    
   
   override func viewDidLoad() {
     super.viewDidLoad()
