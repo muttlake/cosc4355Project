@@ -110,7 +110,11 @@ class FeedViewController: UITableViewController, ListingsProtocol {
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    performSegue(withIdentifier: "makeBidSegue", sender: self)
+    if isContractor {
+      performSegue(withIdentifier: "makeBidSegue", sender: self)
+    } else {
+      performSegue(withIdentifier: "viewBidsSegue", sender: self)
+    }
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
