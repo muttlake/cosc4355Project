@@ -42,7 +42,6 @@ class BidFormViewController: UIViewController {
     self.navigationController?.popViewController(animated: true)
   }
   
-  
   private func registerInfoIntoDatabaseWithUID(uid: String, values: [String: AnyObject]) {
     let ref = FIRDatabase.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
     let projectsReference = ref.child("bids").child(uid)
@@ -53,7 +52,6 @@ class BidFormViewController: UIViewController {
       }
     }
   }
-  
   
   override func viewDidLoad() {
     super.viewDidLoad()
