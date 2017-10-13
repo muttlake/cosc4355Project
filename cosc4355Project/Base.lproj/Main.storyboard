@@ -347,7 +347,7 @@
         <!--Bids-->
         <scene sceneID="SUs-dk-27L">
             <objects>
-                <tableViewController title="Bids" hidesBottomBarWhenPushed="YES" id="27C-Lb-7zf" sceneMemberID="viewController">
+                <tableViewController title="Bids" hidesBottomBarWhenPushed="YES" id="27C-Lb-7zf" customClass="BidsTableViewController" customModule="cosc4355Project" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="93" sectionHeaderHeight="28" sectionFooterHeight="28" id="FJa-a0-TDd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -356,11 +356,11 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="bidCell" rowHeight="93" id="t73-G4-UPX" customClass="BidTableViewCell" customModule="cosc4355Project" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="93"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t73-G4-UPX" id="3P9-Py-Xhn">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t73-G4-UPX" id="3P9-Py-Xhn" customClass="BidTableViewCell" customModule="cosc4355Project" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="93"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d5G-0R-NKq">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d5G-0R-NKq" customClass="CustomImageView" customModule="cosc4355Project" customModuleProvider="target">
                                             <rect key="frame" x="8" y="8" width="70" height="70"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -383,6 +383,9 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <state key="normal" title="Accept"/>
+                                            <connections>
+                                                <action selector="acceptBid:" destination="t73-G4-UPX" eventType="touchUpInside" id="Wjf-dD-cl9"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nxS-xi-Qkp">
                                             <rect key="frame" x="86" y="42" width="92" height="26"/>
@@ -393,6 +396,12 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="bidderBid" destination="Fmx-5y-e1k" id="1xS-Sr-b6D"/>
+                                    <outlet property="bidderName" destination="EVR-hk-c4h" id="5c3-zj-Jk1"/>
+                                    <outlet property="bidderPhoto" destination="d5G-0R-NKq" id="pcC-0a-5wM"/>
+                                    <outlet property="bidderRating" destination="nxS-xi-Qkp" id="qW9-Se-14Q"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

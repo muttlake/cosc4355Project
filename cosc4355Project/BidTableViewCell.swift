@@ -10,6 +10,18 @@ import UIKit
 
 class BidTableViewCell: UITableViewCell {
   
+  
+  @IBOutlet weak var bidderPhoto: CustomImageView!
+  
+  @IBOutlet weak var bidderName: UILabel!
+  
+  @IBOutlet weak var bidderRating: UILabel!
+  
+  @IBOutlet weak var bidderBid: UILabel!
+  
+  @IBAction func acceptBid(_ sender: UIButton) {
+  }
+  
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
