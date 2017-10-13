@@ -27,6 +27,15 @@ struct Bid {
     user_id = "DEFAULT"
   }
   
+  init(from dict: [String: Any]) {
+    bidAmount = dict["bidAmount"] as? Double ?? 0
+    posting_id = dict["posting_id"] as! String
+    expected_time = Date.getDate(from: dict["expectedTime"] as! String)
+    bidder_id = dict["bidder_id"] as! String
+    user_id = dict["user_id"] as! String
+    location = Address()
+  }
+  
   func toString() -> String {
     return bidder_id + " bid " + String(bidAmount) + " for posting_id " + posting_id + " for date: " + String(describing: expected_time) + " at location " + location.toString()
   }

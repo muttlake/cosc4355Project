@@ -23,6 +23,7 @@ struct Review {
         reviewWords = "DEFAULT"
         reviewTime = Date.distantPast
     }
+  
     
     func toString() -> String {
         return user_id + " gave rating " + String(star) + " on " + String(describing: reviewTime) + " for user " + person_about + " and said:\n" + reviewWords

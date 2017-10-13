@@ -54,6 +54,7 @@ class FeedViewController: UITableViewController, ListingsProtocol {
       self.handleRefresh()
     }
     
+    /* Gets User Type */
     FIRDatabase.database().reference().child("users").child((FIRAuth.auth()?.currentUser?.uid)!).observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
       guard let userInfo = FIRDataSnapshot.value as? [String : Any] else { return }
       if (userInfo["userType"] as! String == "Contractor") {
@@ -127,6 +128,9 @@ class FeedViewController: UITableViewController, ListingsProtocol {
       dvc.posterImagePhoto = currentCell.userPhoto.image
       dvc.postingId = currentCell.posting_id
       dvc.userWhoPostedId = currentCell.poster_id
+    } else if segue.identifier == "viewBidsSegue" {
+      let dvc = segue.destination as! BidsTableViewController
+      dvc.currentPosting = listings[tableView.getSelectedIndex()] as! Posting
     }
   }
   
