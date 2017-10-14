@@ -19,9 +19,32 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet weak var reviewsTableView: UITableView!
 
-    var fakeReviews: [Review] = [Review(stars: 3.5, about_id: "Contractor22", posting_id: "253fdfds", poster_id: "Test22", reviewWords: "It was well done."), Review(stars: 4.0, about_id: "Contractor22", posting_id: "253fdfds", poster_id: "Test22", reviewWords: "It was well done."), Review(stars: 4.5, about_id: "Contractor22", posting_id: "253fdfds",
-        poster_id: "Test22", reviewWords: "It was well done.")]
+    var reviews: [Review] = []
+    
+//    var fakeReviews: [Review] = [
+//            Review(stars: 4.5, about_id: "Contractor22", posting_id: "253fdfds", poster_id: "Test22", reviewWords: "Good Job."),
+//            Review(stars: 4.5, about_id: "Contractor22", posting_id: "253fdfds", poster_id: "Test22", reviewWords: "Good Job."),
+//            Review(stars: 4.5, about_id: "Contractor22", posting_id: "253fdfds", poster_id: "Test22", reviewWords: "Good Job.")]
+//
+//    func registerFakeReviewsIntoDatabase() {
+//        for review in fakeReviews {
+//            let reviewId = NSUUID().uuidString
+//            let values = ["stars": review.stars, "expectedTime": review.reviewTime, "user_id": FIRAuth.getCurrentUserId(), "about_id": review.about_id, "posting_id": review.posting_id, "reviewWords": review.reviewWords] as [String : Any]
+//            self.registerInfoIntoDatabaseWithUID(uid: reviewId, values: values as [String: AnyObject])
+//        }
+//    }
 
+//    private func registerInfoIntoDatabaseWithUID(uid: String, values: [String: AnyObject]) {
+//        let ref = FIRDatabase.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
+//        let projectsReference = ref.child("reviews").child(uid)
+//        projectsReference.updateChildValues(values) { (err, ref) in
+//            if(err != nil) {
+//                print("Error Occured: \(err!)")
+//                return
+//            }
+//        }
+//    }
+    
     @IBAction func logoutButton(_ sender: UIButton) {
         do {
             try FIRAuth.auth()?.signOut()
@@ -41,12 +64,16 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         profilePicture.layer.masksToBounds = true
         emailLabel.text = FIRAuth.auth()?.currentUser?.email!
         fetchUserProfile()
+        
+        //self.registerFakeReviewsIntoDatabase()
     
         reviewsTableView.delegate = self
         reviewsTableView.dataSource = self
     
         reviewsTableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
     
+        fetchReviews()
+        
         /* Adding refresh feature on newsfeed to reload projects */
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
@@ -55,7 +82,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         let name = Notification.Name(rawValue: "updateFeed")
         NotificationCenter.default.addObserver(forName: name, object: nil, queue: nil) { (_) in
             self.handleRefresh()
-            self.fetchProjects()
+            self.fetchReviews()
         }
     }
   
@@ -69,44 +96,44 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     } // end fetchUserProfile
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fakeReviews.count
+        return reviews.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "reviewCell", for: indexPath) as! ReviewTableViewCell
-        fakeReviews.sort(by: { (item1: Review, item2: Review) -> Bool in
-                return Date.getDate(from: item1.date) > Date.getDate(from: item2.date)
+        reviews.sort(by: { (item1: Review, item2: Review) -> Bool in
+                return Date.getDate(from: item1.reviewTime) > Date.getDate(from: item2.reviewTime)
             })
-        cell.starsLabel.text = String(fakeReviews[indexPath.item].stars)
-        cell.reviewWordsLabel.text = fakeReviews[indexPath.item].description
-        print(fakeReviews[indexPath.item])
+        cell.starsLabel.text = String(reviews[indexPath.item].stars)
+        cell.reviewWordsLabel.text = reviews[indexPath.item].reviewWords
+        print(reviews[indexPath.item])
     
         return cell
     }
         
     /* Fetches all data from projects folder */
-    func fetchProjects() {
-//        FIRDatabase.database().reference().child("projects").observeSingleEvent(of: .value, with: { (snapshot) in
-//            guard let dictionaries = snapshot.value as? [String: Any] else { return }
-//            dictionaries.forEach({ (key, value) in
-//                guard let dictionary = value as? [String: Any] else { return }
-//                let project = Posting(from: dictionary)
-//                self.listings.append(project)
-//            })
-//            /* Manually all the table view to reload itself and to refresh. Otherwise no changes will be seen */
-//            self.reviewsTableView?.reloadData()
-//            self.reviewsTableView?.refreshControl?.endRefreshing()
-//        }) { (error) in
-//            print("Failed to fetch users with error: \(error)")
-//        }
+    func fetchReviews() {
+        FIRDatabase.database().reference().child("reviews").observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let dictionaries = snapshot.value as? [String: Any] else { return }
+            dictionaries.forEach({ (key, value) in
+                guard let dictionary = value as? [String: Any] else { return }
+                let review = Review(from: dictionary)
+                self.reviews.append(review)
+            })
+            /* Manually all the table view to reload itself and to refresh. Otherwise no changes will be seen */
+            self.reviewsTableView?.reloadData()
+            self.reviewsTableView?.refreshControl?.endRefreshing()
+        }) { (error) in
+            print("Failed to fetch reviews with error: \(error)")
+        }
         self.reviewsTableView.reloadData()
         self.reviewsTableView.refreshControl?.endRefreshing()
-    } // end fetchProjects
+    } // end fetchReviews
         
     func handleRefresh() {
-        fakeReviews.removeAll()
-        fetchProjects()
+        reviews.removeAll()
+        fetchReviews()
     }
 }
 
