@@ -11,7 +11,7 @@ import UIKit
 class ReviewTableViewCell: UITableViewCell {
     
     //@IBOutlet weak var userPhoto: CustomImageView!
-    @IBOutlet weak var starsLabel: UILabel!
+    @IBOutlet weak var starsImage: UIImageView!
     @IBOutlet weak var reviewWordsLabel: UILabel!
     
     var posting_id: String?
@@ -23,7 +23,8 @@ class ReviewTableViewCell: UITableViewCell {
         user_id = "DEFAULT"
         //userPhoto.layer.cornerRadius = 25
         //userPhoto.layer.masksToBounds = true
-        starsLabel.text = "Review Stars"
+        //starsLabel.text = "Review Stars"
+        starsImage.image = UIImage(named: "0stars")
         reviewWordsLabel.text = "Review Words"
         print("is set")
     }

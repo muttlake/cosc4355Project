@@ -100,12 +100,12 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "reviewCell", for: indexPath) as! ReviewTableViewCell
         reviews.sort(by: { (item1: Review, item2: Review) -> Bool in
                 return Date.getDate(from: item1.reviewTime) > Date.getDate(from: item2.reviewTime)
             })
-        cell.starsLabel.text = String(reviews[indexPath.item].stars)
+        let starImageName = String(reviews[indexPath.row].stars) + "stars"
+        cell.starsImage.image = UIImage(named: starImageName)
         cell.reviewWordsLabel.text = reviews[indexPath.item].reviewWords
         print(reviews[indexPath.item])
     
