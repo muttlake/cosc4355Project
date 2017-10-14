@@ -16,16 +16,16 @@ struct Review {
     var about_id: String
     var posting_id: String
     
-    var stars: Double
+    var stars: Int
     var reviewWords: String
     var reviewTime: String
     
     // Default Address
-    init(stars: Double, about_id: String, posting_id: String, poster_id: String, reviewWords: String) {
-        
+    init(about_id: String, posting_id: String, stars: Int, reviewWords: String, reviewTime: String)
+    {
         self.reviewId = "DEFAULT"
         
-        self.user_id = poster_id
+        self.user_id = "DEFAULT"
         self.about_id = about_id
         self.posting_id = posting_id
         
@@ -41,8 +41,8 @@ struct Review {
         about_id = dictionary["about_id"]! as! String
         posting_id = dictionary["posting_id"]! as! String
         
-        stars = dictionary["stars"]! as! Double
-        reviewTime = dictionary["expectedTime"]! as! String
+        stars = dictionary["stars"]! as! Int
+        reviewTime = dictionary["reviewTime"]! as! String
         reviewWords = dictionary["reviewWords"]! as! String
     }
     

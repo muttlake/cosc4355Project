@@ -22,18 +22,18 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     var reviews: [Review] = []
     
 //    var fakeReviews: [Review] = [
-//            Review(stars: 4.5, about_id: "Contractor22", posting_id: "253fdfds", poster_id: "Test22", reviewWords: "Good Job."),
-//            Review(stars: 4.5, about_id: "Contractor22", posting_id: "253fdfds", poster_id: "Test22", reviewWords: "Good Job."),
-//            Review(stars: 4.5, about_id: "Contractor22", posting_id: "253fdfds", poster_id: "Test22", reviewWords: "Good Job.")]
+//        Review(about_id: "Contractor22", posting_id: "253fdfds", stars: 5, reviewWords: "Excellent Work.", reviewTime: Date.currentDate),
+//        Review(about_id: "Contractor22", posting_id: "253fdfds", stars: 4, reviewWords: "No complaints.", reviewTime: Date.currentDate),
+//        Review(about_id: "Contractor22", posting_id: "253fdfds", stars: 5, reviewWords: "Really Really Good Job.", reviewTime: Date.currentDate)]
 //
 //    func registerFakeReviewsIntoDatabase() {
 //        for review in fakeReviews {
 //            let reviewId = NSUUID().uuidString
-//            let values = ["stars": review.stars, "expectedTime": review.reviewTime, "user_id": FIRAuth.getCurrentUserId(), "about_id": review.about_id, "posting_id": review.posting_id, "reviewWords": review.reviewWords] as [String : Any]
+//            let values = ["user_id": FIRAuth.getCurrentUserId(), "about_id": review.about_id, "posting_id": review.posting_id, "stars": review.stars, "reviewWords": review.reviewWords, "reviewTime": review.reviewTime] as [String : Any]
 //            self.registerInfoIntoDatabaseWithUID(uid: reviewId, values: values as [String: AnyObject])
 //        }
 //    }
-
+//
 //    private func registerInfoIntoDatabaseWithUID(uid: String, values: [String: AnyObject]) {
 //        let ref = FIRDatabase.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
 //        let projectsReference = ref.child("reviews").child(uid)
@@ -69,16 +69,16 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
         reviewsTableView.delegate = self
         reviewsTableView.dataSource = self
-    
+
         reviewsTableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
-    
+
         fetchReviews()
-        
+
         /* Adding refresh feature on newsfeed to reload projects */
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         reviewsTableView.refreshControl = refreshControl
-    
+
         let name = Notification.Name(rawValue: "updateFeed")
         NotificationCenter.default.addObserver(forName: name, object: nil, queue: nil) { (_) in
             self.handleRefresh()
