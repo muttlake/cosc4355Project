@@ -11,3 +11,8 @@ or if you need to update the pods run
 pod update
 
 ONLY work with .xcworkspace file
+
+firebase login:
+https://console.firebase.google.com/project/cosc4355project/overview
+email: team1cosc4355@gmail.com
+pass: cosc4355
