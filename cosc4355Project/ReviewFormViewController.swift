@@ -17,28 +17,64 @@ class ReviewFormViewController: UIViewController {
     
     @IBOutlet weak var reviewWordsField: UITextView!
     
+    @IBOutlet weak var stars1Outlet: UIButton!
+    @IBOutlet weak var stars2Outlet: UIButton!
+    @IBOutlet weak var stars3Outlet: UIButton!
+    @IBOutlet weak var stars4Outlet: UIButton!
+    @IBOutlet weak var stars5Outlet: UIButton!
+    
     @IBAction func stars0Button(_ sender: Any) {
         self.numStars = 0
+        stars1Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
+        stars2Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
+        stars3Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
+        stars4Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
+        stars5Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
     }
     
     @IBAction func stars1Button(_ sender: Any) {
         self.numStars = 1
+        stars1Outlet.setImage(UIImage(named: "singleStarFilled"), for: .normal)
+        stars2Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
+        stars3Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
+        stars4Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
+        stars5Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
     }
 
     @IBAction func stars2Button(_ sender: Any) {
         self.numStars = 2
+        stars1Outlet.setImage(UIImage(named: "singleStarFilled"), for: .normal)
+        stars2Outlet.setImage(UIImage(named: "singleStarFilled"), for: .normal)
+        stars3Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
+        stars4Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
+        stars5Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
     }
     
     @IBAction func stars3Button(_ sender: Any) {
         self.numStars = 3
+        stars1Outlet.setImage(UIImage(named: "singleStarFilled"), for: .normal)
+        stars2Outlet.setImage(UIImage(named: "singleStarFilled"), for: .normal)
+        stars3Outlet.setImage(UIImage(named: "singleStarFilled"), for: .normal)
+        stars4Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
+        stars5Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
     }
     
     @IBAction func stars4Button(_ sender: Any) {
         self.numStars = 4
+        stars1Outlet.setImage(UIImage(named: "singleStarFilled"), for: .normal)
+        stars2Outlet.setImage(UIImage(named: "singleStarFilled"), for: .normal)
+        stars3Outlet.setImage(UIImage(named: "singleStarFilled"), for: .normal)
+        stars4Outlet.setImage(UIImage(named: "singleStarFilled"), for: .normal)
+        stars5Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
     }
     
     @IBAction func stars5Button(_ sender: Any) {
         self.numStars = 5
+        stars1Outlet.setImage(UIImage(named: "singleStarFilled"), for: .normal)
+        stars2Outlet.setImage(UIImage(named: "singleStarFilled"), for: .normal)
+        stars3Outlet.setImage(UIImage(named: "singleStarFilled"), for: .normal)
+        stars4Outlet.setImage(UIImage(named: "singleStarFilled"), for: .normal)
+        stars5Outlet.setImage(UIImage(named: "singleStarFilled"), for: .normal)
     }
     
     func alertNoStarLevelChosen() {
