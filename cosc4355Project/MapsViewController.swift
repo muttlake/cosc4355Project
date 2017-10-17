@@ -36,7 +36,7 @@ class MapsViewController: UIViewController, CLLocationManagerDelegate{
         super.viewDidLoad()
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyKilometer
-        //manager.requestWhenInUseAuthorization()
+        manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
     }
 
