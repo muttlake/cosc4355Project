@@ -45,6 +45,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 //        }
 //    }
     
+    @IBAction func addReviewButton(_ sender: Any) {
+        performSegue(withIdentifier: "profileReviewForm", sender: self)
+    }
+    
+    
     @IBAction func logoutButton(_ sender: UIButton) {
         do {
             try FIRAuth.auth()?.signOut()

@@ -17,6 +17,7 @@ struct Review {
     var posting_id: String
     
     var stars: Int
+    //var reviewTitle: String
     var reviewWords: String
     var reviewTime: String
     
@@ -30,6 +31,7 @@ struct Review {
         self.posting_id = posting_id
         
         self.stars = stars
+        //self.reviewTitle = reviewTitle
         self.reviewWords = reviewWords
         self.reviewTime = Date.currentDate
     }
@@ -43,6 +45,7 @@ struct Review {
         
         stars = dictionary["stars"]! as! Int
         reviewTime = dictionary["reviewTime"]! as! String
+        //reviewTitle = dictionary["reviewTitle"]! as! String
         reviewWords = dictionary["reviewWords"]! as! String
     }
     
