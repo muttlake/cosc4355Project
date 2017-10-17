@@ -18,9 +18,17 @@ class BidsTableViewController: UITableViewController {
   
   var currentPosting: Posting?
   
+  var bidsStatus: [Bool]?
+  
+  var clientSelected = false
+  
+  var acceptButtons = [UIButton]()
+  var payButtons = [UIButton]()
+  var reviewButtons = [UIButton]()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.allowsSelection = false 
+    tableView.allowsSelection = false
     fetchBids()
   }
   
@@ -35,7 +43,43 @@ class BidsTableViewController: UITableViewController {
     cell.bidderName.text = biddersInfo[currentBid.bidder_id]?.name
     cell.bidderRating.text = "5 Star"
     cell.bidderBid.text = Double.getFormattedCurrency(num: currentBid.bidAmount)
+    cell.acceptButton.tag = indexPath.row
+    
+    acceptButtons.append(cell.acceptButton)
+    payButtons.append(cell.payButton)
+    reviewButtons.append(cell.reviewButton)
+    
     return cell
+  }
+  
+  @IBAction func acceptBid(_ sender: UIButton) {
+    print("Bid accepted")
+    /** NOTIFY CONTRACTOR */
+    print(sender.tag)
+    if !bidsStatus![sender.tag] {
+      for button in acceptButtons {
+        if button.tag != sender.tag {
+          button.isEnabled = false
+          button.setTitleColor(UIColor.gray, for: .disabled)
+        }
+      }
+      reviewButtons[sender.tag].isHidden = false
+      payButtons[sender.tag].isHidden = false
+      bidsStatus![sender.tag] = true
+      sender.setTitle("Accepted", for: .normal)
+      sender.setTitleColor(UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1), for: .normal)
+    
+      clientSelected = true
+    } else {
+      for button in acceptButtons {
+        button.isEnabled = true
+      }
+      payButtons[sender.tag].isHidden = true
+      reviewButtons[sender.tag].isHidden = true
+      bidsStatus![sender.tag] = false
+      sender.setTitle("Accept", for: .normal)
+      sender.setTitleColor(UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1), for: .normal)
+    }
   }
   
   func fetchBidderInfo() {
@@ -53,7 +97,6 @@ class BidsTableViewController: UITableViewController {
         })
         /* Manually all the table view to reload itself and to refresh. Otherwise no changes will be seen */
         self.tableView?.reloadData()
-        self.tableView?.refreshControl?.endRefreshing()
       })
     }
   }
@@ -76,14 +119,12 @@ class BidsTableViewController: UITableViewController {
           self.listings.append(bid)
         }
       })
+      /* Init bid statuses with proper count */
+      self.bidsStatus = Array(repeating: false, count: self.listings.count)
       /* Fetch bidders info only after actual bids have been loaded */
       self.fetchBidderInfo()
     }) { (error) in
       print("Failed to fetch bids with error: \(error)")
     }
-  }
-  
-  func fetchUsers() {
-    
   }
 }

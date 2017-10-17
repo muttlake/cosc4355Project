@@ -18,8 +18,13 @@ class BidTableViewCell: UITableViewCell {
   
   @IBOutlet weak var bidderBid: UILabel!
   
-  @IBAction func acceptBid(_ sender: UIButton) {
-  }
+  var isAccepted = false
+ 
+  @IBOutlet weak var acceptButton: UIButton!
+  
+  @IBOutlet weak var payButton: UIButton!
+  
+  @IBOutlet weak var reviewButton: UIButton!
   
   override func awakeFromNib() {
     super.awakeFromNib()

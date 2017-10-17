@@ -378,13 +378,13 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixY-R8-8P3">
-                                            <rect key="frame" x="304" y="40" width="63" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixY-R8-8P3">
+                                            <rect key="frame" x="285" y="40" width="82" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <state key="normal" title="Accept"/>
                                             <connections>
-                                                <action selector="acceptBid:" destination="t73-G4-UPX" eventType="touchUpInside" id="Wjf-dD-cl9"/>
+                                                <action selector="acceptBid:" destination="27C-Lb-7zf" eventType="touchUpInside" id="Kh3-q2-xex"/>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nxS-xi-Qkp">
@@ -394,13 +394,32 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9z7-2f-dU9">
+                                            <rect key="frame" x="247" y="39" width="38" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <state key="normal" title="Pay">
+                                                <color key="titleColor" red="1" green="0.1764705882352941" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                        </button>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHU-hh-nCr">
+                                            <rect key="frame" x="177" y="39" width="62" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <state key="normal" title="Review">
+                                                <color key="titleColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="acceptButton" destination="ixY-R8-8P3" id="6vR-aX-s4d"/>
                                     <outlet property="bidderBid" destination="Fmx-5y-e1k" id="1xS-Sr-b6D"/>
                                     <outlet property="bidderName" destination="EVR-hk-c4h" id="5c3-zj-Jk1"/>
                                     <outlet property="bidderPhoto" destination="d5G-0R-NKq" id="pcC-0a-5wM"/>
                                     <outlet property="bidderRating" destination="nxS-xi-Qkp" id="qW9-Se-14Q"/>
+                                    <outlet property="payButton" destination="9z7-2f-dU9" id="cxT-IN-fwO"/>
+                                    <outlet property="reviewButton" destination="gHU-hh-nCr" id="Oei-lk-EIc"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
