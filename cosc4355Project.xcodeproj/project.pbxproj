@@ -33,6 +33,8 @@
 		CBE9B15F1F89973C000C8A4D /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B15E1F89973C000C8A4D /* CustomImageView.swift */; };
 		CBE9B1671F89C2C0000C8A4D /* XCProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B1661F89C2C0000C8A4D /* XCProjectTests.swift */; };
 		E3950CE0F55F346EABA1675E /* Pods_cosc4355Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C9482FDCBA72DEE67A530A1 /* Pods_cosc4355Project.framework */; };
+		FB1B665C1F95A1DE00BE0B02 /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1B665B1F95A1DE00BE0B02 /* MapsViewController.swift */; };
+		FB1B665E1F95A43100BE0B02 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB1B665D1F95A43100BE0B02 /* CoreLocation.framework */; };
 		FB735DC51F8C967300FE6794 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB735DC41F8C967300FE6794 /* Review.swift */; };
 		FB735DC71F8C9A9000FE6794 /* Bid.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB735DC61F8C9A9000FE6794 /* Bid.swift */; };
 		FB735DC91F8CA2F100FE6794 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB735DC81F8CA2F100FE6794 /* ReviewTableViewCell.swift */; };
@@ -80,6 +82,8 @@
 		CBE9B1641F89C2BF000C8A4D /* XCProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XCProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBE9B1661F89C2C0000C8A4D /* XCProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCProjectTests.swift; sourceTree = "<group>"; };
 		CBE9B1681F89C2C0000C8A4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FB1B665B1F95A1DE00BE0B02 /* MapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
+		FB1B665D1F95A43100BE0B02 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FB241CDE99B71EED06FF72C3 /* Pods-cosc4355Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cosc4355Project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cosc4355Project/Pods-cosc4355Project.debug.xcconfig"; sourceTree = "<group>"; };
 		FB735DC41F8C967300FE6794 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		FB735DC61F8C9A9000FE6794 /* Bid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bid.swift; sourceTree = "<group>"; };
@@ -91,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB1B665E1F95A43100BE0B02 /* CoreLocation.framework in Frameworks */,
 				E3950CE0F55F346EABA1675E /* Pods_cosc4355Project.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -108,6 +113,7 @@
 		8195458283FF1BC13C6447EB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FB1B665D1F95A43100BE0B02 /* CoreLocation.framework */,
 				5C9482FDCBA72DEE67A530A1 /* Pods_cosc4355Project.framework */,
 			);
 			name = Frameworks;
@@ -189,6 +195,7 @@
 				CBE9B1421F8791B5000C8A4D /* ProfileViewController.swift */,
 				CBE9B1461F8821E6000C8A4D /* ProjectFormViewController.swift */,
 				CB523AB21F8D25230007CCB8 /* BidFormViewController.swift */,
+				FB1B665B1F95A1DE00BE0B02 /* MapsViewController.swift */,
 				CB523AB61F8DC4EA0007CCB8 /* BidsTableViewController.swift */,
 			);
 			name = Controllers;
@@ -402,6 +409,7 @@
 				CB47BBE81F74B41B00841C92 /* RegisterViewController.swift in Sources */,
 				CB47BBD81F74B28000841C92 /* HomeViewController.swift in Sources */,
 				CBE9B1431F8791B5000C8A4D /* ProfileViewController.swift in Sources */,
+				FB1B665C1F95A1DE00BE0B02 /* MapsViewController.swift in Sources */,
 				CB523AB51F8DC35C0007CCB8 /* BidTableViewCell.swift in Sources */,
 				CB47BBEC1F74C0D000841C92 /* FeedViewController.swift in Sources */,
 				CBE9B14A1F884453000C8A4D /* User.swift in Sources */,
