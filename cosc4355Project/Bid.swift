@@ -28,7 +28,7 @@ struct Bid {
   }
   
   init(from dict: [String: Any]) {
-    bidAmount = dict["bidAmount"] as? Double ?? 0
+    bidAmount = Double(dict["bidAmount"] as! String) ?? 0.0
     posting_id = dict["posting_id"] as! String
     expected_time = Date.getDate(from: dict["expectedTime"] as! String)
     bidder_id = dict["bidder_id"] as! String

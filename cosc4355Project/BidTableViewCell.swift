@@ -10,7 +10,6 @@ import UIKit
 
 class BidTableViewCell: UITableViewCell {
   
-  
   @IBOutlet weak var bidderPhoto: CustomImageView!
   
   @IBOutlet weak var bidderName: UILabel!
