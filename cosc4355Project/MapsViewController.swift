@@ -27,7 +27,7 @@ class MapsViewController: UIViewController, CLLocationManagerDelegate{
         
         map.setRegion(region, animated: true)
         
-        print(location.coordinate)
+        //print(location.coordinate)
         
         let annotationLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(29.721543, -95.343632)
         

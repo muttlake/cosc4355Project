@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import Firebase
 
 class ReviewFormViewController: UIViewController {
     
     var numStars: Int = -1
+    
+    var newReview: Review?
     
     @IBOutlet weak var reviewWordsField: UITextView!
     
@@ -50,6 +53,9 @@ class ReviewFormViewController: UIViewController {
             alertNoStarLevelChosen()
             return
         }
+        self.newReview = Review(about_id: "Contractor22", posting_id: "253fdfds", stars: self.numStars, reviewWords: self.reviewWordsField.text!, reviewTime: Date.currentDate)
+        print(newReview!)
+        self.registerReviewIntoDatabase()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -64,7 +70,25 @@ class ReviewFormViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func registerReviewIntoDatabase() {
+        let reviewId = NSUUID().uuidString
+        let values = ["user_id": FIRAuth.getCurrentUserId(), "about_id": newReview!.about_id, "posting_id": newReview!.posting_id, "stars": newReview!.stars, "reviewWords": newReview!.reviewWords, "reviewTime": newReview!.reviewTime] as [String : Any]
+        self.registerInfoIntoDatabaseWithUID(uid: reviewId, values: values as [String: AnyObject])
+    }
+    
+    private func registerInfoIntoDatabaseWithUID(uid: String, values: [String: AnyObject]) {
+        let ref = FIRDatabase.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
+        let reviewsReference = ref.child("reviews").child(uid)
+        reviewsReference.updateChildValues(values) { (err, ref) in
+            if(err != nil) {
+                print("Error Occured: \(err!)")
+                return
+            }
+        }
+    }
 
+    
+    
     /*
     // MARK: - Navigation
 
