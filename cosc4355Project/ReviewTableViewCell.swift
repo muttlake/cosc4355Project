@@ -13,7 +13,9 @@ class ReviewTableViewCell: UITableViewCell {
     //@IBOutlet weak var userPhoto: CustomImageView!
     @IBOutlet weak var starsImage: UIImageView!
     @IBOutlet weak var reviewWordsLabel: UILabel!
-    
+    //@IBOutlet weak var bidderPhoto: CustomImageView!
+    @IBOutlet weak var reviewerPhoto: CustomImageView!
+
     var posting_id: String?
     var user_id: String?
     
