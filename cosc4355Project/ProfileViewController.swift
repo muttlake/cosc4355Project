@@ -147,7 +147,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         //fetchReviewersPhotos()
         print("Reviewers Photos right before cell image.")
         print(reviewersPhotos)
-        //cell.reviewerPhoto.loadImage(url: reviewersPhotos[currentReview.user_id]!)
+        cell.reviewerPhoto.loadImage(url: reviewersPhotos[currentReview.user_id]!)
         print(reviews[indexPath.item])
         return cell
     }

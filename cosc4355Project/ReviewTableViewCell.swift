@@ -23,8 +23,8 @@ class ReviewTableViewCell: UITableViewCell {
         super.awakeFromNib()
         posting_id = "DEFAULT"
         user_id = "DEFAULT"
-        //userPhoto.layer.cornerRadius = 25
-        //userPhoto.layer.masksToBounds = true
+        reviewerPhoto.layer.cornerRadius = 64
+        reviewerPhoto.layer.masksToBounds = true
         //starsLabel.text = "Review Stars"
         starsImage.image = UIImage(named: "0stars")
         reviewWordsLabel.text = "Review Words"
