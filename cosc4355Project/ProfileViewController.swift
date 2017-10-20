@@ -80,9 +80,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
         reviewsTableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
         reviewsTableView.rowHeight = 100
-
         
-
         /* Adding refresh feature on newsfeed to reload projects */
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
@@ -96,9 +94,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func fetchReviewersPhotos() {
-        //print("function got called. Size of reviews is \(reviews.count)")
         for review in reviews {
-            //print("This is review from: " + review.user_id)
             FIRDatabase.database().reference().child("users").observeSingleEvent(of: .value, with: { (snapshot) in
                 guard let dictionaries = snapshot.value as? [String: Any] else { return }
                 dictionaries.forEach({ (key, value) in
@@ -107,8 +103,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                         let user = User()
                         user.profilePicture = dictionary["profilePicture"] as? String
                         user.name = (dictionary["name"] as? String)!
-                        print("Looked up review user: " + user.name)
-                        print("It has picture: " + user.profilePicture!)
                         self.reviewersPhotos[key] = user.profilePicture
                     }
                 })
@@ -140,15 +134,23 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         reviews.sort(by: { (item1: Review, item2: Review) -> Bool in
                 return Date.getDate(from: item1.reviewTime) > Date.getDate(from: item2.reviewTime)
             })
+
         let currentReview = reviews[indexPath.row]
         let starImageName = String(reviews[indexPath.row].stars) + "stars"
         cell.starsImage.image = UIImage(named: starImageName)
         cell.reviewWordsLabel.text = reviews[indexPath.item].reviewWords
-        //fetchReviewersPhotos()
-        print("Reviewers Photos right before cell image.")
-        print(reviewersPhotos)
-        cell.reviewerPhoto.loadImage(url: reviewersPhotos[currentReview.user_id]!)
-        print(reviews[indexPath.item])
+        cell.reviewerPhoto.loadImage(url: reviewersPhotos[currentReview.user_id] ?? "")
+        
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UIColor.darkGray.cgColor
+        border.frame = CGRect(x: 0, y: cell.frame.size.height - width, width:  cell.frame.size.width, height: cell.frame.size.height)
+        
+        border.borderWidth = width
+        cell.layer.addSublayer(border)
+        cell.layer.masksToBounds = true
+        
+        
         return cell
     }
         
@@ -175,6 +177,27 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     func handleRefresh() {
         reviews.removeAll()
         fetchReviews()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "reviewDetailSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "reviewDetailSegue" {
+            let dvc = segue.destination as! ReviewViewController
+            dvc.stars = reviews[reviewsTableView.selectedIndex].stars
+            dvc.reviewWords = reviews[reviewsTableView.selectedIndex].reviewWords
+            let currentReview = reviews[reviewsTableView.selectedIndex]
+            dvc.reviewerPhotoString = reviewersPhotos[currentReview.user_id]!
+        }
+    }
+    
+}
+
+extension UITableView {
+    var selectedIndex: Int {
+        return indexPathForSelectedRow?.item ?? 0
     }
 }
 

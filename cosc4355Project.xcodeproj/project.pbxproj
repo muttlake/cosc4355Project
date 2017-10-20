@@ -39,6 +39,7 @@
 		FB735DC51F8C967300FE6794 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB735DC41F8C967300FE6794 /* Review.swift */; };
 		FB735DC71F8C9A9000FE6794 /* Bid.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB735DC61F8C9A9000FE6794 /* Bid.swift */; };
 		FB735DC91F8CA2F100FE6794 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB735DC81F8CA2F100FE6794 /* ReviewTableViewCell.swift */; };
+		FBF617261F9999A30050F10C /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF617251F9999A30050F10C /* ReviewViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		FB735DC41F8C967300FE6794 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		FB735DC61F8C9A9000FE6794 /* Bid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bid.swift; sourceTree = "<group>"; };
 		FB735DC81F8CA2F100FE6794 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
+		FBF617251F9999A30050F10C /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +200,7 @@
 				202BC0501F967BC00085A228 /* ReviewFormViewController.swift */,
 				CBE9B1461F8821E6000C8A4D /* ProjectFormViewController.swift */,
 				CB523AB21F8D25230007CCB8 /* BidFormViewController.swift */,
+				FBF617251F9999A30050F10C /* ReviewViewController.swift */,
 				FB1B665B1F95A1DE00BE0B02 /* MapsViewController.swift */,
 				CB523AB61F8DC4EA0007CCB8 /* BidsTableViewController.swift */,
 			);
@@ -411,6 +414,7 @@
 			files = (
 				CB47BBE81F74B41B00841C92 /* RegisterViewController.swift in Sources */,
 				CB47BBD81F74B28000841C92 /* HomeViewController.swift in Sources */,
+				FBF617261F9999A30050F10C /* ReviewViewController.swift in Sources */,
 				CBE9B1431F8791B5000C8A4D /* ProfileViewController.swift in Sources */,
 				FB1B665C1F95A1DE00BE0B02 /* MapsViewController.swift in Sources */,
 				CB523AB51F8DC35C0007CCB8 /* BidTableViewCell.swift in Sources */,
