@@ -583,7 +583,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = team1.cosc4355Project;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -599,7 +599,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = team1.cosc4355Project;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -614,7 +614,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = rb.XCProjectTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/cosc4355Project.app/cosc4355Project";
 			};
 			name = Debug;
@@ -629,7 +629,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = rb.XCProjectTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/cosc4355Project.app/cosc4355Project";
 			};
 			name = Release;
