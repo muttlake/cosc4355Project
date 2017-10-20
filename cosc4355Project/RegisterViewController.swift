@@ -120,7 +120,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     return true
   }
   
-  func handlePhotoUpload() {
+  @objc func handlePhotoUpload() {
     let cameraOrPhotoAlbum = UIAlertController(title: "Source", message: "Photo Source", preferredStyle: .actionSheet)
     
     let picker = UIImagePickerController()

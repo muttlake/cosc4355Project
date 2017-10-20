@@ -56,7 +56,7 @@ class ProjectFormViewController: UIViewController, UIImagePickerControllerDelega
   }
   
   /* Sets up a choice between camera roll or using the camera itself. Keep note that the simulator does NOT have a camera. */
-  func handlePhotoUpload() {
+  @objc func handlePhotoUpload() {
     let cameraOrPhotoAlbum = UIAlertController(title: "Source", message: "Photo Source", preferredStyle: .actionSheet)
     
     let picker = UIImagePickerController()

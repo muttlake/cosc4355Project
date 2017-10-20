@@ -10,6 +10,16 @@ import Foundation
 import UIKit
 import Firebase
 
+/* formats to currency */
+extension Double {
+  static func getFormattedCurrency(num: Double) -> String {
+    let num = num as NSNumber
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .currency
+    return formatter.string(from: num)!
+  }
+}
+
 extension Date {
   /* Generates a date string in the desired format */
   static var currentDate: String {

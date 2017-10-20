@@ -11,11 +11,11 @@ import Foundation
 import UIKit
 
 class User {
-    var name: String = "DEFAULT"
-    var email: String = "DEFAULT-EMAIL"
-    // var address: Address
-    var profilePicture: String?
-    var userType: UserType = .client
+  var name: String = "DEFAULT"
+  var email: String = "DEFAULT-EMAIL"
+  // var address: Address
+  var profilePicture: String?
+  var userType: UserType = .client
 }
 
 class Contractor: User {
