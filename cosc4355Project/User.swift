@@ -6,6 +6,7 @@
 //  Copyright © 2017 cosc4355. All rights reserved.
 //
 
+
 import Foundation
 import UIKit
 
@@ -18,6 +19,6 @@ class User {
 }
 
 class Contractor: User {
-  var description: String = "DEFAULT"
-  var phoneNumber: String = "NA"
+    var description: String = "DEFAULT"
+    var phoneNumber: String = "NA"
 }

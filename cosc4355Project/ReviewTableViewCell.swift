@@ -10,15 +10,26 @@ import UIKit
 
 class ReviewTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var userPhoto: CustomImageView!
-    @IBOutlet weak var reviewStars: UILabel!
-    @IBOutlet weak var reviewDescription: UILabel!
+    //@IBOutlet weak var userPhoto: CustomImageView!
+    @IBOutlet weak var starsImage: UIImageView!
+    @IBOutlet weak var reviewWordsLabel: UILabel!
+    //@IBOutlet weak var bidderPhoto: CustomImageView!
+    @IBOutlet weak var reviewerPhoto: CustomImageView!
 
+    var posting_id: String?
+    var user_id: String?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        userPhoto.layer.cornerRadius = 25
-        userPhoto.layer.masksToBounds = true
-        reviewStars.text = "Review Stars"
+        posting_id = "DEFAULT"
+        user_id = "DEFAULT"
+        reviewerPhoto.layer.cornerRadius = self.reviewerPhoto.bounds.size.height / 2
+        reviewerPhoto.layer.masksToBounds = true
+        //self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
+        //self.profileImageView.clipsToBounds = YES;
+        //starsLabel.text = "Review Stars"
+        starsImage.image = UIImage(named: "0stars")
+        reviewWordsLabel.text = "Review Words"
         print("is set")
     }
     
