@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 import Firebase
 
 class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -22,30 +23,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     var reviews: [Review] = []
     
     var reviewersPhotos: [String: String] = [:]
-    
-//    var fakeReviews: [Review] = [
-//        Review(about_id: "Contractor22", posting_id: "253fdfds", stars: 5, reviewWords: "Excellent Work.", reviewTime: Date.currentDate),
-//        Review(about_id: "Contractor22", posting_id: "253fdfds", stars: 4, reviewWords: "No complaints.", reviewTime: Date.currentDate),
-//        Review(about_id: "Contractor22", posting_id: "253fdfds", stars: 5, reviewWords: "Really Really Good Job.", reviewTime: Date.currentDate)]
-//
-//    func registerFakeReviewsIntoDatabase() {
-//        for review in fakeReviews {
-//            let reviewId = NSUUID().uuidString
-//            let values = ["user_id": FIRAuth.getCurrentUserId(), "about_id": review.about_id, "posting_id": review.posting_id, "stars": review.stars, "reviewWords": review.reviewWords, "reviewTime": review.reviewTime] as [String : Any]
-//            self.registerInfoIntoDatabaseWithUID(uid: reviewId, values: values as [String: AnyObject])
-//        }
-//    }
-//
-//    private func registerInfoIntoDatabaseWithUID(uid: String, values: [String: AnyObject]) {
-//        let ref = FIRDatabase.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
-//        let projectsReference = ref.child("reviews").child(uid)
-//        projectsReference.updateChildValues(values) { (err, ref) in
-//            if(err != nil) {
-//                print("Error Occured: \(err!)")
-//                return
-//            }
-//        }
-//    }
     
     @IBAction func addReviewButton(_ sender: Any) {
         performSegue(withIdentifier: "profileReviewForm", sender: self)
