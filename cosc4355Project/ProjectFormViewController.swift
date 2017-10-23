@@ -19,6 +19,9 @@ class ProjectFormViewController: UIViewController, UIImagePickerControllerDelega
   
   @IBOutlet weak var descriptionInput: UITextView!
   
+  @IBOutlet weak var bidDesiredInput: UITextField!
+  
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -78,8 +81,8 @@ class ProjectFormViewController: UIViewController, UIImagePickerControllerDelega
   
   
   @IBAction func postButton(_ sender: UIButton) {
-    guard let title = titleInput.text, let category = categoryInput.text, let description = descriptionInput.text else { return }
-    if !validateFields(fields: title, category, description) { return }
+    guard let title = titleInput.text, let category = categoryInput.text, let description = descriptionInput.text, let bidDesired = bidDesiredInput.text else { return }
+    if !validateFields(fields: title, category, description, bidDesired) { return }
     
     let imageName = NSUUID().uuidString
     let storageRef = FIRStorage.storage().reference().child("projects").child("\(imageName).jpg")
@@ -97,7 +100,7 @@ class ProjectFormViewController: UIViewController, UIImagePickerControllerDelega
         /* Generate projectId, get values, then store into database */
         if let projectImageUrl = metadata?.downloadURL()?.absoluteString {
           let projectId = UUID().uuidString
-          let values = ["title": title, "description": description, "status": String(describing: Status.pending), "category": String(describing: ProjectCategory.general), "date": currentDate, "photoUrl": projectImageUrl, "startingBid": "0", "acceptedBid": "0", "location": Address().toString(), "posting_id": projectId, "user_id": uid]
+          let values = ["title": title, "description": description, "status": String(describing: Status.pending), "category": String(describing: ProjectCategory.general), "date": currentDate, "photoUrl": projectImageUrl, "startingBid": bidDesired, "acceptedBid": "0", "location": Address().toString(), "posting_id": projectId, "user_id": uid]
           self.registerInfoIntoDatabaseWithUID(uid: projectId, values: values as [String: AnyObject])
           self.navigationController?.popViewController(animated: true)
         }

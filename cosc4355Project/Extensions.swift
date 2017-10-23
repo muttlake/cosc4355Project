@@ -63,6 +63,6 @@ extension UISegmentedControl {
 
 extension UITableView {
   func getSelectedIndex() -> Int {
-    return indexPathForSelectedRow?.item ?? 0
+    return indexPathForSelectedRow?.row ?? 0
   }
 }

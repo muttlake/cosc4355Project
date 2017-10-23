@@ -130,7 +130,7 @@ class FeedViewController: UITableViewController, ListingsProtocol {
       dvc.userWhoPostedId = currentCell.poster_id
     } else if segue.identifier == "viewBidsSegue" {
       let dvc = segue.destination as! BidsTableViewController
-      dvc.currentPosting = listings[tableView.getSelectedIndex()] as? Posting
+      dvc.currentPosting = orderedListings[tableView.getSelectedIndex()] as? Posting
     }
   }
   

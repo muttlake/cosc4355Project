@@ -112,10 +112,9 @@ class BidsTableViewController: UITableViewController {
       guard let dictionaries = snapshot.value as? [String: Any] else { return }
       dictionaries.forEach({ (key, value) in
         guard let dictionary = value as? [String: Any] else { return }
-        print(dictionary["bidAmount"] as! String)
         let bid = Bid(from: dictionary)
-        print(bid.bidAmount)
         if bid.posting_id == self.currentPosting!.posting_id {
+          print(bid.posting_id)
           self.listings.append(bid)
         }
       })
