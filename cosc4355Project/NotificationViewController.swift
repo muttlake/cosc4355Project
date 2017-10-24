@@ -32,9 +32,7 @@ class NotificationViewController: UITableViewController,clearDelegate {
         print(listings.count)
         let cell = tableView.dequeueReusableCell(withIdentifier: "notificationCell", for: indexPath) as! NotificationTableViewCell
         let currentBid = listings[indexPath.row]
-        cell.name.text =  biddersInfo[currentBid.bidder_id]?.name
-        cell.message.text = "made a bid of "
-        cell.amount.text =   String(currentBid.bidAmount)
+      cell.name.text =  "\(biddersInfo[currentBid.bidder_id]?.name ?? "Default") made a bid of \(Double.getFormattedCurrency(num: currentBid.bidAmount))"
         cell.row = indexPath.row
         cell.delegate = self
         return cell
