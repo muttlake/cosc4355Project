@@ -56,7 +56,7 @@ class AcceptedBidViewController: UIViewController {
     if !cameFromBid {
       fetchUserInfo()
     } else {
-      nameLabel.text = user?.name
+      nameLabel.text = (user?.name)! + " • " + Double.getFormattedCurrency(num: (bid?.bidAmount)!)
       userImage.loadImage(url: (user?.profilePicture) ?? "")
       ratingLabel.text = "5 Star"
       contactInfoLabel.text = "PlaceHolder"
@@ -68,7 +68,7 @@ class AcceptedBidViewController: UIViewController {
     FIRDatabase.database().reference().child("users/\(bid?.bidder_id ?? "")").observeSingleEvent(of: .value, with: { (snap) in
       guard let dictionary = snap.value as? [String: Any] else { return }
       self.user = User(from: dictionary, id: (self.bid?.bidder_id)!)
-      self.nameLabel.text = self.user?.name
+      self.nameLabel.text = (self.user?.name)! + " • " + Double.getFormattedCurrency(num: (self.bid?.bidAmount)!)
       self.userImage.loadImage(url: (self.user?.profilePicture) ?? "")
       self.ratingLabel.text = "5 Star"
       self.contactInfoLabel.text = "PlaceHolder"
