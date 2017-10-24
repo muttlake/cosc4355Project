@@ -26,7 +26,7 @@ class AcceptedBidViewController: UIViewController {
   @IBOutlet weak var contactInfoLabel: UILabel!
   
   @IBAction func review(_ sender: UIButton) {
-    print("REVIEW")
+    performSegue(withIdentifier: "reviewSegue", sender: self)
   }
   
   @IBAction func pay(_ sender: UIButton) {
@@ -103,6 +103,15 @@ class AcceptedBidViewController: UIViewController {
         }
       }
       cameFromBid = false
+    }
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "reviewSegue" {
+      let dvc = segue.destination as! ReviewFormViewController
+      dvc.user = user
+      dvc.bid = bid
+      dvc.project = posting
     }
   }
 }

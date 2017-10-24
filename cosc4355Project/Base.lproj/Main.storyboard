@@ -297,6 +297,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09R-3g-PhZ">
+                                <rect key="frame" x="70" y="595" width="67" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancel:" destination="dwM-Cr-YB8" eventType="touchUpInside" id="VlY-pz-bAc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -311,7 +319,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UM0-6R-cVY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2490" y="988"/>
+            <point key="canvasLocation" x="2488.8000000000002" y="987.25637181409309"/>
         </scene>
         <!--Review View Controller-->
         <scene sceneID="bx7-ps-sgy">
@@ -695,6 +703,7 @@
                         <outlet property="nameLabel" destination="KEH-xD-4vA" id="Mky-77-Ili"/>
                         <outlet property="ratingLabel" destination="A5v-vU-Ts4" id="Psk-LL-fzr"/>
                         <outlet property="userImage" destination="NkI-3u-DKk" id="8Yl-S8-Ay6"/>
+                        <segue destination="dwM-Cr-YB8" kind="presentation" identifier="reviewSegue" id="d9k-8p-2mR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4LO-Nw-aST" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1033,5 +1042,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="nnO-hE-zVl"/>
         <segue reference="ZEU-a3-k3d"/>
+        <segue reference="d9k-8p-2mR"/>
     </inferredMetricsTieBreakers>
 </document>
