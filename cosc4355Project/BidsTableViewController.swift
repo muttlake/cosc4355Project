@@ -13,18 +13,12 @@ class BidsTableViewController: UITableViewController {
   
   var listings: [Bid] = []
   
-  // Maps User ID to their image url
   var biddersInfo: [String: User] = [:]
   
   var currentPosting: Posting?
   
-  var bidsStatus: [Bool]?
-  
-  var clientSelected = false
-  
+  /* Used to keep reference for enabling/hiding */
   var acceptButtons = [UIButton]()
-  var payButtons = [UIButton]()
-  var reviewButtons = [UIButton]()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -45,41 +39,33 @@ class BidsTableViewController: UITableViewController {
     cell.bidderBid.text = Double.getFormattedCurrency(num: currentBid.bidAmount)
     cell.acceptButton.tag = indexPath.row
     
-    acceptButtons.append(cell.acceptButton)
-    payButtons.append(cell.payButton)
-    reviewButtons.append(cell.reviewButton)
+    acceptButtons[indexPath.row] = cell.acceptButton
     
     return cell
   }
   
-  @IBAction func acceptBid(_ sender: UIButton) {
-    print("Bid accepted")
-    /** NOTIFY CONTRACTOR */
-    print(sender.tag)
-    if !bidsStatus![sender.tag] {
-      for button in acceptButtons {
-        if button.tag != sender.tag {
-          button.isEnabled = false
-          button.setTitleColor(UIColor.gray, for: .disabled)
-        }
+  
+  func updateBidAcceptedInDB(bidAmount: String, sender: UIButton) {
+    let values = ["acceptedBid": bidAmount] as [String : Any]
+    self.registerInfoIntoDatabaseWithUID(uid: (currentPosting?.posting_id)!, values: values as [String: AnyObject], sender: sender)
+  }
+  
+  private func registerInfoIntoDatabaseWithUID(uid: String, values: [String: AnyObject], sender: UIButton) {
+    let ref = FIRDatabase.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
+    let reviewsReference = ref.child("projects").child(uid)
+    reviewsReference.updateChildValues(values) { (err, ref) in
+      if(err != nil) {
+        print("Error Occured: \(err!)")
+        return
       }
-      reviewButtons[sender.tag].isHidden = false
-      payButtons[sender.tag].isHidden = false
-      bidsStatus![sender.tag] = true
-      sender.setTitle("Accepted", for: .normal)
-      sender.setTitleColor(UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1), for: .normal)
-    
-      clientSelected = true
-    } else {
-      for button in acceptButtons {
-        button.isEnabled = true
-      }
-      payButtons[sender.tag].isHidden = true
-      reviewButtons[sender.tag].isHidden = true
-      bidsStatus![sender.tag] = false
-      sender.setTitle("Accept", for: .normal)
-      sender.setTitleColor(UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1), for: .normal)
+      self.performSegue(withIdentifier: "acceptBidSegue", sender: sender)
     }
+  }
+  
+  @IBAction func acceptBid(_ sender: UIButton) {
+    print("Bid accepted \(sender.tag)")
+    /** NOTIFY CONTRACTOR */
+    updateBidAcceptedInDB(bidAmount: listings[sender.tag].bidder_id, sender: sender)
   }
   
   func fetchBidderInfo() {
@@ -112,18 +98,30 @@ class BidsTableViewController: UITableViewController {
       guard let dictionaries = snapshot.value as? [String: Any] else { return }
       dictionaries.forEach({ (key, value) in
         guard let dictionary = value as? [String: Any] else { return }
-        let bid = Bid(from: dictionary)
+        let bid = Bid(from: dictionary, id: key as String)
         if bid.posting_id == self.currentPosting!.posting_id {
           print(bid.posting_id)
           self.listings.append(bid)
+          self.acceptButtons.append(UIButton())
         }
       })
-      /* Init bid statuses with proper count */
-      self.bidsStatus = Array(repeating: false, count: self.listings.count)
       /* Fetch bidders info only after actual bids have been loaded */
       self.fetchBidderInfo()
     }) { (error) in
       print("Failed to fetch bids with error: \(error)")
+    }
+  }
+  
+  /* Pass in bid, user, and project info to next page */
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "acceptBidSegue" {
+      let dvc = segue.destination as! AcceptedBidViewController
+      if let sender = sender as? UIButton {
+        dvc.bid = listings[sender.tag]
+        dvc.posting = currentPosting!
+        dvc.userId = listings[sender.tag].bidder_id
+        dvc.user = biddersInfo[listings[sender.tag].bidder_id]
+      }
     }
   }
 }

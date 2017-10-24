@@ -37,7 +37,7 @@ class BidFormViewController: UIViewController {
     guard let bidAmount = bidAmountField.text, let user_id = userWhoPostedId, let posting_id = postingId else { return }
     
     let bidId = NSUUID().uuidString
-    let values = ["bidAmount": bidAmount, "expectedTime": Date.currentDate, "user_id": user_id, "bidder_id": FIRAuth.getCurrentUserId(), "posting_id": posting_id]
+    let values = ["bidAmount": bidAmount, "expectedTime": Date.currentDate, "user_id": user_id, "bidder_id": FIRAuth.getCurrentUserId(), "posting_id": posting_id, "id": bidId]
     self.registerInfoIntoDatabaseWithUID(uid: bidId, values: values as [String: AnyObject])
     self.navigationController?.popViewController(animated: true)
   }

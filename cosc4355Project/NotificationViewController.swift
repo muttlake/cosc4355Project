@@ -73,7 +73,7 @@ class NotificationViewController: UITableViewController,clearDelegate {
             dictionaries.forEach({ (key, value) in
                 
                 guard let dictionary = value as? [String: Any] else { return }
-                let bid = Bid(from: dictionary)
+              let bid = Bid(from: dictionary, id: key as String)
                 if bid.user_id == (FIRAuth.auth()?.currentUser?.uid)!{
                     self.notificationKeys.append(key)
                     self.listings.append(bid)

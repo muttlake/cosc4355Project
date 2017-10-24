@@ -14,6 +14,7 @@ struct Bid {
   var expected_time: Date
   var bidder_id: String
   var user_id: String
+  var id: String
   
   /* Why do we have location on the bid? */
   var location: Address
@@ -25,14 +26,16 @@ struct Bid {
     bidder_id = "DEFAULT"
     location = Address()
     user_id = "DEFAULT"
+    id = "0"
   }
   
-  init(from dict: [String: Any]) {
+  init(from dict: [String: Any], id: String) {
     bidAmount = Double(dict["bidAmount"] as! String) ?? 0.0
     posting_id = dict["posting_id"] as! String
     expected_time = Date.getDate(from: dict["expectedTime"] as! String)
     bidder_id = dict["bidder_id"] as! String
     user_id = dict["user_id"] as! String
+    self.id = id
     location = Address()
   }
   
