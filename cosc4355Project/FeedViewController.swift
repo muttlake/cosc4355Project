@@ -40,6 +40,11 @@ class FeedViewController: UITableViewController, ListingsProtocol {
     return listings.count
   }
   
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(true)
+    handleRefresh()
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
@@ -114,7 +119,14 @@ class FeedViewController: UITableViewController, ListingsProtocol {
     if isContractor {
       performSegue(withIdentifier: "makeBidSegue", sender: self)
     } else {
-      performSegue(withIdentifier: "viewBidsSegue", sender: self)
+      let project = listings[tableView.selectedIndex] as! Posting
+      if project.acceptedBid == "0" {
+        /* The project still doesn't have an accepted bid */
+        performSegue(withIdentifier: "viewBidsSegue", sender: self)
+      } else {
+        /* Show bid that was accepted */
+        performSegue(withIdentifier: "ifBidAcceptedSegue", sender: self)
+      }
     }
   }
   

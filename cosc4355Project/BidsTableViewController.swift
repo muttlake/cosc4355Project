@@ -83,6 +83,20 @@ class BidsTableViewController: UITableViewController {
         })
         /* Manually all the table view to reload itself and to refresh. Otherwise no changes will be seen */
         self.tableView?.reloadData()
+        
+        /* Check if there was already a bid accepted after bids are loaded */
+        if self.currentPosting?.acceptedBid != "0" {
+          var acceptIndex = 0
+          for (index, list) in self.listings.enumerated() {
+            if list.bidder_id == self.currentPosting?.acceptedBid {
+              acceptIndex = index
+              break
+            }
+          }
+          let randButton = UIButton()
+          randButton.tag = acceptIndex
+          self.performSegue(withIdentifier: "acceptBidSegue", sender: randButton)
+        }
       })
     }
   }
@@ -121,6 +135,8 @@ class BidsTableViewController: UITableViewController {
         dvc.posting = currentPosting!
         dvc.userId = listings[sender.tag].bidder_id
         dvc.user = biddersInfo[listings[sender.tag].bidder_id]
+        dvc.cameFromBid = true
+        print(dvc.user?.profilePicture)
       }
     }
   }
