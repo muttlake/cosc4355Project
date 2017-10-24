@@ -16,6 +16,8 @@ struct Posting: BasicListingsProtocol {
   var startingBid: Double
   var acceptedBid: String = "0"
   var location: Address? = nil
+  var longitude: String = "0"
+  var latitude: String? = "0"
   
   /* Conformance to basic listings protocol, more comments in the actual protocol declaration. */
   var title: String
@@ -38,5 +40,7 @@ struct Posting: BasicListingsProtocol {
     description = dict["description"] as! String
     posting_id = dict["posting_id"] as! String
     user_id = dict["user_id"] as! String
+    latitude = dict["latitude"] as? String ?? "0"
+    longitude = dict["longitude"] as? String ?? "0"
   }
 }

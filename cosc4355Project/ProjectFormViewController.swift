@@ -8,8 +8,9 @@
 
 import UIKit
 import Firebase
+import CoreLocation
 
-class ProjectFormViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class ProjectFormViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, CLLocationManagerDelegate {
   
   @IBOutlet weak var uploadImage: UIImageView!
   
@@ -21,7 +22,6 @@ class ProjectFormViewController: UIViewController, UIImagePickerControllerDelega
   
   @IBOutlet weak var bidDesiredInput: UITextField!
   
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -32,7 +32,18 @@ class ProjectFormViewController: UIViewController, UIImagePickerControllerDelega
     
     titleInput.delegate = self
     categoryInput.delegate = self
+    
+    locationManager.delegate = self
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    locationManager.requestAlwaysAuthorization()
+    currentLat = locationManager.location?.coordinate.latitude.description ?? "0"
+    currentLong = locationManager.location?.coordinate.longitude.description ?? "0"
+    print("\(currentLong) \(currentLat)")
   }
+  
+  var currentLat = "0"
+  var currentLong = "0"
+  let locationManager = CLLocationManager()
   
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     view.endEditing(true)
@@ -100,7 +111,7 @@ class ProjectFormViewController: UIViewController, UIImagePickerControllerDelega
         /* Generate projectId, get values, then store into database */
         if let projectImageUrl = metadata?.downloadURL()?.absoluteString {
           let projectId = UUID().uuidString
-          let values = ["title": title, "description": description, "status": String(describing: Status.pending), "category": String(describing: ProjectCategory.general), "date": currentDate, "photoUrl": projectImageUrl, "startingBid": bidDesired, "acceptedBid": "0", "location": Address().toString(), "posting_id": projectId, "user_id": uid]
+          let values = ["title": title, "description": description, "status": String(describing: Status.pending), "category": String(describing: ProjectCategory.general), "date": currentDate, "photoUrl": projectImageUrl, "startingBid": bidDesired, "acceptedBid": "0", "latitude": self.currentLat, "longitude": self.currentLong, "location": Address().toString(), "posting_id": projectId, "user_id": uid]
           self.registerInfoIntoDatabaseWithUID(uid: projectId, values: values as [String: AnyObject])
           self.navigationController?.popViewController(animated: true)
         }
