@@ -53,14 +53,14 @@ class AcceptedBidViewController: UIViewController {
     userImage.layer.masksToBounds = true
     userImage.layer.cornerRadius = 95
     
-    if !cameFromBid {
+//    if !cameFromBid {
       fetchUserInfo()
-    } else {
-      nameLabel.text = (user?.name)! + " • " + Double.getFormattedCurrency(num: (bid?.bidAmount)!)
-      userImage.loadImage(url: (user?.profilePicture) ?? "")
-      ratingLabel.text = "5 Star"
-      contactInfoLabel.text = "PlaceHolder"
-    }
+//    } else {
+//      nameLabel.text = (user?.name)! + " • " + Double.getFormattedCurrency(num: (bid?.bidAmount)!)
+//      userImage.loadImage(url: (user?.profilePicture) ?? "")
+//      ratingLabel.text = "5 Star"
+//      contactInfoLabel.text = user?.email
+//    }
     // Do any additional setup after loading the view.
   }
   
@@ -71,7 +71,7 @@ class AcceptedBidViewController: UIViewController {
       self.nameLabel.text = (self.user?.name)! + " • " + Double.getFormattedCurrency(num: (self.bid?.bidAmount)!)
       self.userImage.loadImage(url: (self.user?.profilePicture) ?? "")
       self.ratingLabel.text = "5 Star"
-      self.contactInfoLabel.text = "PlaceHolder"
+      self.contactInfoLabel.text = self.user?.email
     })
   }
   

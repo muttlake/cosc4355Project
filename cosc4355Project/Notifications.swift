@@ -9,5 +9,9 @@
 import Foundation
 
 struct Notifications {
-  
+  var bidAmount: String
+  var notified_id: String
+  var notifier_id: String
+  var posting_id: String
+  var notificationType: NotificationType
 }
