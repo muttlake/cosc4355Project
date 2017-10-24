@@ -10,5 +10,16 @@ import Foundation
 
 enum UserType {
   case client
-  case serviceMen
+  case contractor
+  
+  static func stringToEnum(string: String) -> UserType {
+    switch string {
+    case "Client":
+      return client
+    case "Contractor":
+      return contractor
+    default:
+      return client
+    }
+  }
 }

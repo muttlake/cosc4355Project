@@ -65,7 +65,7 @@ class BidsTableViewController: UITableViewController {
   @IBAction func acceptBid(_ sender: UIButton) {
     print("Bid accepted \(sender.tag)")
     /** NOTIFY CONTRACTOR */
-    updateBidAcceptedInDB(bidAmount: listings[sender.tag].bidder_id, sender: sender)
+    updateBidAcceptedInDB(bidAmount: listings[sender.tag].id, sender: sender)
   }
   
   func fetchBidderInfo() {

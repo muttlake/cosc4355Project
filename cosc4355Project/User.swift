@@ -16,6 +16,23 @@ class User {
   // var address: Address
   var profilePicture: String?
   var userType: UserType = .client
+  var id: String
+  
+  init(from dict: [String: Any], id: String) {
+    name = dict["name"] as! String
+    email = dict["email"] as! String
+    profilePicture = dict["profilePicture"] as? String
+    userType = UserType.stringToEnum(string: dict["userType"] as! String)
+    self.id = id
+  }
+  init() {
+    name = "DEFAULT"
+    email = "DEFAULT-EMAIL"
+    // var address: Address
+    profilePicture = ""
+    userType = .client
+    id = ""
+  }
 }
 
 class Contractor: User {

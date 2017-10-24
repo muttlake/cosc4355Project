@@ -473,6 +473,7 @@
                     <connections>
                         <segue destination="zmh-OJ-5d3" kind="show" identifier="makeBidSegue" id="3oB-fO-enI"/>
                         <segue destination="27C-Lb-7zf" kind="show" identifier="viewBidsSegue" id="OYb-Bt-vYV"/>
+                        <segue destination="ppk-QV-W7L" kind="show" identifier="acceptedBidSegue" id="ZEU-a3-k3d"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aOS-v6-8EO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1031,5 +1032,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="nnO-hE-zVl"/>
+        <segue reference="ZEU-a3-k3d"/>
     </inferredMetricsTieBreakers>
 </document>

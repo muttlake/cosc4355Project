@@ -12,6 +12,8 @@ import Firebase
 
 class FeedViewController: UITableViewController, ListingsProtocol {
   
+  var bidToPass: Bid?
+  
   var listings: [BasicListingsProtocol] = []
   var orderedListings: [BasicListingsProtocol] {
     return listings.sorted(by: { (item1: BasicListingsProtocol, item2: BasicListingsProtocol) -> Bool in
@@ -40,11 +42,6 @@ class FeedViewController: UITableViewController, ListingsProtocol {
     return listings.count
   }
   
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(true)
-    handleRefresh()
-  }
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
@@ -69,7 +66,6 @@ class FeedViewController: UITableViewController, ListingsProtocol {
         self.fetchUserProjects()
       }
     })
-    
   }
   
   /* If the user is a client, only fetch the projects they posted */
@@ -119,13 +115,19 @@ class FeedViewController: UITableViewController, ListingsProtocol {
     if isContractor {
       performSegue(withIdentifier: "makeBidSegue", sender: self)
     } else {
-      let project = listings[tableView.selectedIndex] as! Posting
+      let project = orderedListings[tableView.selectedIndex] as! Posting
       if project.acceptedBid == "0" {
         /* The project still doesn't have an accepted bid */
         performSegue(withIdentifier: "viewBidsSegue", sender: self)
       } else {
-        /* Show bid that was accepted */
-        performSegue(withIdentifier: "ifBidAcceptedSegue", sender: self)
+        FIRDatabase.database().reference().child("bids/\(project.acceptedBid)").observeSingleEvent(of: .value, with: { (snap) in
+          guard let dictionary = snap.value as? [String: Any] else { return }
+            print(dictionary)
+            self.bidToPass = Bid(from: dictionary, id: project.acceptedBid)
+            self.performSegue(withIdentifier: "acceptedBidSegue", sender: self)
+        }) { (error) in
+          print("Failed to fetch users with error: \(error)")
+        }
       }
     }
   }
@@ -143,6 +145,10 @@ class FeedViewController: UITableViewController, ListingsProtocol {
     } else if segue.identifier == "viewBidsSegue" {
       let dvc = segue.destination as! BidsTableViewController
       dvc.currentPosting = orderedListings[tableView.getSelectedIndex()] as? Posting
+    } else if segue.identifier == "acceptedBidSegue" {
+      let dvc = segue.destination as! AcceptedBidViewController
+      dvc.bid = bidToPass!
+      dvc.posting = orderedListings[tableView.getSelectedIndex()] as? Posting
     }
   }
   
