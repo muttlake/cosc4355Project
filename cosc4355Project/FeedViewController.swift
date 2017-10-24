@@ -61,11 +61,15 @@ class FeedViewController: UITableViewController, ListingsProtocol {
       guard let userInfo = FIRDataSnapshot.value as? [String : Any] else { return }
       if (userInfo["userType"] as! String == "Contractor") {
         self.isContractor = true
-        self.fetchProjects()
-      } else {
-        self.fetchUserProjects()
       }
+      self.handleRefresh()
     })
+  }
+  
+  /* No longer have to manually refresh */
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(true)
+    handleRefresh()
   }
   
   /* If the user is a client, only fetch the projects they posted */
