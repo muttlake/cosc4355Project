@@ -67,7 +67,7 @@ class FeedViewController: UITableViewController, ListingsProtocol {
   }
   
   /* No longer have to manually refresh */
-  override func viewWillAppear(_ animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     super.viewWillAppear(true)
     handleRefresh()
   }

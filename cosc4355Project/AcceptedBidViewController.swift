@@ -68,6 +68,7 @@ class AcceptedBidViewController: UIViewController {
     let alertController = UIAlertController(title: "Confirm", message: "Cancel the user's bid?", preferredStyle: .alert)
     let confirmAction = UIAlertAction(title: "Yes", style: .destructive) { (_: UIAlertAction) in
       self.updateBidAcceptedInDB(bidAmount: "0", sender: nil)
+       NotificationsUtil.notify(notifier_id: FIRAuth.getCurrentUserId(), notified_id: (self.user?.id)!, posting_id: (self.posting?.posting_id)!, notificationId: NSUUID().uuidString, notificationType: "bidCancelled", notifier_name: (self.user?.name)!, notifier_image: (self.user?.profilePicture)!, posting_name: (self.posting?.title)!)
       self.navigationController?.popViewController(animated: true)
     }
     let cancel = UIAlertAction(title: "No", style: .cancel, handler: nil)

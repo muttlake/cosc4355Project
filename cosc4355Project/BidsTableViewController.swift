@@ -58,14 +58,23 @@ class BidsTableViewController: UITableViewController {
         print("Error Occured: \(err!)")
         return
       }
+      
       self.performSegue(withIdentifier: "acceptBidSegue", sender: sender)
     }
   }
   
   @IBAction func acceptBid(_ sender: UIButton) {
     print("Bid accepted \(sender.tag)")
+    
     /** NOTIFY CONTRACTOR */
+    for (key, value) in biddersInfo {
+      print("\(key) \(value)")
+    }
+    // print(biddersInfo[listings[sender.tag].bidder_id]?.id)
+    NotificationsUtil.notify(notifier_id: FIRAuth.getCurrentUserId(), notified_id: listings[sender.tag].bidder_id, posting_id: (self.currentPosting?.posting_id)!, notificationId: NSUUID().uuidString, notificationType: "bidAccepted", notifier_name: "", notifier_image: "", posting_name: (self.currentPosting?.title)!)
+    
     updateBidAcceptedInDB(bidAmount: listings[sender.tag].id, sender: sender)
+    
   }
   
   func fetchBidderInfo() {
@@ -76,6 +85,7 @@ class BidsTableViewController: UITableViewController {
           guard let dictionary = value as? [String: Any] else { return }
           if key == bid.bidder_id {
             let user = User()
+            user.id = key
             user.profilePicture = dictionary["profilePicture"] as? String
             user.name = (dictionary["name"] as? String)!
             self.biddersInfo[key] = user
