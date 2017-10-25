@@ -14,4 +14,21 @@ enum NotificationType {
   case bidCancelled
   case reviewMade
   case paymentMade
+  
+  static func stringToEnum(string: String) -> NotificationType{
+    switch string {
+    case "bidOffered":
+      return bidOffered
+    case "bidAccepted":
+      return bidAccepted
+    case "bidCancelled":
+      return bidCancelled
+    case "reviewMade":
+      return reviewMade
+    case "paymentMade":
+      return paymentMade
+    default:
+      return bidOffered
+    }
+  }
 }
