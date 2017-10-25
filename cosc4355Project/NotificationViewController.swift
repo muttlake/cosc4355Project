@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class NotificationViewController: UITableViewController,clearDelegate {
+class NotificationViewController: UITableViewController, clearDelegate {
     var notificationKeys: [String] = []
     var listings: [Bid] = []
     var bidIds: [String] = []
@@ -19,7 +19,7 @@ class NotificationViewController: UITableViewController,clearDelegate {
         super.viewDidLoad()
         
         
-        fetchBids()
+        // fetchBids()
         
     }
        override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

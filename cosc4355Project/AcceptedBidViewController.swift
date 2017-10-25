@@ -31,6 +31,36 @@ class AcceptedBidViewController: UIViewController {
   
   @IBAction func pay(_ sender: UIButton) {
     print("PAY")
+    let alertController = UIAlertController(title: "Pay", message: "Enter amount to pay", preferredStyle: .alert)
+    let payAction = UIAlertAction(title: "Pay", style: .default) { (_: UIAlertAction) in
+      NotificationsUtil.notify(notifier_id: FIRAuth.getCurrentUserId(), notified_id: (self.user?.id)!, posting_id: (self.posting?.posting_id)!, notificationId: NSUUID().uuidString, notificationType: "paymentMade", notifier_name: (self.user?.name)!, notifier_image: (self.user?.profilePicture)!, posting_name: (self.posting?.title)!)
+    }
+    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+    alertController.addTextField(configurationHandler: nil)
+    alertController.addActions(actions: payAction, cancelAction)
+    present(alertController, animated: true, completion: nil)
+  }
+  
+  func notifyPaid() {
+    let notifier_id = FIRAuth.getCurrentUserId()
+    let notified_id = user?.id
+    let posting_id = posting?.posting_id
+    let notificationId = NSUUID().uuidString
+    
+    let values = ["notifier_id": notifier_id, "notified_id": notified_id, "notificationType": "paymentMade", "posting_id": posting_id, "expectedTime": Date.currentDate]
+    self.registerInfoIntoDatabaseWithUID(uid: notificationId, values: values as [String: AnyObject])
+    // self.navigationController?.popViewController(animated: true)
+  }
+  
+  private func registerInfoIntoDatabaseWithUID(uid: String, values: [String: AnyObject]) {
+    let ref = FIRDatabase.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
+    let projectsReference = ref.child("Notification").child(uid)
+    projectsReference.updateChildValues(values) { (err, ref) in
+      if(err != nil) {
+        print("Error Occured: \(err!)")
+        return
+      }
+    }
   }
   
   @IBAction func cancel(_ sender: UIButton) {
@@ -53,15 +83,7 @@ class AcceptedBidViewController: UIViewController {
     userImage.layer.masksToBounds = true
     userImage.layer.cornerRadius = 95
     
-//    if !cameFromBid {
-      fetchUserInfo()
-//    } else {
-//      nameLabel.text = (user?.name)! + " • " + Double.getFormattedCurrency(num: (bid?.bidAmount)!)
-//      userImage.loadImage(url: (user?.profilePicture) ?? "")
-//      ratingLabel.text = "5 Star"
-//      contactInfoLabel.text = user?.email
-//    }
-    // Do any additional setup after loading the view.
+    fetchUserInfo()
   }
   
   func fetchUserInfo() {

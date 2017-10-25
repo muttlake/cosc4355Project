@@ -10,6 +10,7 @@ import Foundation
 
 enum NotificationType {
   case bidOffered
+  case bidAccepted
   case bidCancelled
   case reviewMade
   case paymentMade
