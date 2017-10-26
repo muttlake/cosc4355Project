@@ -97,7 +97,14 @@ class ReviewFormViewController: UIViewController {
       alertNoStarLevelChosen()
       return
     }
-    self.newReview = Review(about_id: "Contractor22", posting_id: "253fdfds", stars: self.numStars, reviewWords: self.reviewWordsField.text!, reviewTime: Date.currentDate)
+    var about_id: String = ""
+    if user!.userType == "Client" {
+        about_id = bid?.bidder_id ?? ""
+    } else {
+        about_id = bid?.user_id ?? ""
+    }
+    let posting_id = project?.posting_id ?? ""
+    self.newReview = Review(about_id: about_id, posting_id: posting_id, stars: self.numStars, reviewWords: self.reviewWordsField.text! , reviewTime: Date.currentDate)
     print(newReview!)
     self.registerReviewIntoDatabase()
     self.dismiss(animated: true, completion: nil)
@@ -116,6 +123,7 @@ class ReviewFormViewController: UIViewController {
   
   func registerReviewIntoDatabase() {
     let reviewId = NSUUID().uuidString
+
     let values = ["user_id": FIRAuth.getCurrentUserId(), "about_id": newReview!.about_id, "posting_id": newReview!.posting_id, "stars": newReview!.stars, "reviewWords": newReview!.reviewWords, "reviewTime": newReview!.reviewTime] as [String : Any]
     self.registerInfoIntoDatabaseWithUID(uid: reviewId, values: values as [String: AnyObject])
   }

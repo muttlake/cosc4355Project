@@ -33,7 +33,7 @@ class BidsTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "bidCell", for: indexPath) as! BidTableViewCell
     let currentBid = listings[indexPath.row]
-    cell.bidderPhoto.loadImage(url: (biddersInfo[currentBid.bidder_id]?.profilePicture)!)
+    cell.bidderPhoto.loadImage(url: (biddersInfo[currentBid.bidder_id]?.profilePicture) ?? "")
     cell.bidderName.text = biddersInfo[currentBid.bidder_id]?.name
     cell.bidderRating.text = "5 Star"
     cell.bidderBid.text = Double.getFormattedCurrency(num: currentBid.bidAmount)

@@ -138,7 +138,9 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             dictionaries.forEach({ (key, value) in
                 guard let dictionary = value as? [String: Any] else { return }
                 let review = Review(from: dictionary)
-                self.reviews.append(review)
+                if review.user_id == FIRAuth.getCurrentUserId() {
+                    self.reviews.append(review)
+                }
             })
             self.fetchReviewersPhotos()
             /* Manually all the table view to reload itself and to refresh. Otherwise no changes will be seen */
