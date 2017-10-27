@@ -14,8 +14,10 @@ struct Posting: BasicListingsProtocol {
   var date: String
   var photoUrl: String
   var startingBid: Double
-  var acceptedBid: Double = 0.0
+  var acceptedBid: String = "0"
   var location: Address? = nil
+  var longitude: String = "0"
+  var latitude: String? = "0"
   
   /* Conformance to basic listings protocol, more comments in the actual protocol declaration. */
   var title: String
@@ -32,11 +34,13 @@ struct Posting: BasicListingsProtocol {
     date = dict["date"] as! String
     photoUrl = dict["photoUrl"] as! String
     startingBid = Double(dict["startingBid"] as! String)!
-    acceptedBid = Double(dict["acceptedBid"] as! String)!
+    acceptedBid = dict["acceptedBid"] as? String ?? "0"
     // location = dict["location"] as! String
     title = dict["title"] as! String
     description = dict["description"] as! String
     posting_id = dict["posting_id"] as! String
     user_id = dict["user_id"] as! String
+    latitude = dict["latitude"] as? String ?? "0"
+    longitude = dict["longitude"] as? String ?? "0"
   }
 }

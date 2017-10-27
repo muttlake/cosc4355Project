@@ -12,6 +12,8 @@ import Firebase
 
 class FeedViewController: UITableViewController, ListingsProtocol {
   
+  var bidToPass: Bid?
+  
   var listings: [BasicListingsProtocol] = []
   var orderedListings: [BasicListingsProtocol] {
     return listings.sorted(by: { (item1: BasicListingsProtocol, item2: BasicListingsProtocol) -> Bool in
@@ -59,12 +61,15 @@ class FeedViewController: UITableViewController, ListingsProtocol {
       guard let userInfo = FIRDataSnapshot.value as? [String : Any] else { return }
       if (userInfo["userType"] as! String == "Contractor") {
         self.isContractor = true
-        self.fetchProjects()
-      } else {
-        self.fetchUserProjects()
       }
+      self.handleRefresh()
     })
-    
+  }
+  
+  /* No longer have to manually refresh */
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewWillAppear(true)
+    handleRefresh()
   }
   
   /* If the user is a client, only fetch the projects they posted */
@@ -114,7 +119,20 @@ class FeedViewController: UITableViewController, ListingsProtocol {
     if isContractor {
       performSegue(withIdentifier: "makeBidSegue", sender: self)
     } else {
-      performSegue(withIdentifier: "viewBidsSegue", sender: self)
+      let project = orderedListings[tableView.selectedIndex] as! Posting
+      if project.acceptedBid == "0" {
+        /* The project still doesn't have an accepted bid */
+        performSegue(withIdentifier: "viewBidsSegue", sender: self)
+      } else {
+        FIRDatabase.database().reference().child("bids/\(project.acceptedBid)").observeSingleEvent(of: .value, with: { (snap) in
+          guard let dictionary = snap.value as? [String: Any] else { return }
+          print(dictionary)
+          self.bidToPass = Bid(from: dictionary, id: project.acceptedBid)
+          self.performSegue(withIdentifier: "acceptedBidSegue", sender: self)
+        }) { (error) in
+          print("Failed to fetch users with error: \(error)")
+        }
+      }
     }
   }
   
@@ -130,7 +148,11 @@ class FeedViewController: UITableViewController, ListingsProtocol {
       dvc.userWhoPostedId = currentCell.poster_id
     } else if segue.identifier == "viewBidsSegue" {
       let dvc = segue.destination as! BidsTableViewController
-      dvc.currentPosting = listings[tableView.getSelectedIndex()] as? Posting
+      dvc.currentPosting = orderedListings[tableView.getSelectedIndex()] as? Posting
+    } else if segue.identifier == "acceptedBidSegue" {
+      let dvc = segue.destination as! AcceptedBidViewController
+      dvc.bid = bidToPass!
+      dvc.posting = orderedListings[tableView.getSelectedIndex()] as? Posting
     }
   }
   
