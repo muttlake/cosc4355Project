@@ -9,84 +9,78 @@
 import UIKit
 import Firebase
 
-class NotificationViewController: UITableViewController,clearDelegate {
-    var notificationKeys: [String] = []
-    var listings: [Bid] = []
-    var bidIds: [String] = []
-   
-    var biddersInfo: [String: User] = [:]
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
-        fetchBids()
-        
+class NotificationViewController: UITableViewController {
+  var listings: [Notifications] = []
+  var orderedListings: [Notifications] {
+    return listings.sorted(by: { (item1: Notifications, item2: Notifications) -> Bool in
+      return Date.getDate(from: item1.expectedTime) > Date.getDate(from: item2.expectedTime)
+    })
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    tableView.allowsSelection = false
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(true)
+    self.listings = []
+    self.fetchNotifications()
+  }
+  
+  /* Fetches data from bids folder according to project id and current user id */
+  func fetchNotifications() {
+    let rootRef = FIRDatabase.database().reference().child("Notification")
+    rootRef.observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
+      guard let dictionaries = FIRDataSnapshot.value as? [String: AnyObject] else { return }
+      dictionaries.forEach({ (key, value) in
+        guard let dictionary = value as? [String: Any] else { return }
+        let notification = Notifications(from: dictionary, id: key )
+        if notification.notified_id == FIRAuth.getCurrentUserId() {
+          self.listings.append(notification)
+        }
+      })
+      self.tableView?.reloadData()
+//      self.tableView?.refreshControl?.endRefreshing()
+    }) { (error) in
+      print("Failed retrieving user notifications with error: \(error)")
     }
-       override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return listings.count
+  }
+  
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return listings.count
+  }
+  
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    print(listings.count)
+    let cell = tableView.dequeueReusableCell(withIdentifier: "notificationCell", for: indexPath) as! NotificationTableViewCell
+    let currentNotification = orderedListings[indexPath.row]
+    
+    var displayString = ""
+    switch currentNotification.notificationType {
+    case .bidOffered:
+      displayString = "You have a recieved an offer on project: \(currentNotification.project_name)"
+    case .bidAccepted:
+      displayString = "Your offer on project: \(currentNotification.project_name) was accepted"
+    case .bidCancelled:
+      displayString = "Your offer has been cancelled on project: \(currentNotification.project_name)"
+    case .reviewMade:
+      displayString = "A review has been of you"
+    case .paymentMade:
+      displayString = "You have recieved payment for project: \(currentNotification.project_name)"
+    default:
+      displayString = "Err: Default Notification"
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        print(listings.count)
-        let cell = tableView.dequeueReusableCell(withIdentifier: "notificationCell", for: indexPath) as! NotificationTableViewCell
-        let currentBid = listings[indexPath.row]
-      cell.name.text =  "\(biddersInfo[currentBid.bidder_id]?.name ?? "Default") made a bid of \(Double.getFormattedCurrency(num: currentBid.bidAmount))"
-        cell.row = indexPath.row
-        cell.delegate = self
-        return cell
-    }
-    func removeNotification(row: Int) {
-         FIRDatabase.database().reference().child("Notification").child(self.notificationKeys[row]).setValue(nil)
-        fetchBids()
-        self.tableView?.reloadData()
-    }
-    func fetchBidderInfo() {
-        for bid in listings {
-            FIRDatabase.database().reference().child("users").observeSingleEvent(of: .value, with: { (snapshot) in
-                guard let dictionaries = snapshot.value as? [String: Any] else { return }
-                dictionaries.forEach({ (key, value) in
-                    guard let dictionary = value as? [String: Any] else { return }
-                    if key == bid.bidder_id {
-                        let user = User()
-                    
-                        user.name = (dictionary["name"] as? String)!
-                        self.biddersInfo[key] = user
-                    }
-                })
-                /* Manually all the table view to reload itself and to refresh. Otherwise no changes will be seen */
-                self.tableView?.reloadData()
-            })
-        }
-    }
-    
-    func fetchBids(){
-       
-        self.biddersInfo.removeAll()
-        self.listings.removeAll()
-        self.notificationKeys.removeAll()
-        FIRDatabase.database().reference().child("Notification").observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
-            guard let dictionaries = FIRDataSnapshot.value as? [String: Any] else { return }
-            dictionaries.forEach({ (key, value) in
-                
-                guard let dictionary = value as? [String: Any] else { return }
-              let bid = Bid(from: dictionary, id: key as String)
-                if bid.user_id == (FIRAuth.auth()?.currentUser?.uid)!{
-                    self.notificationKeys.append(key)
-                    self.listings.append(bid)
-                    print("user id matches")
-                }
-            })
-            /* Manually all the table view to reload itself and to refresh. Otherwise no changes will be seen */
-         
-            /* Fetch bidders info only after actual bids have been loaded */
-            self.fetchBidderInfo()
-            
-        }) { (error) in
-            print("Failed to fetch bids with error: \(error)")
-        }
-      
-    }
-
+    cell.name.text = displayString
+    cell.row = indexPath.row
+    return cell
+  }
+  
+//  func removeNotification(row: Int) {
+//    // FIRDatabase.database().reference().child("Notification").child(self.notificationKeys[row]).setValue(nil)
+//    fetchNotifications()
+//    self.tableView?.reloadData()
+//  }
+  
 }

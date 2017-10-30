@@ -31,6 +31,36 @@ class AcceptedBidViewController: UIViewController {
   
   @IBAction func pay(_ sender: UIButton) {
     print("PAY")
+    let alertController = UIAlertController(title: "Pay", message: "Enter amount to pay", preferredStyle: .alert)
+    let payAction = UIAlertAction(title: "Pay", style: .default) { (_: UIAlertAction) in
+      NotificationsUtil.notify(notifier_id: FIRAuth.getCurrentUserId(), notified_id: (self.user?.id)!, posting_id: (self.posting?.posting_id)!, notificationId: NSUUID().uuidString, notificationType: "paymentMade", notifier_name: (self.user?.name)!, notifier_image: (self.user?.profilePicture)!, posting_name: (self.posting?.title)!)
+    }
+    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+    alertController.addTextField(configurationHandler: nil)
+    alertController.addActions(actions: payAction, cancelAction)
+    present(alertController, animated: true, completion: nil)
+  }
+  
+  func notifyPaid() {
+    let notifier_id = FIRAuth.getCurrentUserId()
+    let notified_id = user?.id
+    let posting_id = posting?.posting_id
+    let notificationId = NSUUID().uuidString
+    
+    let values = ["notifier_id": notifier_id, "notified_id": notified_id, "notificationType": "paymentMade", "posting_id": posting_id, "expectedTime": Date.currentDate]
+    self.registerInfoIntoDatabaseWithUID(uid: notificationId, values: values as [String: AnyObject])
+    // self.navigationController?.popViewController(animated: true)
+  }
+  
+  private func registerInfoIntoDatabaseWithUID(uid: String, values: [String: AnyObject]) {
+    let ref = FIRDatabase.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
+    let projectsReference = ref.child("Notification").child(uid)
+    projectsReference.updateChildValues(values) { (err, ref) in
+      if(err != nil) {
+        print("Error Occured: \(err!)")
+        return
+      }
+    }
   }
   
   @IBAction func cancel(_ sender: UIButton) {
@@ -38,6 +68,7 @@ class AcceptedBidViewController: UIViewController {
     let alertController = UIAlertController(title: "Confirm", message: "Cancel the user's bid?", preferredStyle: .alert)
     let confirmAction = UIAlertAction(title: "Yes", style: .destructive) { (_: UIAlertAction) in
       self.updateBidAcceptedInDB(bidAmount: "0", sender: nil)
+       NotificationsUtil.notify(notifier_id: FIRAuth.getCurrentUserId(), notified_id: (self.user?.id)!, posting_id: (self.posting?.posting_id)!, notificationId: NSUUID().uuidString, notificationType: "bidCancelled", notifier_name: (self.user?.name)!, notifier_image: (self.user?.profilePicture)!, posting_name: (self.posting?.title)!)
       self.navigationController?.popViewController(animated: true)
     }
     let cancel = UIAlertAction(title: "No", style: .cancel, handler: nil)
@@ -53,15 +84,7 @@ class AcceptedBidViewController: UIViewController {
     userImage.layer.masksToBounds = true
     userImage.layer.cornerRadius = 95
     
-    if !cameFromBid {
-      fetchUserInfo()
-    } else {
-      nameLabel.text = (user?.name)! + " • " + Double.getFormattedCurrency(num: (bid?.bidAmount)!)
-      userImage.loadImage(url: (user?.profilePicture) ?? "")
-      ratingLabel.text = "5 Star"
-      contactInfoLabel.text = "PlaceHolder"
-    }
-    // Do any additional setup after loading the view.
+    fetchUserInfo()
   }
   
   func fetchUserInfo() {
@@ -71,7 +94,7 @@ class AcceptedBidViewController: UIViewController {
       self.nameLabel.text = (self.user?.name)! + " • " + Double.getFormattedCurrency(num: (self.bid?.bidAmount)!)
       self.userImage.loadImage(url: (self.user?.profilePicture) ?? "")
       self.ratingLabel.text = "5 Star"
-      self.contactInfoLabel.text = "PlaceHolder"
+      self.contactInfoLabel.text = self.user?.email
     })
   }
   

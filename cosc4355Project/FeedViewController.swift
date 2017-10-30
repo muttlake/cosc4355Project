@@ -67,7 +67,7 @@ class FeedViewController: UITableViewController, ListingsProtocol {
   }
   
   /* No longer have to manually refresh */
-  override func viewWillAppear(_ animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     super.viewWillAppear(true)
     handleRefresh()
   }
@@ -126,9 +126,9 @@ class FeedViewController: UITableViewController, ListingsProtocol {
       } else {
         FIRDatabase.database().reference().child("bids/\(project.acceptedBid)").observeSingleEvent(of: .value, with: { (snap) in
           guard let dictionary = snap.value as? [String: Any] else { return }
-            print(dictionary)
-            self.bidToPass = Bid(from: dictionary, id: project.acceptedBid)
-            self.performSegue(withIdentifier: "acceptedBidSegue", sender: self)
+          print(dictionary)
+          self.bidToPass = Bid(from: dictionary, id: project.acceptedBid)
+          self.performSegue(withIdentifier: "acceptedBidSegue", sender: self)
         }) { (error) in
           print("Failed to fetch users with error: \(error)")
         }

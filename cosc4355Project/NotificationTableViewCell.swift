@@ -7,15 +7,13 @@
 //
 
 import UIKit
+
 protocol clearDelegate {
     func removeNotification(row:Int)
 }
 class NotificationTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var message: UILabel!
     
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var amount: UILabel!
     var row:Int!
     var delegate: clearDelegate!
     

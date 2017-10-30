@@ -27,6 +27,8 @@
 		CB8562231F9A826A002C79C3 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8562211F9A826A002C79C3 /* NotificationTableViewCell.swift */; };
 		CB8562251F9A8334002C79C3 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8562241F9A8334002C79C3 /* Notifications.swift */; };
 		CB8562261F9A8334002C79C3 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8562241F9A8334002C79C3 /* Notifications.swift */; };
+		CBE8E24D1F9FE62E008609A0 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE8E24C1F9FE62E008609A0 /* NotificationType.swift */; };
+		CBE8E24F1FA006DC008609A0 /* NotificationsUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE8E24E1FA006DC008609A0 /* NotificationsUtil.swift */; };
 		CBE9B1431F8791B5000C8A4D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B1421F8791B5000C8A4D /* ProfileViewController.swift */; };
 		CBE9B1451F879248000C8A4D /* ProjectPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B1441F879248000C8A4D /* ProjectPostTableViewCell.swift */; };
 		CBE9B1471F8821E6000C8A4D /* ProjectFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B1461F8821E6000C8A4D /* ProjectFormViewController.swift */; };
@@ -81,6 +83,8 @@
 		CB85621E1F9A8232002C79C3 /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		CB8562211F9A826A002C79C3 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		CB8562241F9A8334002C79C3 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		CBE8E24C1F9FE62E008609A0 /* NotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationType.swift; sourceTree = "<group>"; };
+		CBE8E24E1FA006DC008609A0 /* NotificationsUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsUtil.swift; sourceTree = "<group>"; };
 		CBE9B1421F8791B5000C8A4D /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CBE9B1441F879248000C8A4D /* ProjectPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectPostTableViewCell.swift; sourceTree = "<group>"; };
 		CBE9B1461F8821E6000C8A4D /* ProjectFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectFormViewController.swift; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				CB523AB01F8D22C30007CCB8 /* Extensions.swift */,
+				CBE8E24E1FA006DC008609A0 /* NotificationsUtil.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -197,6 +202,7 @@
 				CBE9B14D1F884506000C8A4D /* UserType.swift */,
 				CBE9B1511F884605000C8A4D /* Status.swift */,
 				CBE9B1531F884754000C8A4D /* ProjectCategory.swift */,
+				CBE8E24C1F9FE62E008609A0 /* NotificationType.swift */,
 			);
 			name = Enums;
 			sourceTree = "<group>";
@@ -437,7 +443,9 @@
 				FB1B665C1F95A1DE00BE0B02 /* MapsViewController.swift in Sources */,
 				CB523AB51F8DC35C0007CCB8 /* BidTableViewCell.swift in Sources */,
 				CB47BBEC1F74C0D000841C92 /* FeedViewController.swift in Sources */,
+				CBE8E24D1F9FE62E008609A0 /* NotificationType.swift in Sources */,
 				CBE9B14A1F884453000C8A4D /* User.swift in Sources */,
+				CBE8E24F1FA006DC008609A0 /* NotificationsUtil.swift in Sources */,
 				CB523AB31F8D25230007CCB8 /* BidFormViewController.swift in Sources */,
 				CB47BBD61F74B28000841C92 /* AppDelegate.swift in Sources */,
 				CBE9B14E1F884506000C8A4D /* UserType.swift in Sources */,
