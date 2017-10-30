@@ -138,7 +138,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             dictionaries.forEach({ (key, value) in
                 guard let dictionary = value as? [String: Any] else { return }
                 let review = Review(from: dictionary)
-                if review.user_id == FIRAuth.getCurrentUserId() {
+                let currentId = FIRAuth.getCurrentUserId()
+                if review.about_id == currentId || review.user_id == currentId {
                     self.reviews.append(review)
                 }
             })

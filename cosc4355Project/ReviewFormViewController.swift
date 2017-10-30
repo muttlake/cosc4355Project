@@ -16,7 +16,7 @@ class ReviewFormViewController: UIViewController {
   var newReview: Review?
   
   var project: Posting?
-  var user: User?
+  var aboutUser: User?
   var bid: Bid?
   
   @IBOutlet weak var reviewWordsField: UITextView!
@@ -97,12 +97,10 @@ class ReviewFormViewController: UIViewController {
       alertNoStarLevelChosen()
       return
     }
-    var about_id: String = ""
-    if user!.userType == "Client" {
-        about_id = bid?.bidder_id ?? ""
-    } else {
-        about_id = bid?.user_id ?? ""
-    }
+    let about_id: String = aboutUser?.id ?? ""
+    print("About User Type: ", aboutUser!.userType)
+    print("About User Id: ", aboutUser!.id)
+
     let posting_id = project?.posting_id ?? ""
     self.newReview = Review(about_id: about_id, posting_id: posting_id, stars: self.numStars, reviewWords: self.reviewWordsField.text! , reviewTime: Date.currentDate)
     print(newReview!)
