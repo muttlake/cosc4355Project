@@ -9,6 +9,7 @@
 import Foundation
 
 struct Notifications {
+  var notification_key: String
   var notification_id: String
   var notified_id: String
   var notifier_id: String
@@ -19,6 +20,7 @@ struct Notifications {
   var project_name: String
   
   init(from dict: [String: Any], id: String) {
+    notification_key = dict["notification_key"] as? String ?? ""
     notified_id = dict["notified_id"] as? String ?? ""
     notifier_id = dict["notifier_id"] as? String ?? ""
     posting_id = dict["posting_id"] as? String ?? ""

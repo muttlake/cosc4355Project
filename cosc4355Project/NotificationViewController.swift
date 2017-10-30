@@ -30,6 +30,8 @@ class NotificationViewController: UITableViewController {
   
   /* Fetches data from bids folder according to project id and current user id */
   func fetchNotifications() {
+    self.listings = []
+     
     let rootRef = FIRDatabase.database().reference().child("Notification")
     rootRef.observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
       guard let dictionaries = FIRDataSnapshot.value as? [String: AnyObject] else { return }
@@ -76,6 +78,15 @@ class NotificationViewController: UITableViewController {
     cell.row = indexPath.row
     return cell
   }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete{
+            FIRDatabase.database().reference().child("Notification").child(self.orderedListings[indexPath.row].notification_key).setValue(nil)
+                fetchNotifications()
+                self.tableView?.reloadData()
+            
+        
+    }
+    }
   
 //  func removeNotification(row: Int) {
 //    // FIRDatabase.database().reference().child("Notification").child(self.notificationKeys[row]).setValue(nil)

@@ -31,6 +31,7 @@ class AcceptedBidViewController: UIViewController {
   
   @IBAction func pay(_ sender: UIButton) {
     print("PAY")
+   
     let alertController = UIAlertController(title: "Pay", message: "Enter amount to pay", preferredStyle: .alert)
     let payAction = UIAlertAction(title: "Pay", style: .default) { (_: UIAlertAction) in
       NotificationsUtil.notify(notifier_id: FIRAuth.getCurrentUserId(), notified_id: (self.user?.id)!, posting_id: (self.posting?.posting_id)!, notificationId: NSUUID().uuidString, notificationType: "paymentMade", notifier_name: (self.user?.name)!, notifier_image: (self.user?.profilePicture)!, posting_name: (self.posting?.title)!)

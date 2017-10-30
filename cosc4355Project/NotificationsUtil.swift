@@ -11,7 +11,7 @@ import Firebase
 
 class NotificationsUtil {
   static func notify(notifier_id: String, notified_id: String, posting_id: String, notificationId: String, notificationType: String, notifier_name: String, notifier_image: String, posting_name: String) {
-    let values = ["notifier_id": notifier_id, "notified_id": notified_id, "notificationType": notificationType, "posting_id": posting_id, "expectedTime": Date.currentDate, "notifier_name": notifier_name, "notifier_image": notifier_image, "posting_name": posting_name]
+    let values = ["notification_key": notificationId,"notifier_id": notifier_id, "notified_id": notified_id, "notificationType": notificationType, "posting_id": posting_id, "expectedTime": Date.currentDate, "notifier_name": notifier_name, "notifier_image": notifier_image, "posting_name": posting_name]
     self.registerInfoIntoDatabaseWithUID(uid: notificationId, values: values as [String: AnyObject])
   }
   

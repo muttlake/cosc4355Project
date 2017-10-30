@@ -55,14 +55,7 @@ class BidFormViewController: UIViewController {
       }
     }
     
-    let notificationId = NSUUID().uuidString;
-    let notificationRef = ref.child("Notification").child(notificationId)
-    notificationRef.updateChildValues(values) { (err, ref) in
-      if(err != nil) {
-        print("Error Occured: \(err!)")
-        return
-      }
-    }
+ 
   }
   
   override func viewDidLoad() {
