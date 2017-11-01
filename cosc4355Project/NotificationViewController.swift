@@ -70,7 +70,8 @@ class NotificationViewController: UITableViewController {
     
     switch currentNotification.notificationType {
     case .bidOffered:
-        displayString = "You have a recieved an offer on project: \(currentNotification.project_name) by \(currentNotification.notifier_name)"
+           cell.photo.loadImage(url: currentNotification.notifier_image)
+           displayString = "You have a recieved an offer on project: \(currentNotification.project_name) by \(currentNotification.notifier_name)"
         
     case .bidAccepted:
           displayString = "Your offer on project: \(currentNotification.project_name) was accepted"
@@ -84,7 +85,7 @@ class NotificationViewController: UITableViewController {
           displayString = "Err: Default Notification"
     }
     
-    cell.photo.loadImage(url: currentNotification.notifier_image)
+ 
     cell.name.text = displayString
     cell.row = indexPath.row
     return cell
