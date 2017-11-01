@@ -12,7 +12,7 @@ import Firebase
 class BidsTableViewController: UITableViewController {
   
   var listings: [Bid] = []
-  
+    var currentUser: User? = nil
   var biddersInfo: [String: User] = [:]
   
   var currentPosting: Posting?
@@ -23,6 +23,7 @@ class BidsTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.allowsSelection = false
+    fetchUserInfo()
     fetchBids()
   }
   
@@ -71,7 +72,7 @@ class BidsTableViewController: UITableViewController {
       print("\(key) \(value)")
     }
     // print(biddersInfo[listings[sender.tag].bidder_id]?.id)
-    NotificationsUtil.notify(notifier_id: FIRAuth.getCurrentUserId(), notified_id: listings[sender.tag].bidder_id, posting_id: (self.currentPosting?.posting_id)!, notificationId: NSUUID().uuidString, notificationType: "bidAccepted", notifier_name: "", notifier_image: "", posting_name: (self.currentPosting?.title)!)
+    NotificationsUtil.notify(notifier_id: FIRAuth.getCurrentUserId(), notified_id: listings[sender.tag].bidder_id, posting_id: (self.currentPosting?.posting_id)!, notificationId: NSUUID().uuidString, notificationType: "bidAccepted", notifier_name: (self.currentUser?.name)!, notifier_image: (self.currentUser?.profilePicture)!, posting_name: (self.currentPosting?.title)!)
     
     updateBidAcceptedInDB(bidAmount: listings[sender.tag].id, sender: sender)
     
@@ -135,7 +136,13 @@ class BidsTableViewController: UITableViewController {
       print("Failed to fetch bids with error: \(error)")
     }
   }
-  
+    func fetchUserInfo() {
+        FIRDatabase.database().reference().child("users/\(FIRAuth.getCurrentUserId())").observeSingleEvent(of: .value, with: { (snap) in
+            guard let dictionary = snap.value as? [String: Any] else { return }
+            self.currentUser = User(from: dictionary, id: (FIRAuth.getCurrentUserId()))
+            
+        })
+    }
   /* Pass in bid, user, and project info to next page */
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "acceptBidSegue" {

@@ -18,6 +18,7 @@ struct Notifications {
   var expectedTime: String
   var notifier_name: String
   var project_name: String
+  var notifier_image: String
   
   init(from dict: [String: Any], id: String) {
     notification_key = dict["notification_key"] as? String ?? ""
@@ -29,5 +30,5 @@ struct Notifications {
     notification_id = id
     notifier_name = dict["notifier_name"] as? String ?? ""
     project_name = dict["posting_name"] as? String ?? ""
-  }
+    notifier_image = dict["notifier_image"] as? String ?? ""  }
 }
