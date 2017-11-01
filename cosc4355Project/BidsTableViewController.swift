@@ -30,6 +30,8 @@ class BidsTableViewController: UITableViewController {
     return listings.count
   }
   
+  var profileSegueUserId: String = ""
+    
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "bidCell", for: indexPath) as! BidTableViewCell
     let currentBid = listings[indexPath.row]
@@ -41,10 +43,45 @@ class BidsTableViewController: UITableViewController {
     
     acceptButtons[indexPath.row] = cell.acceptButton
     
+    makeTapGestureForProfileSegue(userPhoto: cell.bidderPhoto, currentBidderId: currentBid.bidder_id)
+    
     return cell
   }
+    
+
   
-  
+    func makeTapGestureForProfileSegue(userPhoto: CustomImageView, currentBidderId: String) {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action :#selector(userImageTapped(tapGestureRecognizer:)))
+        userPhoto.isUserInteractionEnabled = true
+        userPhoto.addGestureRecognizer(tapGestureRecognizer)
+        profileSegueUserId = currentBidderId
+    }
+    
+    @objc func userImageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        performSegue(withIdentifier: "bidsTableProfile", sender: self)
+    }
+    
+    /* Pass in bid, user, and project info to next page */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "acceptBidSegue" {
+            let dvc = segue.destination as! AcceptedBidViewController
+            if let sender = sender as? UIButton {
+                dvc.bid = listings[sender.tag]
+                dvc.posting = currentPosting!
+                dvc.userId = listings[sender.tag].bidder_id
+                dvc.user = biddersInfo[listings[sender.tag].bidder_id]
+                dvc.cameFromBid = true
+                print(dvc.user?.profilePicture)
+            }
+        }
+        if segue.identifier == "bidsTableProfile" {
+            let dvc = segue.destination as! ProfileViewController
+            dvc.didSegueHere = true
+            dvc.currentUserId = profileSegueUserId
+        }
+    }
+    
   func updateBidAcceptedInDB(bidAmount: String, sender: UIButton) {
     let values = ["acceptedBid": bidAmount] as [String : Any]
     self.registerInfoIntoDatabaseWithUID(uid: (currentPosting?.posting_id)!, values: values as [String: AnyObject], sender: sender)
@@ -136,18 +173,7 @@ class BidsTableViewController: UITableViewController {
     }
   }
   
-  /* Pass in bid, user, and project info to next page */
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "acceptBidSegue" {
-      let dvc = segue.destination as! AcceptedBidViewController
-      if let sender = sender as? UIButton {
-        dvc.bid = listings[sender.tag]
-        dvc.posting = currentPosting!
-        dvc.userId = listings[sender.tag].bidder_id
-        dvc.user = biddersInfo[listings[sender.tag].bidder_id]
-        dvc.cameFromBid = true
-        print(dvc.user?.profilePicture)
-      }
-    }
-  }
-}
+
+    
+    
+} // End Bids Table View Controller

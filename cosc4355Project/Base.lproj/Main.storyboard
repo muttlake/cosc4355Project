@@ -197,7 +197,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2iS-aQ-ajL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1064.8" y="-961.16941529235385"/>
+            <point key="canvasLocation" x="2751" y="149"/>
         </scene>
         <!--Review Form View Controller-->
         <scene sceneID="NA1-uN-wo1">
@@ -414,7 +414,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xMa-jL-yJS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2366" y="115"/>
+            <point key="canvasLocation" x="2113" y="788"/>
         </scene>
         <!--Projects-->
         <scene sceneID="66P-8P-qvt">
@@ -621,11 +621,12 @@
                     </tableView>
                     <connections>
                         <segue destination="ppk-QV-W7L" kind="show" identifier="acceptBidSegue" id="voo-iW-Vnr"/>
+                        <segue destination="YbJ-Es-Vb3" kind="show" identifier="bidsTableProfile" id="TzZ-ZX-Nd0"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mff-H1-sQP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3944.8000000000002" y="-88.605697151424295"/>
+            <point key="canvasLocation" x="3738" y="225"/>
         </scene>
         <!--Bid Accepted-->
         <scene sceneID="45E-QE-Bzf">
@@ -1044,8 +1045,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="nnO-hE-zVl"/>
-        <segue reference="ZEU-a3-k3d"/>
+        <segue reference="voo-iW-Vnr"/>
         <segue reference="SIz-M7-chQ"/>
-        <segue reference="eTU-mh-IAE"/>
+        <segue reference="TzZ-ZX-Nd0"/>
     </inferredMetricsTieBreakers>
 </document>
