@@ -214,14 +214,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vI8-NY-cOI">
-                                <rect key="frame" x="152" y="595" width="70" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Submit"/>
-                                <connections>
-                                    <action selector="submitButton:" destination="dwM-Cr-YB8" eventType="touchUpInside" id="4dW-QX-ix2"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Stars:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TsH-La-GAA">
                                 <rect key="frame" x="16" y="88" width="66" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -299,10 +291,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09R-3g-PhZ">
-                                <rect key="frame" x="70" y="595" width="67" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vI8-NY-cOI">
+                                <rect key="frame" x="200" y="595" width="70" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Cancel"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submitButton:" destination="dwM-Cr-YB8" eventType="touchUpInside" id="4dW-QX-ix2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09R-3g-PhZ">
+                                <rect key="frame" x="118" y="595" width="67" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="cancel:" destination="dwM-Cr-YB8" eventType="touchUpInside" id="VlY-pz-bAc"/>
                                 </connections>
@@ -504,7 +506,7 @@
                         <outlet property="addButton" destination="HZW-ti-2Yh" id="npt-4Q-APV"/>
                         <segue destination="zmh-OJ-5d3" kind="show" identifier="makeBidSegue" id="3oB-fO-enI"/>
                         <segue destination="27C-Lb-7zf" kind="show" identifier="viewBidsSegue" id="OYb-Bt-vYV"/>
-                        <segue destination="ppk-QV-W7L" kind="show" identifier="acceptedBidSegue" id="ZEU-a3-k3d"/>
+                        <segue destination="ppk-QV-W7L" kind="show" identifier="acceptedBidSegue" id="sW9-Ko-hrd"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aOS-v6-8EO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -644,8 +646,8 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="ppk-QV-W7L" kind="show" identifier="acceptBidSegue" id="voo-iW-Vnr"/>
                         <segue destination="YbJ-Es-Vb3" kind="show" identifier="bidsTableProfile" id="TzZ-ZX-Nd0"/>
+                        <segue destination="ppk-QV-W7L" kind="show" identifier="acceptBidSegue" id="qq0-Lt-nZh"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mff-H1-sQP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -722,6 +724,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <navigationItem key="navigationItem" id="UXh-PK-ScA"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="contactInfoLabel" destination="PH0-VY-7zV" id="sGq-BU-0fO"/>
@@ -733,7 +736,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4LO-Nw-aST" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4628" y="-88.605697151424295"/>
+            <point key="canvasLocation" x="4967.1999999999998" y="-88.605697151424295"/>
         </scene>
         <!--Add Project-->
         <scene sceneID="Uga-ZE-c5x">
@@ -1095,9 +1098,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="e8d-IR-9jH"/>
-        <segue reference="ZEU-a3-k3d"/>
+        <segue reference="qq0-Lt-nZh"/>
         <segue reference="3oB-fO-enI"/>
-        <segue reference="SIz-M7-chQ"/>
+        <segue reference="d9k-8p-2mR"/>
         <segue reference="TzZ-ZX-Nd0"/>
     </inferredMetricsTieBreakers>
 </document>
