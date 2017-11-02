@@ -31,6 +31,9 @@ class FeedViewController: UITableViewController, ListingsProtocol {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "projectCell", for: indexPath) as! ProjectPostTableViewCell
     
+    /* Bounds checker */
+    if (indexPath.item >= orderedListings.count) { return cell }
+    
     let project = orderedListings[indexPath.item] as! Posting
     cell.projectPhoto.loadImage(url: project.photoUrl)
     cell.projectTitle.text = orderedListings[indexPath.item].title
@@ -139,7 +142,8 @@ class FeedViewController: UITableViewController, ListingsProtocol {
     if isContractor {
       performSegue(withIdentifier: "makeBidSegue", sender: self)
     } else {
-      let project = orderedListings[tableView.selectedIndex] as! Posting
+      if (tableView.selectedIndex == orderedListings.count) { return }
+      let project = orderedListings[tableView.selectedIndex] as? Posting ?? Posting()
       if project.acceptedBid == "0" {
         /* The project still doesn't have an accepted bid */
         performSegue(withIdentifier: "viewBidsSegue", sender: self)
