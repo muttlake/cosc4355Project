@@ -42,6 +42,7 @@
 		CBE9B15A1F896C46000C8A4D /* ListingsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B1591F896C46000C8A4D /* ListingsProtocol.swift */; };
 		CBE9B15F1F89973C000C8A4D /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B15E1F89973C000C8A4D /* CustomImageView.swift */; };
 		CBE9B1671F89C2C0000C8A4D /* XCProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9B1661F89C2C0000C8A4D /* XCProjectTests.swift */; };
+		CBEC144C1FAB95AA00C70F9A /* UsersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEC144B1FAB95AA00C70F9A /* UsersList.swift */; };
 		E3950CE0F55F346EABA1675E /* Pods_cosc4355Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C9482FDCBA72DEE67A530A1 /* Pods_cosc4355Project.framework */; };
 		FB1B665C1F95A1DE00BE0B02 /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1B665B1F95A1DE00BE0B02 /* MapsViewController.swift */; };
 		FB1B665E1F95A43100BE0B02 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB1B665D1F95A43100BE0B02 /* CoreLocation.framework */; };
@@ -100,6 +101,7 @@
 		CBE9B1641F89C2BF000C8A4D /* XCProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XCProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBE9B1661F89C2C0000C8A4D /* XCProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCProjectTests.swift; sourceTree = "<group>"; };
 		CBE9B1681F89C2C0000C8A4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CBEC144B1FAB95AA00C70F9A /* UsersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersList.swift; sourceTree = "<group>"; };
 		FB1B665B1F95A1DE00BE0B02 /* MapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
 		FB1B665D1F95A43100BE0B02 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FB241CDE99B71EED06FF72C3 /* Pods-cosc4355Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cosc4355Project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cosc4355Project/Pods-cosc4355Project.debug.xcconfig"; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 			children = (
 				CB523AB01F8D22C30007CCB8 /* Extensions.swift */,
 				CBE8E24E1FA006DC008609A0 /* NotificationsUtil.swift */,
+				CBEC144B1FAB95AA00C70F9A /* UsersList.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				CBE9B15F1F89973C000C8A4D /* CustomImageView.swift in Sources */,
 				CBE9B1501F8845D4000C8A4D /* Posting.swift in Sources */,
 				CBE9B1561F884828000C8A4D /* BasicListingsProtocol.swift in Sources */,
+				CBEC144C1FAB95AA00C70F9A /* UsersList.swift in Sources */,
 				CB523AB71F8DC4EA0007CCB8 /* BidsTableViewController.swift in Sources */,
 				CBE9B1451F879248000C8A4D /* ProjectPostTableViewCell.swift in Sources */,
 				FB735DC51F8C967300FE6794 /* Review.swift in Sources */,

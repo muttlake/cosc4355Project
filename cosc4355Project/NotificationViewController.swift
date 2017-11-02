@@ -10,9 +10,9 @@ import UIKit
 import Firebase
 
 class NotificationViewController: UITableViewController {
- 
-    
-    var listings: [Notifications] = []
+  
+  var listings: [Notifications] = []
+  var users = [String: User]()
   var orderedListings: [Notifications] {
     return listings.sorted(by: { (item1: Notifications, item2: Notifications) -> Bool in
       return Date.getDate(from: item1.expectedTime) > Date.getDate(from: item2.expectedTime)
@@ -21,7 +21,7 @@ class NotificationViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    users = UsersList.getUsers()
     tableView.allowsSelection = false
   }
   
@@ -34,7 +34,7 @@ class NotificationViewController: UITableViewController {
   /* Fetches data from bids folder according to project id and current user id */
   func fetchNotifications() {
     self.listings = []
-     
+    
     let rootRef = FIRDatabase.database().reference().child("Notification")
     rootRef.observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
       guard let dictionaries = FIRDataSnapshot.value as? [String: AnyObject] else { return }
@@ -46,15 +46,15 @@ class NotificationViewController: UITableViewController {
         }
       })
       self.tableView?.reloadData()
-//      self.tableView?.refreshControl?.endRefreshing()
+      //      self.tableView?.refreshControl?.endRefreshing()
     }) { (error) in
       print("Failed retrieving user notifications with error: \(error)")
     }
   }
-    func checkNotification() -> Int{
-        fetchNotifications()
-        return self.listings.count
-    }
+  func checkNotification() -> Int{
+    fetchNotifications()
+    return self.listings.count
+  }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return listings.count
@@ -68,42 +68,42 @@ class NotificationViewController: UITableViewController {
     
     var displayString: String = ""
     
+    cell.photo.loadImage(url: users[currentNotification.notifier_id]?.profilePicture ?? "")
+    let notifierName = users[currentNotification.notifier_id]?.name ?? "default"
+    
     switch currentNotification.notificationType {
     case .bidOffered:
-           cell.photo.loadImage(url: currentNotification.notifier_image)
-           displayString = "You have a recieved an offer on project: \(currentNotification.project_name) by \(currentNotification.notifier_name)"
-        
+      displayString = "You have a recieved an offer on project: \(currentNotification.project_name) by \(notifierName)"
     case .bidAccepted:
-          displayString = "Your offer on project: \(currentNotification.project_name) was accepted"
+      displayString = "Your offer on project: \(currentNotification.project_name) was accepted by \(notifierName)"
     case .bidCancelled:
-      displayString = "Your offer has been cancelled on project: \(currentNotification.project_name)"
+      displayString = "Your offer has been cancelled on project: \(currentNotification.project_name) by \(notifierName)"
     case .reviewMade:
-          displayString = "A review has been of you"
+      displayString = "A review has been made of you from \(notifierName)"
     case .paymentMade:
-          displayString = "You have recieved payment for project: \(currentNotification.project_name)"
+      displayString = "You have recieved payment for project: \(currentNotification.project_name) from \(notifierName)"
     default:
-          displayString = "Err: Default Notification"
+      displayString = "Err: Default Notification"
     }
     
- 
     cell.name.text = displayString
     cell.row = indexPath.row
     return cell
   }
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.delete{
-            FIRDatabase.database().reference().child("Notification").child(self.orderedListings[indexPath.row].notification_key).setValue(nil)
-                fetchNotifications()
-                self.tableView?.reloadData()
-            
-        
+  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == UITableViewCellEditingStyle.delete{
+      FIRDatabase.database().reference().child("Notification").child(self.orderedListings[indexPath.row].notification_key).setValue(nil)
+      fetchNotifications()
+      self.tableView?.reloadData()
+      
+      
     }
-    }
+  }
   
-//  func removeNotification(row: Int) {
-//    // FIRDatabase.database().reference().child("Notification").child(self.notificationKeys[row]).setValue(nil)
-//    fetchNotifications()
-//    self.tableView?.reloadData()
-//  }
+  //  func removeNotification(row: Int) {
+  //    // FIRDatabase.database().reference().child("Notification").child(self.notificationKeys[row]).setValue(nil)
+  //    fetchNotifications()
+  //    self.tableView?.reloadData()
+  //  }
   
 }

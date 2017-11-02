@@ -58,6 +58,9 @@ class FeedViewController: UITableViewController, ListingsProtocol {
     super.viewDidLoad()
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
     
+    /* To be user for future references to users */
+    UsersList.fetchUsers()
+    
     /* Adding refresh feature on newsfeed to reload projects */
     let refreshControl = UIRefreshControl()
     refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
