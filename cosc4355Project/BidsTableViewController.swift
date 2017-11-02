@@ -22,7 +22,7 @@ class BidsTableViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.allowsSelection = false
+    tableView.allowsSelection = true
     fetchBids()
   }
   
@@ -43,11 +43,16 @@ class BidsTableViewController: UITableViewController {
     
     acceptButtons[indexPath.row] = cell.acceptButton
     
-    makeTapGestureForProfileSegue(userPhoto: cell.bidderPhoto, currentBidderId: currentBid.bidder_id)
+    //makeTapGestureForProfileSegue(userPhoto: cell.bidderPhoto, currentBidderId: currentBid.bidder_id)
     
     return cell
   }
+  
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        profileSegueUserId = listings[indexPath.row].bidder_id
+        performSegue(withIdentifier: "bidsTableProfile", sender: self)
+    }
 
   
     func makeTapGestureForProfileSegue(userPhoto: CustomImageView, currentBidderId: String) {
