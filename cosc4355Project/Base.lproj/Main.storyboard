@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -189,6 +189,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="emailLabel" destination="8i9-e5-NY9" id="r3Q-RJ-hr2"/>
+                        <outlet property="logoutOutlet" destination="7R7-3X-DMZ" id="5jl-lH-Ot8"/>
                         <outlet property="nameLabel" destination="qTC-HN-yJw" id="XfQ-5g-ULu"/>
                         <outlet property="profilePicture" destination="dq8-L2-uDo" id="7et-Kk-orO"/>
                         <outlet property="reviewsTableView" destination="Gxx-6u-AxU" id="bjz-3W-tAV"/>

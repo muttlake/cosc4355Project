@@ -28,6 +28,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     var reviewersPhotos: [String: String] = [:]
     
     var currentUserId: String = ""
+  
+  
+  @IBOutlet weak var logoutOutlet: UIButton!
+  
+  var cameFromBids = false
     
     @IBAction func addReviewButton(_ sender: Any) {
         performSegue(withIdentifier: "profileReviewForm", sender: self)
@@ -44,7 +49,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         print("Sign out successful")
     }
-    
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(true)
+    logoutOutlet.isHidden = cameFromBids ? true : false
+  }
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,8 +67,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         {
             currentUserId = FIRAuth.getCurrentUserId()
         }
-        
-        
         
         /* Turns picture into a circle */
         profilePicture.layer.cornerRadius = 64

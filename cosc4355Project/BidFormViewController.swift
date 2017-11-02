@@ -71,8 +71,7 @@ class BidFormViewController: UIViewController, UITextFieldDelegate {
         userPhoto.addGestureRecognizer(tapGestureRecognizer)
     }
     
-    @objc func userImageTapped(tapGestureRecognizer: UITapGestureRecognizer)
-    {
+    @objc func userImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
         performSegue(withIdentifier: "bidFormProfile", sender: self)
     }
     
@@ -81,6 +80,7 @@ class BidFormViewController: UIViewController, UITextFieldDelegate {
             let dvc = segue.destination as! ProfileViewController
             dvc.didSegueHere = true
             dvc.currentUserId = userWhoPostedId!
+          dvc.cameFromBids = true
         }
     }
   

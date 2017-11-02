@@ -108,10 +108,14 @@ class ReviewFormViewController: UIViewController {
     self.dismiss(animated: true, completion: nil)
   }
   
+  @objc func dismissKb() {
+    view.endEditing(true)
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    // Do any additional setup after loading the view.
+    let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKb))
+    view.addGestureRecognizer(tap)
   }
   
   override func didReceiveMemoryWarning() {

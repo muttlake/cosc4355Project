@@ -84,6 +84,7 @@ class BidsTableViewController: UITableViewController {
             let dvc = segue.destination as! ProfileViewController
             dvc.didSegueHere = true
             dvc.currentUserId = profileSegueUserId
+          dvc.cameFromBids = true
         }
     }
     
