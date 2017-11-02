@@ -127,6 +127,7 @@ class ReviewFormViewController: UIViewController {
     let reviewId = NSUUID().uuidString
 
     let values = ["user_id": FIRAuth.getCurrentUserId(), "about_id": newReview!.about_id, "posting_id": newReview!.posting_id, "stars": newReview!.stars, "reviewWords": newReview!.reviewWords, "reviewTime": newReview!.reviewTime] as [String : Any]
+    NotificationsUtil.notify(notifier_id: FIRAuth.getCurrentUserId(), notified_id:newReview!.about_id, posting_id: newReview!.posting_id, notificationId: NSUUID().uuidString, notificationType: "reviewMade", notifier_name: "", notifier_image: "", posting_name:  "")
     self.registerInfoIntoDatabaseWithUID(uid: reviewId, values: values as [String: AnyObject])
   }
   

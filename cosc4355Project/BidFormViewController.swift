@@ -30,6 +30,7 @@ class BidFormViewController: UIViewController, UITextFieldDelegate {
   var posterImagePhoto: UIImage?
   
   var postingId: String?
+    var currentUser:User? = nil
   
   var userWhoPostedId: String?
   
@@ -40,7 +41,7 @@ class BidFormViewController: UIViewController, UITextFieldDelegate {
     let values = ["bidAmount": bidAmount, "expectedTime": Date.currentDate, "user_id": user_id, "bidder_id": FIRAuth.getCurrentUserId(), "posting_id": posting_id, "id": bidId]
     self.registerInfoIntoDatabaseWithUID(uid: bidId, values: values as [String: AnyObject])
     
-    NotificationsUtil.notify(notifier_id: FIRAuth.getCurrentUserId(), notified_id: user_id, posting_id: posting_id, notificationId: NSUUID().uuidString, notificationType: "bidOffered", notifier_name: "", notifier_image: "", posting_name: projectTitleString!)
+    NotificationsUtil.notify(notifier_id: FIRAuth.getCurrentUserId(), notified_id: user_id, posting_id: posting_id, notificationId: NSUUID().uuidString, notificationType: "bidOffered", notifier_name: (self.currentUser?.name)!, notifier_image: (self.currentUser?.profilePicture)!,posting_name: projectTitleString!)
     
     self.navigationController?.popViewController(animated: true)
   }
@@ -55,15 +56,16 @@ class BidFormViewController: UIViewController, UITextFieldDelegate {
       }
     }
     
-    let notificationId = NSUUID().uuidString;
-    let notificationRef = ref.child("Notification").child(notificationId)
-    notificationRef.updateChildValues(values) { (err, ref) in
-      if(err != nil) {
-        print("Error Occured: \(err!)")
-        return
-      }
-    }
+ 
   }
+
+  func fetchUserInfo() {
+        FIRDatabase.database().reference().child("users/\(FIRAuth.getCurrentUserId())").observeSingleEvent(of: .value, with: { (snap) in
+            guard let dictionary = snap.value as? [String: Any] else { return }
+            self.currentUser = User(from: dictionary, id: (FIRAuth.getCurrentUserId()))
+            
+        })
+    }
     
     func makeTapGestureForProfileSegue(userPhoto: UIImageView) {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action :#selector(userImageTapped(tapGestureRecognizer:)))
@@ -72,7 +74,7 @@ class BidFormViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func userImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        performSegue(withIdentifier: "bidFormProfile", sender: self)
+        performSegue(withIdentifier: "bidFormProfile", sender: self) 
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -90,11 +92,12 @@ class BidFormViewController: UIViewController, UITextFieldDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    fetchUserInfo()
     bidAmountField.delegate = self
     
     let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKb))
     view.addGestureRecognizer(tap)
-    
+   
     posterImage.layer.masksToBounds = true
     posterImage.layer.cornerRadius = 27
     projectTitle.text = projectTitleString ?? "DEFAULT TITLE"

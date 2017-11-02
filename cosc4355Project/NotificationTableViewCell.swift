@@ -17,6 +17,8 @@ class NotificationTableViewCell: UITableViewCell {
     var row:Int!
     var delegate: clearDelegate!
     
+    @IBOutlet weak var photo: CustomImageView!
+    
     @IBAction func clear(_ sender: UIButton) {
         self.delegate?.removeNotification(row: row)
     }
