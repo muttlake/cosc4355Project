@@ -19,10 +19,20 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var emailLabel: UILabel!
     
     @IBOutlet weak var reviewsTableView: UITableView!
-
+    
+    var didSegueHere: Bool = false
+    //var segueUser: User?
+    
     var reviews: [Review] = []
     
     var reviewersPhotos: [String: String] = [:]
+    
+    var currentUserId: String = ""
+  
+  
+  @IBOutlet weak var logoutOutlet: UIButton!
+  
+  var cameFromBids = false
     
     @IBAction func addReviewButton(_ sender: Any) {
         performSegue(withIdentifier: "profileReviewForm", sender: self)
@@ -39,14 +49,29 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         print("Sign out successful")
     }
-    
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(true)
+    logoutOutlet.isHidden = cameFromBids ? true : false
+  }
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if didSegueHere {
+            //currentUserID should be set now
+            print("Just Segued here: currentUserId: ", currentUserId)
+            didSegueHere = false
+        }
+        else //user is looking at their own profile
+        {
+            currentUserId = FIRAuth.getCurrentUserId()
+        }
+        
         /* Turns picture into a circle */
         profilePicture.layer.cornerRadius = 64
         profilePicture.layer.masksToBounds = true
-        emailLabel.text = FIRAuth.auth()?.currentUser?.email!
+        
         fetchUserProfile()
         
         //self.registerFakeReviewsIntoDatabase()
@@ -70,6 +95,18 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    func fetchUserProfile() {
+        FIRDatabase.database().reference().child("users").child(currentUserId).observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
+            let userValues = FIRDataSnapshot.value as? [String: AnyObject]
+            self.nameLabel.text = userValues?["name"] as? String
+            self.profilePicture.loadImage(url: (userValues?["profilePicture"] as? String) ?? "")
+            self.emailLabel.text = userValues?["email"] as? String
+            
+            // print(userValues["profilePicture"])
+        })
+    } // end fetchUserProfile
+    
+    
     func fetchReviewersPhotos() {
         for review in reviews {
             FIRDatabase.database().reference().child("users").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -89,15 +126,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
-    func fetchUserProfile() {
-        FIRDatabase.database().reference().child("users").child(FIRAuth.getCurrentUserId()).observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
-            let userValues = FIRDataSnapshot.value as? [String: AnyObject]
-            self.nameLabel.text = userValues?["name"] as? String
-            self.profilePicture.loadImage(url: (userValues?["profilePicture"] as? String) ?? "")
-            // print(userValues["profilePicture"])
-        })
-    } // end fetchUserProfile
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var rowCount = 0
         if reviewersPhotos.count > 0 {
@@ -130,6 +159,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
         return cell
     }
+    
+
         
     /* Fetches all data from projects folder */
     func fetchReviews() {
@@ -138,7 +169,10 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             dictionaries.forEach({ (key, value) in
                 guard let dictionary = value as? [String: Any] else { return }
                 let review = Review(from: dictionary)
-                self.reviews.append(review)
+                let currentId = self.currentUserId
+                if review.about_id == currentId {
+                    self.reviews.append(review)
+                }
             })
             self.fetchReviewersPhotos()
             /* Manually all the table view to reload itself and to refresh. Otherwise no changes will be seen */

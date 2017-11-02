@@ -43,4 +43,19 @@ struct Posting: BasicListingsProtocol {
     latitude = dict["latitude"] as? String ?? "0"
     longitude = dict["longitude"] as? String ?? "0"
   }
+  
+  init() {
+    status = Status.pending
+    date = ""
+    photoUrl = ""
+    startingBid = 0
+    acceptedBid = "0"
+    location = nil
+    longitude = "0"
+    latitude = "0"
+    title = "loading_err_title"
+    description = "loading_err_desc"
+    posting_id = ""
+    user_id = ""
+  }
 }

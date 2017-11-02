@@ -12,7 +12,7 @@ import Firebase
 class BidsTableViewController: UITableViewController {
   
   var listings: [Bid] = []
-  
+  var currentUser: User? = nil
   var biddersInfo: [String: User] = [:]
   
   var currentPosting: Posting?
@@ -23,6 +23,7 @@ class BidsTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.allowsSelection = false
+    fetchUserInfo()
     fetchBids()
   }
   
@@ -30,10 +31,12 @@ class BidsTableViewController: UITableViewController {
     return listings.count
   }
   
+  var profileSegueUserId: String = ""
+  
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "bidCell", for: indexPath) as! BidTableViewCell
     let currentBid = listings[indexPath.row]
-    cell.bidderPhoto.loadImage(url: (biddersInfo[currentBid.bidder_id]?.profilePicture)!)
+    cell.bidderPhoto.loadImage(url: (biddersInfo[currentBid.bidder_id]?.profilePicture) ?? "")
     cell.bidderName.text = biddersInfo[currentBid.bidder_id]?.name
     cell.bidderRating.text = "5 Star"
     cell.bidderBid.text = Double.getFormattedCurrency(num: currentBid.bidAmount)
@@ -41,9 +44,50 @@ class BidsTableViewController: UITableViewController {
     
     acceptButtons[indexPath.row] = cell.acceptButton
     
+    //makeTapGestureForProfileSegue(userPhoto: cell.bidderPhoto, currentBidderId: currentBid.bidder_id)
+    
     return cell
   }
   
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    profileSegueUserId = listings[indexPath.row].bidder_id
+    performSegue(withIdentifier: "bidsTableProfile", sender: self)
+  }
+  
+  
+  func makeTapGestureForProfileSegue(userPhoto: CustomImageView, currentBidderId: String) {
+    let tapGestureRecognizer = UITapGestureRecognizer(target: self, action :#selector(userImageTapped(tapGestureRecognizer:)))
+    userPhoto.isUserInteractionEnabled = true
+    userPhoto.addGestureRecognizer(tapGestureRecognizer)
+    profileSegueUserId = currentBidderId
+  }
+  
+  @objc func userImageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+  {
+    performSegue(withIdentifier: "bidsTableProfile", sender: self)
+  }
+  
+  /* Pass in bid, user, and project info to next page */
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "acceptBidSegue" {
+      let dvc = segue.destination as! AcceptedBidViewController
+      if let sender = sender as? UIButton {
+        dvc.bid = listings[sender.tag]
+        dvc.posting = currentPosting!
+        dvc.userId = listings[sender.tag].bidder_id
+        dvc.user = biddersInfo[listings[sender.tag].bidder_id]
+        dvc.cameFromBid = true
+        print(dvc.user?.profilePicture)
+      }
+    }
+    if segue.identifier == "bidsTableProfile" {
+      let dvc = segue.destination as! ProfileViewController
+      dvc.didSegueHere = true
+      dvc.currentUserId = profileSegueUserId
+      dvc.cameFromBids = true
+    }
+  }
   
   func updateBidAcceptedInDB(bidAmount: String, sender: UIButton) {
     let values = ["acceptedBid": bidAmount] as [String : Any]
@@ -71,7 +115,7 @@ class BidsTableViewController: UITableViewController {
       print("\(key) \(value)")
     }
     // print(biddersInfo[listings[sender.tag].bidder_id]?.id)
-    NotificationsUtil.notify(notifier_id: FIRAuth.getCurrentUserId(), notified_id: listings[sender.tag].bidder_id, posting_id: (self.currentPosting?.posting_id)!, notificationId: NSUUID().uuidString, notificationType: "bidAccepted", notifier_name: "", notifier_image: "", posting_name: (self.currentPosting?.title)!)
+    NotificationsUtil.notify(notifier_id: FIRAuth.getCurrentUserId(), notified_id: listings[sender.tag].bidder_id, posting_id: (self.currentPosting?.posting_id)!, notificationId: NSUUID().uuidString, notificationType: "bidAccepted", notifier_name: (self.currentUser?.name)!, notifier_image: (self.currentUser?.profilePicture)!, posting_name: (self.currentPosting?.title)!)
     
     updateBidAcceptedInDB(bidAmount: listings[sender.tag].id, sender: sender)
     
@@ -136,18 +180,11 @@ class BidsTableViewController: UITableViewController {
     }
   }
   
-  /* Pass in bid, user, and project info to next page */
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "acceptBidSegue" {
-      let dvc = segue.destination as! AcceptedBidViewController
-      if let sender = sender as? UIButton {
-        dvc.bid = listings[sender.tag]
-        dvc.posting = currentPosting!
-        dvc.userId = listings[sender.tag].bidder_id
-        dvc.user = biddersInfo[listings[sender.tag].bidder_id]
-        dvc.cameFromBid = true
-        print(dvc.user?.profilePicture)
-      }
-    }
+  func fetchUserInfo() {
+    FIRDatabase.database().reference().child("users/\(FIRAuth.getCurrentUserId())").observeSingleEvent(of: .value, with: { (snap) in
+      guard let dictionary = snap.value as? [String: Any] else { return }
+      self.currentUser = User(from: dictionary, id: (FIRAuth.getCurrentUserId()))
+      
+    })
   }
 }
