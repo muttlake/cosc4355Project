@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class BidFormViewController: UIViewController {
+class BidFormViewController: UIViewController, UITextFieldDelegate {
   
   @IBOutlet weak var posterImage: UIImageView!
   
@@ -65,8 +65,17 @@ class BidFormViewController: UIViewController {
     }
   }
   
+  @objc func dismissKb() {
+    view.endEditing(true)
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    bidAmountField.delegate = self
+    
+    let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKb))
+    view.addGestureRecognizer(tap)
+    
     posterImage.layer.masksToBounds = true
     posterImage.layer.cornerRadius = 27
     projectTitle.text = projectTitleString ?? "DEFAULT TITLE"

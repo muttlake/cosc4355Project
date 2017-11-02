@@ -25,6 +25,9 @@ class ProjectFormViewController: UIViewController, UIImagePickerControllerDelega
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKb))
+    view.addGestureRecognizer(tap)
+    
     /* Tap gesture utilized when the user taps on the UIImageView above the post button. */
     uploadImage.isUserInteractionEnabled = true
     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handlePhotoUpload))
@@ -39,6 +42,10 @@ class ProjectFormViewController: UIViewController, UIImagePickerControllerDelega
     currentLat = locationManager.location?.coordinate.latitude.description ?? "0"
     currentLong = locationManager.location?.coordinate.longitude.description ?? "0"
     print("\(currentLong) \(currentLat)")
+  }
+  
+  @objc func dismissKb() {
+    view.endEditing(true)
   }
   
   var currentLat = "0"
