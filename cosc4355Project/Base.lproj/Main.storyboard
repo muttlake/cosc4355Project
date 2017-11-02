@@ -49,7 +49,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fix-me" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZH-bV-CNV">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reparo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZH-bV-CNV">
                                 <rect key="frame" x="104" y="162" width="166" height="73"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="42"/>
@@ -1044,7 +1044,7 @@
         <image name="singleStarEmpty" width="442" height="365"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nnO-hE-zVl"/>
+        <segue reference="e8d-IR-9jH"/>
         <segue reference="voo-iW-Vnr"/>
         <segue reference="SIz-M7-chQ"/>
         <segue reference="TzZ-ZX-Nd0"/>
