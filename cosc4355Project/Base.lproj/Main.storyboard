@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -49,7 +49,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fix-me" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZH-bV-CNV">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reparo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZH-bV-CNV">
                                 <rect key="frame" x="104" y="162" width="166" height="73"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="42"/>
@@ -106,15 +106,8 @@
                                     <action selector="logoutButton:" destination="YbJ-Es-Vb3" eventType="touchUpInside" id="Zh2-qd-3aF"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qTC-HN-yJw">
-                                <rect key="frame" x="16" y="191" width="343" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8i9-e5-NY9">
-                                <rect key="frame" x="16" y="230" width="343" height="41"/>
+                                <rect key="frame" x="16" y="243" width="343" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -172,15 +165,21 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nzE-Em-QDN">
                                 <rect key="frame" x="262" y="294" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add Review"/>
                                 <connections>
                                     <action selector="addReviewButton:" destination="YbJ-Es-Vb3" eventType="touchUpInside" id="kMz-6h-DA0"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultPic" translatesAutoresizingMaskIntoConstraints="NO" id="dq8-L2-uDo" customClass="CustomImageView" customModule="cosc4355Project" customModuleProvider="target">
-                                <rect key="frame" x="123" y="55" width="128" height="128"/>
+                                <rect key="frame" x="123" y="70" width="128" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qTC-HN-yJw">
+                                <rect key="frame" x="16" y="212" width="343" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -200,7 +199,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2iS-aQ-ajL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1948" y="988.15592203898063"/>
+            <point key="canvasLocation" x="2751" y="149"/>
         </scene>
         <!--Review Form View Controller-->
         <scene sceneID="NA1-uN-wo1">
@@ -321,7 +320,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UM0-6R-cVY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2828" y="987.25637181409309"/>
+            <point key="canvasLocation" x="2447" y="1710"/>
         </scene>
         <!--Review View Controller-->
         <scene sceneID="bx7-ps-sgy">
@@ -370,7 +369,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OZh-Lz-qGX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2072.8000000000002" y="1682.608695652174"/>
+            <point key="canvasLocation" x="1948" y="1759"/>
         </scene>
         <!--Maps View Controller-->
         <scene sceneID="Pxo-CM-Xw5">
@@ -438,7 +437,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xMa-jL-yJS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1776.8" y="-14.842578710644679"/>
+            <point key="canvasLocation" x="2113" y="788"/>
         </scene>
         <!--Projects-->
         <scene sceneID="66P-8P-qvt">
@@ -570,11 +569,12 @@
                         <outlet property="projectDescription" destination="P6J-gR-Eaw" id="emI-42-nwo"/>
                         <outlet property="projectImage" destination="Hwh-UF-ThU" id="61j-ok-08L"/>
                         <outlet property="projectTitle" destination="khG-rZ-aFB" id="TIf-fu-ze7"/>
+                        <segue destination="YbJ-Es-Vb3" kind="show" identifier="bidFormProfile" id="eTU-mh-IAE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="quD-jI-nyn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3200.8000000000002" y="-87.706146926536732"/>
+            <point key="canvasLocation" x="2500" y="-1080"/>
         </scene>
         <!--Bids-->
         <scene sceneID="SUs-dk-27L">
@@ -644,11 +644,12 @@
                     </tableView>
                     <connections>
                         <segue destination="ppk-QV-W7L" kind="show" identifier="acceptBidSegue" id="voo-iW-Vnr"/>
+                        <segue destination="YbJ-Es-Vb3" kind="show" identifier="bidsTableProfile" id="TzZ-ZX-Nd0"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mff-H1-sQP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3944.8000000000002" y="-88.605697151424295"/>
+            <point key="canvasLocation" x="3738" y="225"/>
         </scene>
         <!--Bid Accepted-->
         <scene sceneID="45E-QE-Bzf">
@@ -990,7 +991,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bvc-7I-YHH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2261.5999999999999" y="-752.47376311844084"/>
+            <point key="canvasLocation" x="1761" y="-440"/>
         </scene>
         <!--Notifications-->
         <scene sceneID="z0j-PL-6LQ">
@@ -1060,7 +1061,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BPw-3z-vCA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="810" y="1032"/>
+            <point key="canvasLocation" x="630" y="967"/>
         </scene>
     </scenes>
     <resources>
@@ -1074,8 +1075,9 @@
         <image name="user" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nnO-hE-zVl"/>
+        <segue reference="e8d-IR-9jH"/>
         <segue reference="voo-iW-Vnr"/>
         <segue reference="SIz-M7-chQ"/>
+        <segue reference="TzZ-ZX-Nd0"/>
     </inferredMetricsTieBreakers>
 </document>

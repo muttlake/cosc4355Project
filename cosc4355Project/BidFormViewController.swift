@@ -64,6 +64,25 @@ class BidFormViewController: UIViewController, UITextFieldDelegate {
       }
     }
   }
+    
+    func makeTapGestureForProfileSegue(userPhoto: UIImageView) {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action :#selector(userImageTapped(tapGestureRecognizer:)))
+        userPhoto.isUserInteractionEnabled = true
+        userPhoto.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func userImageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        performSegue(withIdentifier: "bidFormProfile", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "bidFormProfile" {
+            let dvc = segue.destination as! ProfileViewController
+            dvc.didSegueHere = true
+            dvc.currentUserId = userWhoPostedId!
+        }
+    }
   
   @objc func dismissKb() {
     view.endEditing(true)
@@ -82,7 +101,11 @@ class BidFormViewController: UIViewController, UITextFieldDelegate {
     projectDescription.text = projectDescriptionString ?? "DEFAULT DESC"
     projectImage.image = projectImagePhoto!
     posterImage.image = posterImagePhoto!
+    
+    makeTapGestureForProfileSegue(userPhoto: posterImage)
     // print(postingId ?? "empty1")
     // print(userWhoPostedId ?? "empty2")
   }
+    
+
 }

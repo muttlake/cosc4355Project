@@ -45,8 +45,12 @@ class FeedViewController: UITableViewController, ListingsProtocol {
     cell.projectDescription.text = generateProjectDescription(startingBid: project.startingBid, description: orderedListings[indexPath.item].description)
     cell.userPhoto.loadImage(url: (users[orderedListings[indexPath.item].user_id]?.profilePicture) ?? "")
     
+    cell.userPhoto.loadImage(url: "https://firebasestorage.googleapis.com/v0/b/cosc4355project.appspot.com/o/profilePics%2F4tF0epAPgoeFkT4EbbT3Iy1hVTm1.jpg?alt=media&token=8ff2e05f-0aff-4945-8f4f-ccf321a66c0c")
+
     return cell
   }
+    
+
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return listings.count
