@@ -86,7 +86,7 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>
-        <!--Profile-->
+        <!--Profile View Controller-->
         <scene sceneID="LbJ-x8-OL5">
             <objects>
                 <viewController id="YbJ-Es-Vb3" customClass="ProfileViewController" customModule="cosc4355Project" customModuleProvider="target" sceneMemberID="viewController">
@@ -184,7 +184,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="lPF-6n-yes"/>
+                    <tabBarItem key="tabBarItem" title="" image="user" id="lPF-6n-yes">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="emailLabel" destination="8i9-e5-NY9" id="r3Q-RJ-hr2"/>
@@ -370,7 +372,7 @@
             </objects>
             <point key="canvasLocation" x="2072.8000000000002" y="1682.608695652174"/>
         </scene>
-        <!--Maps-->
+        <!--Maps View Controller-->
         <scene sceneID="Pxo-CM-Xw5">
             <objects>
                 <viewController id="MuR-C6-A9C" customClass="MapsViewController" customModule="cosc4355Project" customModuleProvider="target" sceneMemberID="viewController">
@@ -425,7 +427,9 @@
                             <constraint firstItem="QI7-sK-tLc" firstAttribute="leading" secondItem="ysQ-K2-WtI" secondAttribute="leading" id="nEh-fx-hvD"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Maps" id="6kl-LD-ABm"/>
+                    <tabBarItem key="tabBarItem" title="" image="map" id="6kl-LD-ABm">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="enableLocationServicesButton" destination="6aR-LA-djU" id="Sbs-mb-NeR"/>
                         <outlet property="locationServiceIsUnAvailableView" destination="fm5-xR-VMh" id="9y9-fj-Xxv"/>
@@ -966,11 +970,13 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="814.54272863568224"/>
         </scene>
-        <!--Feed-->
+        <!--Navigation Controller-->
         <scene sceneID="xBP-FD-Dxa">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="g29-xc-5Hf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Feed" id="REl-jo-anT"/>
+                    <tabBarItem key="tabBarItem" title="" image="home" id="REl-jo-anT">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="q0o-pK-3eX">
@@ -1035,11 +1041,13 @@
             </objects>
             <point key="canvasLocation" x="1288.8" y="788.45577211394311"/>
         </scene>
-        <!--Notifications-->
+        <!--Navigation Controller-->
         <scene sceneID="PHz-bh-Z54">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="N4D-9t-TtL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Notifications" id="Wle-j8-uNH"/>
+                    <tabBarItem key="tabBarItem" title="" image="notification" id="Wle-j8-uNH">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6cz-HB-pYp">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -1058,8 +1066,12 @@
     <resources>
         <image name="defaultPic" width="240" height="240"/>
         <image name="hillsong" width="299" height="168"/>
+        <image name="home" width="25" height="25"/>
+        <image name="map" width="25" height="25"/>
+        <image name="notification" width="25" height="25"/>
         <image name="pp" width="260" height="194"/>
         <image name="singleStarEmpty" width="442" height="365"/>
+        <image name="user" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="nnO-hE-zVl"/>
