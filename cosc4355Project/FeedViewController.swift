@@ -14,6 +14,9 @@ class FeedViewController: UITableViewController, ListingsProtocol {
   
   var bidToPass: Bid?
   
+  @IBOutlet weak var addButton: UIBarButtonItem!
+  
+  
   // Map user-id to user object - Mainly used for images
   var users: [String: User] = [:]
   
@@ -77,7 +80,7 @@ class FeedViewController: UITableViewController, ListingsProtocol {
       if (userInfo["userType"] as! String == "Contractor") {
         self.isContractor = true
       }
-      self.handleRefresh()
+     // self.handleRefresh()
     })
   }
   
@@ -152,7 +155,7 @@ class FeedViewController: UITableViewController, ListingsProtocol {
     if isContractor {
       performSegue(withIdentifier: "makeBidSegue", sender: self)
     } else {
-      if (tableView.selectedIndex == orderedListings.count) { return }
+      if (tableView.selectedIndex >= orderedListings.count) { return }
       let project = orderedListings[tableView.selectedIndex] as? Posting ?? Posting()
       if project.acceptedBid == "0" {
         /* The project still doesn't have an accepted bid */

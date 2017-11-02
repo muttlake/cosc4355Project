@@ -200,7 +200,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2iS-aQ-ajL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2751" y="149"/>
+            <point key="canvasLocation" x="3088.8000000000002" y="148.87556221889056"/>
         </scene>
         <!--Review Form View Controller-->
         <scene sceneID="NA1-uN-wo1">
@@ -372,7 +372,7 @@
             </objects>
             <point key="canvasLocation" x="1948" y="1759"/>
         </scene>
-        <!--Maps View Controller-->
+        <!--Projects Nearby-->
         <scene sceneID="Pxo-CM-Xw5">
             <objects>
                 <viewController id="MuR-C6-A9C" customClass="MapsViewController" customModule="cosc4355Project" customModuleProvider="target" sceneMemberID="viewController">
@@ -427,18 +427,17 @@
                             <constraint firstItem="QI7-sK-tLc" firstAttribute="leading" secondItem="ysQ-K2-WtI" secondAttribute="leading" id="nEh-fx-hvD"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="map" id="6kl-LD-ABm">
-                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
-                    </tabBarItem>
+                    <navigationItem key="navigationItem" title="Projects Nearby" id="LlN-86-tUz"/>
                     <connections>
                         <outlet property="enableLocationServicesButton" destination="6aR-LA-djU" id="Sbs-mb-NeR"/>
                         <outlet property="locationServiceDidFailNotificationView" destination="fm5-xR-VMh" id="N82-8U-XzL"/>
                         <outlet property="mapView" destination="QI7-sK-tLc" id="7QR-yg-t26"/>
+                        <segue destination="zmh-OJ-5d3" kind="show" identifier="mapTobidSegue" id="ZDJ-KR-xJL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xMa-jL-yJS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2113" y="788"/>
+            <point key="canvasLocation" x="2452" y="787.55622188905556"/>
         </scene>
         <!--Projects-->
         <scene sceneID="66P-8P-qvt">
@@ -502,6 +501,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="HZW-ti-2Yh" id="npt-4Q-APV"/>
                         <segue destination="zmh-OJ-5d3" kind="show" identifier="makeBidSegue" id="3oB-fO-enI"/>
                         <segue destination="27C-Lb-7zf" kind="show" identifier="viewBidsSegue" id="OYb-Bt-vYV"/>
                         <segue destination="ppk-QV-W7L" kind="show" identifier="acceptedBidSegue" id="ZEU-a3-k3d"/>
@@ -650,7 +650,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mff-H1-sQP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3738" y="225"/>
+            <point key="canvasLocation" x="4076" y="224.4377811094453"/>
         </scene>
         <!--Bid Accepted-->
         <scene sceneID="45E-QE-Bzf">
@@ -844,7 +844,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="g29-xc-5Hf" kind="relationship" relationship="viewControllers" id="nnO-hE-zVl"/>
-                        <segue destination="MuR-C6-A9C" kind="relationship" relationship="viewControllers" id="NDl-TY-aFK"/>
+                        <segue destination="GFh-Ht-5gs" kind="relationship" relationship="viewControllers" id="NDl-TY-aFK"/>
                         <segue destination="N4D-9t-TtL" kind="relationship" relationship="viewControllers" id="m0e-Nv-IUg"/>
                         <segue destination="YbJ-Es-Vb3" kind="relationship" relationship="viewControllers" id="naj-Iq-mca"/>
                     </connections>
@@ -1007,7 +1007,6 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aPi-OJ-ZkK" id="JAr-Cn-ky9" customClass="NotificationTableCellTableViewCell" customModule="cosc4355Project" customModuleProvider="target">
-
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -1062,6 +1061,27 @@
             </objects>
             <point key="canvasLocation" x="630" y="967"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="oUi-G1-jx5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GFh-Ht-5gs" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="map" id="6kl-LD-ABm">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tNc-o7-24D">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="MuR-C6-A9C" kind="relationship" relationship="rootViewController" id="1he-vB-i7x"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vu1-V4-p6E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2112" y="787.10644677661173"/>
+        </scene>
     </scenes>
     <resources>
         <image name="defaultPic" width="240" height="240"/>
@@ -1075,7 +1095,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="e8d-IR-9jH"/>
-        <segue reference="voo-iW-Vnr"/>
+        <segue reference="ZEU-a3-k3d"/>
+        <segue reference="3oB-fO-enI"/>
         <segue reference="SIz-M7-chQ"/>
         <segue reference="TzZ-ZX-Nd0"/>
     </inferredMetricsTieBreakers>

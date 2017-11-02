@@ -98,7 +98,7 @@ class MapsViewController: UIViewController{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        if (segue.identifier == "mapTobidSeque" )
+        if (segue.identifier == "mapTobidSegue" )
         {
             print("-----INSIDE PREPARE SEGUE MATCHED")
             
@@ -329,7 +329,7 @@ extension MapsViewController: MKMapViewDelegate
                 //print(self.projPhoto)
                 self.setImage(url: postingDetails["photoUrl"] as! String, type: "project")
                 
-                self.performSegue(withIdentifier: "mapTobidSeque", sender: postingDetails)
+                self.performSegue(withIdentifier: "mapTobidSegue", sender: postingDetails)
                 
             })
             
