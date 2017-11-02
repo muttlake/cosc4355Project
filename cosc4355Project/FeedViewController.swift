@@ -14,6 +14,9 @@ class FeedViewController: UITableViewController, ListingsProtocol {
   
   var bidToPass: Bid?
   
+  // Map user-id to user object - Mainly used for images
+  var users: [String: User] = [:]
+  
   var listings: [BasicListingsProtocol] = []
   var orderedListings: [BasicListingsProtocol] {
     return listings.sorted(by: { (item1: BasicListingsProtocol, item2: BasicListingsProtocol) -> Bool in
@@ -34,6 +37,7 @@ class FeedViewController: UITableViewController, ListingsProtocol {
     cell.posting_id = orderedListings[indexPath.item].posting_id
     cell.poster_id = orderedListings[indexPath.item].user_id
     cell.projectDescription.text = generateProjectDescription(startingBid: project.startingBid, description: orderedListings[indexPath.item].description)
+    cell.userPhoto.loadImage(url: (users[orderedListings[indexPath.item].user_id]?.profilePicture) ?? "")
     
     return cell
   }
@@ -72,6 +76,25 @@ class FeedViewController: UITableViewController, ListingsProtocol {
     handleRefresh()
   }
   
+  func fetchUsers() {
+    let rootRef = FIRDatabase.database().reference().child("users")
+    rootRef.observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
+      guard let dictionaries = FIRDataSnapshot.value as? [String: AnyObject] else { return }
+      dictionaries.forEach({ (key, value) in
+        guard let dictionary = value as? [String: Any] else { return }
+        let user = User(from: dictionary, id: key)
+        self.users[key] = user
+      })
+      if self.isContractor {
+        self.fetchProjects()
+      } else {
+        self.fetchUserProjects()
+      }
+    }) { (error) in
+      print("Failed retrieving user projects with error: \(error)")
+    }
+  }
+  
   /* If the user is a client, only fetch the projects they posted */
   func fetchUserProjects() {
     let rootRef = FIRDatabase.database().reference().child("projects")
@@ -108,11 +131,8 @@ class FeedViewController: UITableViewController, ListingsProtocol {
   
   @objc func handleRefresh() {
     listings.removeAll()
-    if isContractor {
-      fetchProjects()
-    } else {
-      fetchUserProjects()
-    }
+    users.removeAll()
+    fetchUsers()
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
