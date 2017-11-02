@@ -435,7 +435,7 @@
                     <tabBarItem key="tabBarItem" title="Maps" id="6kl-LD-ABm"/>
                     <connections>
                         <outlet property="enableLocationServicesButton" destination="6aR-LA-djU" id="Sbs-mb-NeR"/>
-                        <outlet property="locationServiceIsUnAvailableView" destination="fm5-xR-VMh" id="9y9-fj-Xxv"/>
+                        <outlet property="locationServiceDidFailNotificationView" destination="fm5-xR-VMh" id="N82-8U-XzL"/>
                         <outlet property="mapView" destination="QI7-sK-tLc" id="7QR-yg-t26"/>
                     </connections>
                 </viewController>
@@ -1006,8 +1006,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aPi-OJ-ZkK" id="JAr-Cn-ky9" customClass="NotificationTableCellTableViewCell" customModule="cosc4355Project" customModuleProvider="target">
-
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1D9-YX-s9G">
@@ -1049,7 +1048,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="N4D-9t-TtL" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Notifications" id="Wle-j8-uNH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6cz-HB-pYp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6cz-HB-pYp">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
