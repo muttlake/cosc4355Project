@@ -118,9 +118,11 @@ class FeedViewController: UITableViewController, ListingsProtocol {
     }
   }
   
+  var projectLimit = 10
+  
   /* Fetches all data from projects folder */
   func fetchProjects() {
-    FIRDatabase.database().reference().child("projects").observeSingleEvent(of: .value, with: { (snapshot) in
+    FIRDatabase.database().reference().child("projects").queryOrdered(byChild: "date").queryLimited(toLast: UInt(projectLimit)).observeSingleEvent(of: .value, with: { (snapshot) in
       guard let dictionaries = snapshot.value as? [String: Any] else { return }
       dictionaries.forEach({ (key, value) in
         guard let dictionary = value as? [String: Any] else { return }
