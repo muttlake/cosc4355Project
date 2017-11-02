@@ -31,7 +31,11 @@ class ReviewTableViewCell: UITableViewCell {
         starsImage.image = UIImage(named: "0stars")
         reviewWordsLabel.text = "Review Words"
         print("is set")
+        
     }
+    
+
+    
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

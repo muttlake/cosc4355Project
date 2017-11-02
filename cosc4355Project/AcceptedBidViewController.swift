@@ -133,7 +133,7 @@ class AcceptedBidViewController: UIViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "reviewSegue" {
       let dvc = segue.destination as! ReviewFormViewController
-      dvc.user = user
+      dvc.aboutUser = user
       dvc.bid = bid
       dvc.project = posting
     }

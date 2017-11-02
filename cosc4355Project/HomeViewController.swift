@@ -18,7 +18,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
   @IBAction func login(_ sender: UIButton) {
     /* Handle Login */
     FIRAuth.auth()?.signIn(withEmail: usernameText.text!, password: passwordText.text!) { [unowned self] (user, error) in
-      if let error = error {
+        if let error = error {
         print("Login Failure: \(error)")
         return
       }

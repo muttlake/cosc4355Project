@@ -20,6 +20,9 @@ class ReviewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      
+      reviewerPhoto.layer.masksToBounds = true
+      reviewerPhoto.layer.cornerRadius = reviewerPhoto.layer.bounds.height / 2
         
         if let stars = self.stars {
             let starImageName = String(stars) + "stars"
