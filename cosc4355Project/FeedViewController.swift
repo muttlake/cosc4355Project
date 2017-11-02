@@ -27,6 +27,9 @@ class FeedViewController: UITableViewController, ListingsProtocol {
   }
   var isContractor = false;
   
+  /* To minimize loading times on start up, increase when user scrolls down far enough */
+  // var maxItems = 10
+  
   /* Generate cells, customization can be done through here. If generic change, make it in the cell's class */
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "projectCell", for: indexPath) as! ProjectPostTableViewCell
