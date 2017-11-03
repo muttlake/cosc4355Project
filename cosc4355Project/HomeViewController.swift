@@ -20,6 +20,10 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     FIRAuth.auth()?.signIn(withEmail: usernameText.text!, password: passwordText.text!) { [unowned self] (user, error) in
         if let error = error {
         print("Login Failure: \(error)")
+        let alertLoginFailure = UIAlertController(title: "Login Error", message: "Error logging in.", preferredStyle: .alert)
+        let nonAction = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        alertLoginFailure.addAction(nonAction);
+        self.present(alertLoginFailure, animated: true, completion: nil)
         return
       }
       print("Successful login with user: \((user?.uid)!)")

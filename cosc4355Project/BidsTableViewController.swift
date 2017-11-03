@@ -55,19 +55,6 @@ class BidsTableViewController: UITableViewController {
     performSegue(withIdentifier: "bidsTableProfile", sender: self)
   }
   
-  
-  func makeTapGestureForProfileSegue(userPhoto: CustomImageView, currentBidderId: String) {
-    let tapGestureRecognizer = UITapGestureRecognizer(target: self, action :#selector(userImageTapped(tapGestureRecognizer:)))
-    userPhoto.isUserInteractionEnabled = true
-    userPhoto.addGestureRecognizer(tapGestureRecognizer)
-    profileSegueUserId = currentBidderId
-  }
-  
-  @objc func userImageTapped(tapGestureRecognizer: UITapGestureRecognizer)
-  {
-    performSegue(withIdentifier: "bidsTableProfile", sender: self)
-  }
-  
   /* Pass in bid, user, and project info to next page */
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "acceptBidSegue" {
