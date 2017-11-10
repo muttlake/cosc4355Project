@@ -25,9 +25,26 @@ class AcceptedBidViewController: UIViewController {
   
   @IBOutlet weak var contactInfoLabel: UILabel!
   
-  @IBAction func review(_ sender: UIButton) {
-    performSegue(withIdentifier: "reviewSegue", sender: self)
-  }
+    @IBAction func review(_ sender: UIButton) {
+        
+        let reviewsCollection = ReviewsForUserCollector(user_id: (bid?.bidder_id)!)
+        
+        reviewsCollection.checkIfUserAlreadyReviewed(posting_id_ToCheck: (posting?.posting_id)!, completion: { (success) in
+            var doSegue = true
+            
+            if success {
+                doSegue = !reviewsCollection.alreadyReviewedForPosting
+            } else {
+                print ("Error finding if posting already has review for bidder.")
+            }
+            
+            if doSegue {
+                self.performSegue(withIdentifier: "reviewSegue", sender: self)
+            } else {
+                self.alreadyReviewedUserForThisPosting()
+            }
+        })
+    }
   
   @IBAction func pay(_ sender: UIButton) {
     print("PAY")
@@ -63,6 +80,14 @@ class AcceptedBidViewController: UIViewController {
       }
     }
   }
+    
+    func alreadyReviewedUserForThisPosting() {
+        let alert = UIAlertController(title: "Already Reviewed", message: "You already reviewed this user for this posting.", preferredStyle: .alert)
+        let okayAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okayAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
   
   @IBAction func cancel(_ sender: UIButton) {
     print("CANCEL")

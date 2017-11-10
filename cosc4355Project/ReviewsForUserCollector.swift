@@ -18,6 +18,7 @@ class ReviewsForUserCollector {
     var reviewsForUser: [Review]
     var averageRating: Double
     var hasReviews: Bool
+    var alreadyReviewedForPosting: Bool
    
     
     init(user_id: String) {
@@ -25,6 +26,23 @@ class ReviewsForUserCollector {
         self.reviewsForUser = []
         self.averageRating = 0.0
         self.hasReviews = false
+        self.alreadyReviewedForPosting = false
+    }
+    
+    
+    func checkIfUserAlreadyReviewed(posting_id_ToCheck: String, completion: @escaping (Bool) -> ()) {
+        self.getAllReviewsForUser(user_id: self.user_id, completion:  { (success) in
+            if success {
+                for review in self.reviewsForUser {
+                    if review.posting_id == posting_id_ToCheck {
+                        self.alreadyReviewedForPosting = true
+                    }
+                }
+                completion(true)
+            } else {
+                print("Did not find posting, error loading reviews.")
+            }
+        })
     }
     
 
@@ -52,6 +70,7 @@ class ReviewsForUserCollector {
         })
     }
     
+
     
     
     func getAllReviewsForUser(user_id: String, completion: @escaping (Bool) -> ()) {
@@ -60,17 +79,13 @@ class ReviewsForUserCollector {
             dictionaries.forEach({ (key, value) in
                 guard let dictionary = value as? [String: Any] else { return }
                 let review = Review(from: dictionary)
-                //print("Review about_id: ", review.about_id)
                 if review.about_id == user_id {
-                    //print("Should be appending.")
                     self.reviewsForUser.append(review)
                 }
-                //print("Number of reviews in here is : ", self.reviewsForUser.count)
             })
-            completion(true)
-            //print("Number of reviews middle here is : ", self.reviewsForUser.count)
+            completion(true)  // use this in calling this function
         }) { (error) in
-            //print("Failed to fetch reviews with error: \(error)")
+            print("Failed to fetch reviews with error: \(error)")
         }
     }
 }
