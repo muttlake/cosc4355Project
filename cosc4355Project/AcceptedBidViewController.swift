@@ -110,6 +110,8 @@ class AcceptedBidViewController: UIViewController {
     userImage.layer.masksToBounds = true
     userImage.layer.cornerRadius = 95
     
+    self.makeTapGestureForProfileSegue(userPhoto: userImage)
+    
     fetchUserInfo()
   }
   
@@ -154,6 +156,17 @@ class AcceptedBidViewController: UIViewController {
       cameFromBid = false
     }
   }
+    
+    func makeTapGestureForProfileSegue(userPhoto: CustomImageView) {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action :#selector(userImageTapped(tapGestureRecognizer:)))
+        userPhoto.isUserInteractionEnabled = true
+        userPhoto.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func userImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        print("Accepted Bid Contractor Image was tapped.")
+        //performSegue(withIdentifier: "bidFormProfile", sender: self)
+    }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "reviewSegue" {
