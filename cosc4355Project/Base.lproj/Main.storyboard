@@ -372,7 +372,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OZh-Lz-qGX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1948" y="1759"/>
+            <point key="canvasLocation" x="953" y="1927"/>
         </scene>
         <!--Projects Nearby-->
         <scene sceneID="Pxo-CM-Xw5">
@@ -439,7 +439,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xMa-jL-yJS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2452" y="787.55622188905556"/>
+            <point key="canvasLocation" x="1673" y="500"/>
         </scene>
         <!--Projects-->
         <scene sceneID="66P-8P-qvt">
@@ -652,7 +652,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mff-H1-sQP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4729" y="896"/>
+            <point key="canvasLocation" x="4138" y="500"/>
         </scene>
         <!--Bid Accepted-->
         <scene sceneID="45E-QE-Bzf">
@@ -1101,7 +1101,7 @@
         <segue reference="e8d-IR-9jH"/>
         <segue reference="qq0-Lt-nZh"/>
         <segue reference="ZDJ-KR-xJL"/>
-        <segue reference="d9k-8p-2mR"/>
-        <segue reference="eUM-GX-vT4"/>
+        <segue reference="SIz-M7-chQ"/>
+        <segue reference="TzZ-ZX-Nd0"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -203,6 +203,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             dvc.reviewWords = reviews[reviewsTableView.selectedIndex].reviewWords
             let currentReview = reviews[reviewsTableView.selectedIndex]
             dvc.reviewerPhotoString = reviewersPhotos[currentReview.user_id]!
+            dvc.arrivedAfterProfileSegue = self.didSegueHere
         }
     }
     

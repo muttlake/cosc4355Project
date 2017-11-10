@@ -13,6 +13,7 @@ class ReviewViewController: UIViewController {
     var stars: Int?
     var reviewWords: String?
     var reviewerPhotoString: String?
+    var arrivedAfterProfileSegue: Bool = false
     
     @IBOutlet weak var starsImage: UIImageView!
     @IBOutlet weak var reviewWordsLabel: UILabel!
@@ -41,7 +42,13 @@ class ReviewViewController: UIViewController {
         //Add Condition to test if segue came from client or contractor
         //if contractor: do popView
         //if client: do dismiss or opposite can't remember
-        self.navigationController?.popViewController(animated: true)
+        if !arrivedAfterProfileSegue {
+            self.navigationController?.popViewController(animated: true)
+        }
+        else
+        {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     override func didReceiveMemoryWarning() {
