@@ -58,6 +58,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.title = "Profile"
+        
         if didSegueHere {
             //currentUserID should be set now
             print("Just Segued here: currentUserId: ", currentUserId)

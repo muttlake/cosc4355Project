@@ -38,7 +38,10 @@ class ReviewViewController: UIViewController {
     }//layer.cornerRadius = 64
     
     @IBAction func backButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        //Add Condition to test if segue came from client or contractor
+        //if contractor: do popView
+        //if client: do dismiss or opposite can't remember
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func didReceiveMemoryWarning() {
