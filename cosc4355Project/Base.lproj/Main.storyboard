@@ -652,7 +652,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mff-H1-sQP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4076" y="224.4377811094453"/>
+            <point key="canvasLocation" x="4729" y="896"/>
         </scene>
         <!--Bid Accepted-->
         <scene sceneID="45E-QE-Bzf">
@@ -732,6 +732,7 @@
                         <outlet property="ratingLabel" destination="A5v-vU-Ts4" id="Psk-LL-fzr"/>
                         <outlet property="userImage" destination="NkI-3u-DKk" id="8Yl-S8-Ay6"/>
                         <segue destination="dwM-Cr-YB8" kind="presentation" identifier="reviewSegue" id="d9k-8p-2mR"/>
+                        <segue destination="YbJ-Es-Vb3" kind="show" identifier="acceptedBidToProfile" id="eUM-GX-vT4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4LO-Nw-aST" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1100,7 +1101,7 @@
         <segue reference="e8d-IR-9jH"/>
         <segue reference="qq0-Lt-nZh"/>
         <segue reference="ZDJ-KR-xJL"/>
-        <segue reference="SIz-M7-chQ"/>
-        <segue reference="TzZ-ZX-Nd0"/>
+        <segue reference="d9k-8p-2mR"/>
+        <segue reference="eUM-GX-vT4"/>
     </inferredMetricsTieBreakers>
 </document>
