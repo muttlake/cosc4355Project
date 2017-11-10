@@ -22,7 +22,7 @@ class BidsTableViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.allowsSelection = false
+    tableView.allowsSelection = true
     fetchUserInfo()
     fetchBids()
   }
@@ -38,7 +38,30 @@ class BidsTableViewController: UITableViewController {
     let currentBid = listings[indexPath.row]
     cell.bidderPhoto.loadImage(url: (biddersInfo[currentBid.bidder_id]?.profilePicture) ?? "")
     cell.bidderName.text = biddersInfo[currentBid.bidder_id]?.name
-    cell.bidderRating.text = "5 Star"
+    
+    let reviewsCollection = ReviewsForUserCollector(user_id: currentBid.bidder_id)
+    reviewsCollection.calculateUserRating(completion: { (success) -> () in
+        if success {
+            print("Now average rating is: ", reviewsCollection.averageRating)
+            var averageRatingString: NSString = ""
+            if reviewsCollection.hasReviews {
+                averageRatingString = NSString(format: "%.2f Stars Average", reviewsCollection.averageRating)
+            } else {
+                averageRatingString = "No reviews yet."
+            }
+            cell.bidderRating.text = String(averageRatingString)
+        }
+        else
+        {
+            print("Error retrieving averageRating")
+        }
+    })
+    
+    //let averageRatingString = String(averageRatingForUser) + " Stars"
+    
+    //cell.bidderRating.text = averageRatingString
+    cell.bidderRating.text = ""
+    print("Current Bidder ID is :", currentBid.bidder_id)
     cell.bidderBid.text = Double.getFormattedCurrency(num: currentBid.bidAmount)
     cell.acceptButton.tag = indexPath.row
     
@@ -174,4 +197,10 @@ class BidsTableViewController: UITableViewController {
       
     })
   }
+    
+    
+    /* Fetches all data from projects folder */
+
 }
+
+

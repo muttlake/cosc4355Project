@@ -49,6 +49,7 @@
 		FB735DC51F8C967300FE6794 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB735DC41F8C967300FE6794 /* Review.swift */; };
 		FB735DC71F8C9A9000FE6794 /* Bid.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB735DC61F8C9A9000FE6794 /* Bid.swift */; };
 		FB735DC91F8CA2F100FE6794 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB735DC81F8CA2F100FE6794 /* ReviewTableViewCell.swift */; };
+		FBA7D7171FB56F55003A23FE /* ReviewsForUserCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA7D7161FB56F55003A23FE /* ReviewsForUserCollector.swift */; };
 		FBF617261F9999A30050F10C /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF617251F9999A30050F10C /* ReviewViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +109,7 @@
 		FB735DC41F8C967300FE6794 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		FB735DC61F8C9A9000FE6794 /* Bid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bid.swift; sourceTree = "<group>"; };
 		FB735DC81F8CA2F100FE6794 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
+		FBA7D7161FB56F55003A23FE /* ReviewsForUserCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsForUserCollector.swift; sourceTree = "<group>"; };
 		FBF617251F9999A30050F10C /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -180,6 +182,7 @@
 				CB523AB01F8D22C30007CCB8 /* Extensions.swift */,
 				CBE8E24E1FA006DC008609A0 /* NotificationsUtil.swift */,
 				CBEC144B1FAB95AA00C70F9A /* UsersList.swift */,
+				FBA7D7161FB56F55003A23FE /* ReviewsForUserCollector.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -324,7 +327,7 @@
 				TargetAttributes = {
 					CB47BBD11F74B28000841C92 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = S873M2M783;
+						DevelopmentTeam = 57E34B5PF5;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
@@ -456,6 +459,7 @@
 				CBE9B15A1F896C46000C8A4D /* ListingsProtocol.swift in Sources */,
 				CBE9B1541F884754000C8A4D /* ProjectCategory.swift in Sources */,
 				CBE9B15F1F89973C000C8A4D /* CustomImageView.swift in Sources */,
+				FBA7D7171FB56F55003A23FE /* ReviewsForUserCollector.swift in Sources */,
 				CBE9B1501F8845D4000C8A4D /* Posting.swift in Sources */,
 				CBE9B1561F884828000C8A4D /* BasicListingsProtocol.swift in Sources */,
 				CBEC144C1FAB95AA00C70F9A /* UsersList.swift in Sources */,
@@ -627,10 +631,10 @@
 			baseConfigurationReference = FB241CDE99B71EED06FF72C3 /* Pods-cosc4355Project.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = S873M2M783;
+				DEVELOPMENT_TEAM = 57E34B5PF5;
 				INFOPLIST_FILE = cosc4355Project/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = team1.cosc4355Project;
+				PRODUCT_BUNDLE_IDENTIFIER = shepbop22.cosc4355Project;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 3.0;
@@ -643,10 +647,10 @@
 			baseConfigurationReference = 2F34BC55FFBBA1687456CF9B /* Pods-cosc4355Project.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = S873M2M783;
+				DEVELOPMENT_TEAM = 57E34B5PF5;
 				INFOPLIST_FILE = cosc4355Project/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = team1.cosc4355Project;
+				PRODUCT_BUNDLE_IDENTIFIER = shepbop22.cosc4355Project;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 3.0;

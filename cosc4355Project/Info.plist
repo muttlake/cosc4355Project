@@ -28,6 +28,8 @@
 	<string>We want your location so that you can see nearby projects.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We want your location so that you can see nearby projects?</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Reparo wants to use images from your camera.</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
