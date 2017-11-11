@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import Firebase
 
-class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 
     @IBOutlet weak var profilePicture: CustomImageView!
     
@@ -73,6 +73,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         /* Turns picture into a circle */
         profilePicture.layer.cornerRadius = 64
         profilePicture.layer.masksToBounds = true
+        
+        //Enable user to choose photo
+        profilePicture.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handlePhotoUploadCurrentUser))
+        profilePicture.addGestureRecognizer(tapGesture)
         
         fetchUserProfile()
         
@@ -187,7 +192,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         self.reviewsTableView.refreshControl?.endRefreshing()
     } // end fetchReviews
         
-    func handleRefresh() {
+    @objc func handleRefresh() {
         reviews.removeAll()
         fetchReviews()
     }
@@ -207,6 +212,57 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    ////////////// Allow user profile photo to be changed //////////////
+    @objc func handlePhotoUploadCurrentUser() {
+        //check if profile is current user's profile
+        if self.currentUserId == FIRAuth.getCurrentUserId()
+        {
+            self.handlePhotoUpload()
+        }
+        else
+        {
+            print("Cannot change profile photo, not current user's profile.")
+        }
+    }
+    
+    func handlePhotoUpload() {
+        let cameraOrPhotoAlbum = UIAlertController(title: "Change Profile Photo", message: "Photo Source", preferredStyle: .actionSheet)
+        
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        
+        let cameraOption = UIAlertAction(title: "Camera", style: .default) { (_) in
+            picker.sourceType = .camera
+            self.present(picker, animated: true, completion: nil)
+        }
+        let photoAlbumOption = UIAlertAction(title: "Photo Album", style: .default) { (_) in
+            self.present(picker, animated: true, completion: nil)
+        }
+        let cancelOption = UIAlertAction(title: "Cancel", style: .cancel) { (_: UIAlertAction) in print("cancelled") }
+        
+        cameraOrPhotoAlbum.addActions(actions: cameraOption, photoAlbumOption, cancelOption)
+        present(cameraOrPhotoAlbum, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        var selectedImage: UIImage?
+        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+            selectedImage = editedImage
+        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+            selectedImage = originalImage
+        }
+        if let image = selectedImage {
+            profilePicture.image = image
+            //register into database here
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 extension UITableView {
