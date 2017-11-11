@@ -42,7 +42,8 @@ class ReviewViewController: UIViewController {
         //Add Condition to test if segue came from client or contractor
         //if contractor: do popView
         //if client: do dismiss or opposite can't remember
-        if !arrivedAfterProfileSegue {
+        if arrivedAfterProfileSegue {
+            self.arrivedAfterProfileSegue = false
             self.navigationController?.popViewController(animated: true)
         }
         else

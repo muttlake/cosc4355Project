@@ -63,7 +63,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         if didSegueHere {
             //currentUserID should be set now
             print("Just Segued here: currentUserId: ", currentUserId)
-            didSegueHere = false
+            //didSegueHere = false
         }
         else //user is looking at their own profile
         {
