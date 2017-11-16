@@ -79,6 +79,7 @@ class FeedViewController: UITableViewController, ListingsProtocol {
       guard let userInfo = FIRDataSnapshot.value as? [String : Any] else { return }
       if (userInfo["userType"] as! String == "Contractor") {
         self.isContractor = true
+        self.addButton.isEnabled = false
       }
      // self.handleRefresh()
     })

@@ -29,10 +29,13 @@ class BidFormViewController: UIViewController, UITextFieldDelegate {
   
   var posterImagePhoto: UIImage?
   
-  var postingId: String?
-    var currentUser:User? = nil
+  var currentUser:User? = nil
   
+  var postingId: String?
   var userWhoPostedId: String?
+  
+  var userWhoPosted: User?
+  var posting: Posting?
   
   @IBAction func makeBid(_ sender: UIButton) {
     guard let bidAmount = bidAmountField.text, let user_id = userWhoPostedId, let posting_id = postingId else { return }
@@ -55,36 +58,48 @@ class BidFormViewController: UIViewController, UITextFieldDelegate {
         return
       }
     }
-    
- 
   }
-
+  
+  func fetchForCertainId(child: String, id: String) {
+    FIRDatabase.database().reference().child(child).child(id).observeSingleEvent(of: .value, with: { (snap) in
+      guard let dictionary = snap.value as? [String: Any] else { return }
+      switch child {
+      case "users":
+        self.userWhoPosted = User(from: dictionary, id: snap.key)
+      case "projects":
+        self.posting = Posting(from: dictionary)
+      default:
+        print("This shouldn't happen - fetchForCertainId()")
+      }
+    })
+  }
+  
   func fetchUserInfo() {
-        FIRDatabase.database().reference().child("users/\(FIRAuth.getCurrentUserId())").observeSingleEvent(of: .value, with: { (snap) in
-            guard let dictionary = snap.value as? [String: Any] else { return }
-            self.currentUser = User(from: dictionary, id: (FIRAuth.getCurrentUserId()))
-            
-        })
+    FIRDatabase.database().reference().child("users/\(FIRAuth.getCurrentUserId())").observeSingleEvent(of: .value, with: { (snap) in
+      guard let dictionary = snap.value as? [String: Any] else { return }
+      self.currentUser = User(from: dictionary, id: (FIRAuth.getCurrentUserId()))
+      
+    })
+  }
+  
+  func makeTapGestureForProfileSegue(userPhoto: UIImageView) {
+    let tapGestureRecognizer = UITapGestureRecognizer(target: self, action :#selector(userImageTapped(tapGestureRecognizer:)))
+    userPhoto.isUserInteractionEnabled = true
+    userPhoto.addGestureRecognizer(tapGestureRecognizer)
+  }
+  
+  @objc func userImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+    performSegue(withIdentifier: "bidFormProfile", sender: self)
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "bidFormProfile" {
+      let dvc = segue.destination as! ProfileViewController
+      dvc.didSegueHere = true
+      dvc.currentUserId = userWhoPostedId!
+      dvc.cameFromBids = true
     }
-    
-    func makeTapGestureForProfileSegue(userPhoto: UIImageView) {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action :#selector(userImageTapped(tapGestureRecognizer:)))
-        userPhoto.isUserInteractionEnabled = true
-        userPhoto.addGestureRecognizer(tapGestureRecognizer)
-    }
-    
-    @objc func userImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        performSegue(withIdentifier: "bidFormProfile", sender: self) 
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "bidFormProfile" {
-            let dvc = segue.destination as! ProfileViewController
-            dvc.didSegueHere = true
-            dvc.currentUserId = userWhoPostedId!
-          dvc.cameFromBids = true
-        }
-    }
+  }
   
   @objc func dismissKb() {
     view.endEditing(true)
@@ -93,11 +108,13 @@ class BidFormViewController: UIViewController, UITextFieldDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     fetchUserInfo()
+    fetchForCertainId(child: "users", id: userWhoPostedId ?? "")
+    fetchForCertainId(child: "projects", id: postingId ?? "")
     bidAmountField.delegate = self
     
     let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKb))
     view.addGestureRecognizer(tap)
-   
+    
     posterImage.layer.masksToBounds = true
     posterImage.layer.cornerRadius = 27
     projectTitle.text = projectTitleString ?? "DEFAULT TITLE"
@@ -109,6 +126,6 @@ class BidFormViewController: UIViewController, UITextFieldDelegate {
     // print(postingId ?? "empty1")
     // print(userWhoPostedId ?? "empty2")
   }
-    
-
+  
+  
 }
