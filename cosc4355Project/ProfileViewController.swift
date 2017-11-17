@@ -109,6 +109,18 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             self.profilePicture.loadImage(url: (userValues?["profilePicture"] as? String) ?? "")
             self.emailLabel.text = userValues?["email"] as? String
             
+            if self.didSegueHere
+            {
+                if let name = userValues?["name"] as? String
+                {
+                    self.navigationItem.title = name + "'s Profile"
+                }
+                else
+                {
+                    self.navigationItem.title = "Other User's Profile"
+                }
+            }
+            
             // print(userValues["profilePicture"])
         })
     } // end fetchUserProfile
@@ -254,14 +266,40 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         if let image = selectedImage {
             profilePicture.image = image
-            //register into database here
-        }
-        
+            let current_user_id = FIRAuth.getCurrentUserId()
+            let storageRef = FIRStorage.storage().reference().child("profilePics").child("\(current_user_id).jpg")
+            if let profilePic = self.profilePicture.image, let uploadData = UIImageJPEGRepresentation(profilePic, 0.1) {
+                storageRef.put(uploadData, metadata: nil) { (metadata, error) in
+                    if let error = error
+                    {
+                        print(error);
+                        return
+                    }
+                    print("Successfully Update Profile Picture")
+                    if let profilePicImageURL = metadata?.downloadURL()?.absoluteString {
+                        let values = ["profilePicture": profilePicImageURL] as [String: AnyObject]
+                        self.registerInfoIntoDatabaseWithUID(uid: current_user_id, values: values)
+                    }
+                }
+            }
+        }       
         dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
+    {
         dismiss(animated: true, completion: nil)
+    }
+    
+    private func registerInfoIntoDatabaseWithUID(uid: String, values: [String: AnyObject]) {
+        let ref = FIRDatabase.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
+        let projectsReference = ref.child("users").child(uid)
+        projectsReference.updateChildValues(values) { (err, ref) in
+            if(err != nil) {
+                print("Error Occured: \(err!)")
+                return
+            }
+        }
     }
 }
 
