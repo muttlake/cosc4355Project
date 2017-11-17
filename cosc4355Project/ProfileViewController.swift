@@ -34,10 +34,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
   
   var cameFromBids = false
     
-    @IBAction func addReviewButton(_ sender: Any) {
-        performSegue(withIdentifier: "profileReviewForm", sender: self)
-    }
-    
     
     @IBAction func logoutButton(_ sender: UIButton) {
         do {
