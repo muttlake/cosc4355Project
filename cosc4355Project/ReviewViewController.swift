@@ -19,6 +19,8 @@ class ReviewViewController: UIViewController {
     @IBOutlet weak var reviewWordsLabel: UILabel!
     @IBOutlet weak var reviewerPhoto: CustomImageView!
     
+    @IBOutlet weak var backButtonOutlet: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
       
@@ -36,19 +38,23 @@ class ReviewViewController: UIViewController {
             reviewerPhoto.loadImage(url: reviewerPhotoString)
         }
         
+        if arrivedAfterProfileSegue
+        {
+            self.backButtonOutlet.isHidden = true
+        }
+        
     }//layer.cornerRadius = 64
     
     @IBAction func backButton(_ sender: Any) {
-        //Add Condition to test if segue came from client or contractor
-        //if contractor: do popView
-        //if client: do dismiss or opposite can't remember
         if arrivedAfterProfileSegue
         {
+            print("Viewing other user's profile.")
             self.arrivedAfterProfileSegue = false
             self.navigationController?.popViewController(animated: true)
         }
         else
         {
+            print("Viewing user's own profile.")
             self.dismiss(animated: true, completion: nil)
         }
     }

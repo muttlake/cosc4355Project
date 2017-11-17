@@ -116,8 +116,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                     self.navigationItem.title = "Other User's Profile"
                 }
             }
-            
-            // print(userValues["profilePicture"])
         })
     } // end fetchUserProfile
     

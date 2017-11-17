@@ -334,7 +334,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="19" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVd-ac-3Ig">
-                                <rect key="frame" x="16" y="276" width="343" height="315"/>
+                                <rect key="frame" x="16" y="276" width="343" height="306"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.92229140228426398" green="0.92229140228426398" blue="0.92229140228426398" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -357,6 +357,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="backButtonOutlet" destination="cDU-LR-hZs" id="ZyE-wV-ePk"/>
                         <outlet property="reviewWordsLabel" destination="jVd-ac-3Ig" id="JcW-Yc-zxZ"/>
                         <outlet property="reviewerPhoto" destination="TeS-Xe-zbo" id="2fO-dj-4cC"/>
                         <outlet property="starsImage" destination="k06-4a-6Lu" id="uaf-9Q-tAW"/>
@@ -364,7 +365,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OZh-Lz-qGX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="953" y="1927"/>
+            <point key="canvasLocation" x="952.79999999999995" y="1926.3868065967017"/>
         </scene>
         <!--Projects Nearby-->
         <scene sceneID="Pxo-CM-Xw5">
