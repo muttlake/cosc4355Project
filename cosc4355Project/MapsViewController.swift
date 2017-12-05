@@ -561,6 +561,7 @@ extension MapsViewController: MKMapViewDelegate
     }
     
     
+ 
     //using custom annotation so no need DELETE
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
@@ -571,31 +572,9 @@ extension MapsViewController: MKMapViewDelegate
                 //return nil
             }
             
-
             preProcessForSegue(annotation : view.annotation!)
-
-            let customPointAnnotation = view.annotation as! CustomAnnotation
-            var postingDetails = [String: Any]()
-            
-            let childRef = FIRDatabase.database().reference().child("projects").child(customPointAnnotation.posting_id!)
-            
-            childRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                
-                for projects in snapshot.children.allObjects as! [FIRDataSnapshot]
-                {
-                    postingDetails[projects.key] = projects.value!
-                }
-                //self.projPhoto = customPointAnnotation.projPhoto
-                //print("CLOCKEdd")
-                //print(self.projPhoto)
-                self.setImage(url: postingDetails["photoUrl"] as! String, type: "project")
-                
-                self.performSegue(withIdentifier: "mapTobidSegue", sender: postingDetails)
-                
-            })
         }
     }
-    
     
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
