@@ -22,7 +22,7 @@ class BidsTableViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.allowsSelection = false
+    tableView.allowsSelection = true
     fetchUserInfo()
     fetchBids()
   }
@@ -38,7 +38,30 @@ class BidsTableViewController: UITableViewController {
     let currentBid = listings[indexPath.row]
     cell.bidderPhoto.loadImage(url: (biddersInfo[currentBid.bidder_id]?.profilePicture) ?? "")
     cell.bidderName.text = biddersInfo[currentBid.bidder_id]?.name
-    cell.bidderRating.text = "5 Star"
+    
+    let reviewsCollection = ReviewsForUserCollector(user_id: currentBid.bidder_id)
+    reviewsCollection.calculateUserRating(completion: { (success) -> () in
+        if success {
+            print("Now average rating is: ", reviewsCollection.averageRating)
+            var averageRatingString: NSString = ""
+            if reviewsCollection.hasReviews {
+                averageRatingString = NSString(format: "%.2f Stars Average", reviewsCollection.averageRating)
+            } else {
+                averageRatingString = "No reviews yet."
+            }
+            cell.bidderRating.text = String(averageRatingString)
+        }
+        else
+        {
+            print("Error retrieving averageRating")
+        }
+    })
+    
+    //let averageRatingString = String(averageRatingForUser) + " Stars"
+    
+    //cell.bidderRating.text = averageRatingString
+    cell.bidderRating.text = ""
+    print("Current Bidder ID is :", currentBid.bidder_id)
     cell.bidderBid.text = Double.getFormattedCurrency(num: currentBid.bidAmount)
     cell.acceptButton.tag = indexPath.row
     
@@ -52,19 +75,6 @@ class BidsTableViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     profileSegueUserId = listings[indexPath.row].bidder_id
-    performSegue(withIdentifier: "bidsTableProfile", sender: self)
-  }
-  
-  
-  func makeTapGestureForProfileSegue(userPhoto: CustomImageView, currentBidderId: String) {
-    let tapGestureRecognizer = UITapGestureRecognizer(target: self, action :#selector(userImageTapped(tapGestureRecognizer:)))
-    userPhoto.isUserInteractionEnabled = true
-    userPhoto.addGestureRecognizer(tapGestureRecognizer)
-    profileSegueUserId = currentBidderId
-  }
-  
-  @objc func userImageTapped(tapGestureRecognizer: UITapGestureRecognizer)
-  {
     performSegue(withIdentifier: "bidsTableProfile", sender: self)
   }
   
@@ -103,7 +113,10 @@ class BidsTableViewController: UITableViewController {
         return
       }
       
-      self.performSegue(withIdentifier: "acceptBidSegue", sender: sender)
+      self.navigationController?.popViewController(animated: true)
+      /* Opens the chat log for the user programmatically */
+      self.showChatControllerForUser(self.biddersInfo[self.listings[sender.tag].bidder_id] ?? User())
+      // self.performSegue(withIdentifier: "acceptBidSegue", sender: sender)
     }
   }
   
@@ -114,11 +127,17 @@ class BidsTableViewController: UITableViewController {
     for (key, value) in biddersInfo {
       print("\(key) \(value)")
     }
-    // print(biddersInfo[listings[sender.tag].bidder_id]?.id)
+
     NotificationsUtil.notify(notifier_id: FIRAuth.getCurrentUserId(), notified_id: listings[sender.tag].bidder_id, posting_id: (self.currentPosting?.posting_id)!, notificationId: NSUUID().uuidString, notificationType: "bidAccepted", notifier_name: (self.currentUser?.name)!, notifier_image: (self.currentUser?.profilePicture)!, posting_name: (self.currentPosting?.title)!)
     
     updateBidAcceptedInDB(bidAmount: listings[sender.tag].id, sender: sender)
-    
+  }
+  
+  /* Opens the chat log for the user programmatically */
+  func showChatControllerForUser(_ user: User) {
+    let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
+    chatLogController.user = user
+    navigationController?.pushViewController(chatLogController, animated: true)
   }
   
   func fetchBidderInfo() {
@@ -187,4 +206,10 @@ class BidsTableViewController: UITableViewController {
       
     })
   }
+    
+    
+    /* Fetches all data from projects folder */
+
 }
+
+

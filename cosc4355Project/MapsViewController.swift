@@ -178,6 +178,7 @@ class MapsViewController: UIViewController, MapSettingProtocol{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
+
         if (segue.identifier == "mapToContainer" )
         {
             print("-----INSIDE PREPARE SEGUE MATCHED")
@@ -570,7 +571,28 @@ extension MapsViewController: MKMapViewDelegate
                 //return nil
             }
             
+
             preProcessForSegue(annotation : view.annotation!)
+
+            let customPointAnnotation = view.annotation as! CustomAnnotation
+            var postingDetails = [String: Any]()
+            
+            let childRef = FIRDatabase.database().reference().child("projects").child(customPointAnnotation.posting_id!)
+            
+            childRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                for projects in snapshot.children.allObjects as! [FIRDataSnapshot]
+                {
+                    postingDetails[projects.key] = projects.value!
+                }
+                //self.projPhoto = customPointAnnotation.projPhoto
+                //print("CLOCKEdd")
+                //print(self.projPhoto)
+                self.setImage(url: postingDetails["photoUrl"] as! String, type: "project")
+                
+                self.performSegue(withIdentifier: "mapTobidSegue", sender: postingDetails)
+                
+            })
         }
     }
     

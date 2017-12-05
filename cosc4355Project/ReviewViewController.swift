@@ -13,10 +13,13 @@ class ReviewViewController: UIViewController {
     var stars: Int?
     var reviewWords: String?
     var reviewerPhotoString: String?
+    var arrivedAfterProfileSegue: Bool = false
     
     @IBOutlet weak var starsImage: UIImageView!
     @IBOutlet weak var reviewWordsLabel: UILabel!
     @IBOutlet weak var reviewerPhoto: CustomImageView!
+    
+    @IBOutlet weak var backButtonOutlet: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +38,25 @@ class ReviewViewController: UIViewController {
             reviewerPhoto.loadImage(url: reviewerPhotoString)
         }
         
+        if arrivedAfterProfileSegue
+        {
+            self.backButtonOutlet.isHidden = true
+        }
+        
     }//layer.cornerRadius = 64
     
     @IBAction func backButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        if arrivedAfterProfileSegue
+        {
+            print("Viewing other user's profile.")
+            self.arrivedAfterProfileSegue = false
+            self.navigationController?.popViewController(animated: true)
+        }
+        else
+        {
+            print("Viewing user's own profile.")
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     override func didReceiveMemoryWarning() {

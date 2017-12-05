@@ -19,10 +19,10 @@ class User {
   var id: String
   
   init(from dict: [String: Any], id: String) {
-    name = dict["name"] as! String
-    email = dict["email"] as! String
+    name = dict["name"] as? String ?? "Def-Name"
+    email = dict["email"] as? String ?? "Def-Email"
     profilePicture = dict["profilePicture"] as? String
-    userType = UserType.stringToEnum(string: dict["userType"] as! String)
+    userType = UserType.stringToEnum(string: dict["userType"] as? String ?? "Client")
     self.id = id
   }
   init() {
