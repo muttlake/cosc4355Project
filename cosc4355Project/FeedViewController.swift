@@ -50,8 +50,14 @@ class FeedViewController: UITableViewController, ListingsProtocol {
 
     return cell
   }
-    
-
+  
+  
+  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == UITableViewCellEditingStyle.delete && !isContractor {
+      FIRDatabase.database().reference().child("projects").child(self.orderedListings[indexPath.row].posting_id).setValue(nil)
+      handleRefresh()
+    }
+  }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return listings.count
