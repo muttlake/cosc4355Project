@@ -113,7 +113,10 @@ class BidsTableViewController: UITableViewController {
         return
       }
       
-      self.performSegue(withIdentifier: "acceptBidSegue", sender: sender)
+      self.navigationController?.popViewController(animated: true)
+      /* Opens the chat log for the user programmatically */
+      self.showChatControllerForUser(self.biddersInfo[self.listings[sender.tag].bidder_id] ?? User())
+      // self.performSegue(withIdentifier: "acceptBidSegue", sender: sender)
     }
   }
   
@@ -124,11 +127,17 @@ class BidsTableViewController: UITableViewController {
     for (key, value) in biddersInfo {
       print("\(key) \(value)")
     }
-    // print(biddersInfo[listings[sender.tag].bidder_id]?.id)
+
     NotificationsUtil.notify(notifier_id: FIRAuth.getCurrentUserId(), notified_id: listings[sender.tag].bidder_id, posting_id: (self.currentPosting?.posting_id)!, notificationId: NSUUID().uuidString, notificationType: "bidAccepted", notifier_name: (self.currentUser?.name)!, notifier_image: (self.currentUser?.profilePicture)!, posting_name: (self.currentPosting?.title)!)
     
     updateBidAcceptedInDB(bidAmount: listings[sender.tag].id, sender: sender)
-    
+  }
+  
+  /* Opens the chat log for the user programmatically */
+  func showChatControllerForUser(_ user: User) {
+    let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
+    chatLogController.user = user
+    navigationController?.pushViewController(chatLogController, animated: true)
   }
   
   func fetchBidderInfo() {
