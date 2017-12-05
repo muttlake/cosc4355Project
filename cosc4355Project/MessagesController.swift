@@ -148,7 +148,7 @@ class MessagesController: UITableViewController {
   
   var timer: Timer?
   
-  func handleReloadTable() {
+  @objc func handleReloadTable() {
     self.messages = Array(self.messagesDictionary.values)
     self.messages.sort(by: { (message1, message2) -> Bool in
       
@@ -246,7 +246,7 @@ class MessagesController: UITableViewController {
     if let profileImageUrl = user.profilePicture {
       profileImageView.loadImage(url: profileImageUrl)
     }
-    
+    print("testphoto2")
     containerView.addSubview(profileImageView)
     
     //ios 9 constraint anchors
