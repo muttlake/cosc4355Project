@@ -149,7 +149,7 @@ class ReviewFormViewController: UIViewController, UITextViewDelegate {
   let password = "WdrGdeOvcXhe"
   let version = "2016-12-07" // use today's date for the most recent version
   
-  func testTA() {
+  func watsonTA() {
     let toneAnalyzer = ToneAnalyzer(username: username, password: password, version: version)
     let text = reviewWordsField.text!
     let failure = { (error: Error) in print(error) }
@@ -166,13 +166,13 @@ class ReviewFormViewController: UIViewController, UITextViewDelegate {
   
   func getGuessedRating(score: Double) {
     switch score {
-    case 0.0 ..< 0.20:
+    case 0.0 ..< 0.10:
       stars1Button(self)
-    case 0.21 ..< 0.40:
+    case 0.11 ..< 0.40:
       stars2Button(self)
-    case 0.41 ..< 0.60:
+    case 0.41 ..< 0.75:
       stars3Button(self)
-    case 0.61 ..< 0.80:
+    case 0.76 ..< 0.90:
       stars4Button(self)
     default:
       stars5Button(self)
@@ -180,7 +180,6 @@ class ReviewFormViewController: UIViewController, UITextViewDelegate {
   }
   
   func textViewDidEndEditing(_ textView: UITextView) {
-    testTA()
-    print("user stopped typing")
+    watsonTA()
   }
 }
