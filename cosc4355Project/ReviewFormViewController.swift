@@ -119,7 +119,6 @@ class ReviewFormViewController: UIViewController, UITextViewDelegate {
     view.addGestureRecognizer(tap)
     reviewWordsField.delegate = self
     print("reviewing: \(aboutUser?.name ?? "DEFAULT")")
-    testTA()
   }
   
   override func didReceiveMemoryWarning() {
