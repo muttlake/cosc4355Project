@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06DAA3191FD63F04001A78A1 /* MapSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DAA3181FD63F04001A78A1 /* MapSettingViewController.swift */; };
 		202BC0511F967BC00085A228 /* ReviewFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202BC0501F967BC00085A228 /* ReviewFormViewController.swift */; };
 		CB069E1D1F9ED10F00208B03 /* AcceptedBidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB069E1C1F9ED10F00208B03 /* AcceptedBidViewController.swift */; };
 		CB47BBD61F74B28000841C92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB47BBD51F74B28000841C92 /* AppDelegate.swift */; };
@@ -71,6 +72,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		06DAA3181FD63F04001A78A1 /* MapSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapSettingViewController.swift; sourceTree = "<group>"; };
 		202BC0501F967BC00085A228 /* ReviewFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewFormViewController.swift; sourceTree = "<group>"; };
 		2F34BC55FFBBA1687456CF9B /* Pods-cosc4355Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cosc4355Project.release.xcconfig"; path = "Pods/Target Support Files/Pods-cosc4355Project/Pods-cosc4355Project.release.xcconfig"; sourceTree = "<group>"; };
 		5C9482FDCBA72DEE67A530A1 /* Pods_cosc4355Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cosc4355Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -258,6 +260,7 @@
 				CB523AB61F8DC4EA0007CCB8 /* BidsTableViewController.swift */,
 				CB85621E1F9A8232002C79C3 /* NotificationViewController.swift */,
 				CB069E1C1F9ED10F00208B03 /* AcceptedBidViewController.swift */,
+				06DAA3181FD63F04001A78A1 /* MapSettingViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				FBF617261F9999A30050F10C /* ReviewViewController.swift in Sources */,
 				CBE9B1431F8791B5000C8A4D /* ProfileViewController.swift in Sources */,
 				FB1B665C1F95A1DE00BE0B02 /* MapsViewController.swift in Sources */,
+				06DAA3191FD63F04001A78A1 /* MapSettingViewController.swift in Sources */,
 				CB523AB51F8DC35C0007CCB8 /* BidTableViewCell.swift in Sources */,
 				CBA8320C1FBD270F0008E52D /* UserCell.swift in Sources */,
 				CB47BBEC1F74C0D000841C92 /* FeedViewController.swift in Sources */,
@@ -669,6 +673,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = S873M2M783;
 				INFOPLIST_FILE = cosc4355Project/Info.plist;
+
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = team1.rb.cosc4355Project;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -685,6 +691,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = S873M2M783;
 				INFOPLIST_FILE = cosc4355Project/Info.plist;
+
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = team1.rb.cosc4355Project;
 				PRODUCT_NAME = "$(TARGET_NAME)";

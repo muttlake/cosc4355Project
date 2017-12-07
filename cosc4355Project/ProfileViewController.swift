@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import Firebase
 
-class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 
     @IBOutlet weak var profilePicture: CustomImageView!
     
@@ -34,10 +34,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
   
   var cameFromBids = false
     
-    @IBAction func addReviewButton(_ sender: Any) {
-        performSegue(withIdentifier: "profileReviewForm", sender: self)
-    }
-    
     
     @IBAction func logoutButton(_ sender: UIButton) {
         do {
@@ -58,10 +54,12 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.title = "Profile"
+        
         if didSegueHere {
             //currentUserID should be set now
             print("Just Segued here: currentUserId: ", currentUserId)
-            didSegueHere = false
+            //didSegueHere = false
         }
         else //user is looking at their own profile
         {
@@ -71,6 +69,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         /* Turns picture into a circle */
         profilePicture.layer.cornerRadius = profilePicture.frame.size.height/2
         profilePicture.layer.masksToBounds = true
+        
+        //Enable user to choose photo
+        profilePicture.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handlePhotoUploadCurrentUser))
+        profilePicture.addGestureRecognizer(tapGesture)
         
         fetchUserProfile()
         
@@ -102,7 +105,17 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             self.profilePicture.loadImage(url: (userValues?["profilePicture"] as? String) ?? "")
             self.emailLabel.text = userValues?["email"] as? String
             
-            // print(userValues["profilePicture"])
+            if self.didSegueHere
+            {
+                if let name = userValues?["name"] as? String
+                {
+                    self.navigationItem.title = name + "'s Profile"
+                }
+                else
+                {
+                    self.navigationItem.title = "Other User's Profile"
+                }
+            }
         })
     } // end fetchUserProfile
     
@@ -185,7 +198,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         self.reviewsTableView.refreshControl?.endRefreshing()
     } // end fetchReviews
         
-    func handleRefresh() {
+    @objc func handleRefresh() {
         reviews.removeAll()
         fetchReviews()
     }
@@ -201,9 +214,87 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             dvc.reviewWords = reviews[reviewsTableView.selectedIndex].reviewWords
             let currentReview = reviews[reviewsTableView.selectedIndex]
             dvc.reviewerPhotoString = reviewersPhotos[currentReview.user_id]!
+            dvc.arrivedAfterProfileSegue = self.didSegueHere
         }
     }
     
+    ////////////// Allow user profile photo to be changed //////////////
+    @objc func handlePhotoUploadCurrentUser() {
+        //check if profile is current user's profile
+        if self.currentUserId == FIRAuth.getCurrentUserId()
+        {
+            self.handlePhotoUpload()
+        }
+        else
+        {
+            print("Cannot change profile photo, not current user's profile.")
+        }
+    }
+    
+    func handlePhotoUpload() {
+        let cameraOrPhotoAlbum = UIAlertController(title: "Change Profile Photo", message: "Photo Source", preferredStyle: .actionSheet)
+        
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        
+        let cameraOption = UIAlertAction(title: "Camera", style: .default) { (_) in
+            picker.sourceType = .camera
+            self.present(picker, animated: true, completion: nil)
+        }
+        let photoAlbumOption = UIAlertAction(title: "Photo Album", style: .default) { (_) in
+            self.present(picker, animated: true, completion: nil)
+        }
+        let cancelOption = UIAlertAction(title: "Cancel", style: .cancel) { (_: UIAlertAction) in print("cancelled") }
+        
+        cameraOrPhotoAlbum.addActions(actions: cameraOption, photoAlbumOption, cancelOption)
+        present(cameraOrPhotoAlbum, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        var selectedImage: UIImage?
+        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+            selectedImage = editedImage
+        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+            selectedImage = originalImage
+        }
+        if let image = selectedImage {
+            profilePicture.image = image
+            let current_user_id = FIRAuth.getCurrentUserId()
+            let storageRef = FIRStorage.storage().reference().child("profilePics").child("\(current_user_id).jpg")
+            if let profilePic = self.profilePicture.image, let uploadData = UIImageJPEGRepresentation(profilePic, 0.1) {
+                storageRef.put(uploadData, metadata: nil) { (metadata, error) in
+                    if let error = error
+                    {
+                        print(error);
+                        return
+                    }
+                    print("Successfully Update Profile Picture")
+                    if let profilePicImageURL = metadata?.downloadURL()?.absoluteString {
+                        let values = ["profilePicture": profilePicImageURL] as [String: AnyObject]
+                        self.registerInfoIntoDatabaseWithUID(uid: current_user_id, values: values)
+                    }
+                }
+            }
+        }       
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
+    {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    private func registerInfoIntoDatabaseWithUID(uid: String, values: [String: AnyObject]) {
+        let ref = FIRDatabase.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
+        let projectsReference = ref.child("users").child(uid)
+        projectsReference.updateChildValues(values) { (err, ref) in
+            if(err != nil) {
+                print("Error Occured: \(err!)")
+                return
+            }
+        }
+    }
 }
 
 extension UITableView {

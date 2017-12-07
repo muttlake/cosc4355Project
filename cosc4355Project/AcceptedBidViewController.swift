@@ -110,6 +110,8 @@ class AcceptedBidViewController: UIViewController {
     userImage.layer.masksToBounds = true
     userImage.layer.cornerRadius = userImage.frame.size.height/2
     
+    self.makeTapGestureForProfileSegue(userPhoto: userImage)
+    
     fetchUserInfo()
   }
   
@@ -154,6 +156,17 @@ class AcceptedBidViewController: UIViewController {
       cameFromBid = false
     }
   }
+    
+    func makeTapGestureForProfileSegue(userPhoto: CustomImageView) {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action :#selector(userImageTapped(tapGestureRecognizer:)))
+        userPhoto.isUserInteractionEnabled = true
+        userPhoto.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func userImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        //print("Accepted Bid Contractor Image was tapped.")
+        performSegue(withIdentifier: "acceptedBidToProfile", sender: self)
+    }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "reviewSegue" {
@@ -161,6 +174,12 @@ class AcceptedBidViewController: UIViewController {
       dvc.aboutUser = user
       dvc.bid = bid
       dvc.project = posting
+    }
+    if segue.identifier == "acceptedBidToProfile" {
+        let dvc = segue.destination as! ProfileViewController
+        dvc.didSegueHere = true
+        dvc.currentUserId = (user?.id)! 
+        dvc.cameFromBids = false
     }
   }
 }

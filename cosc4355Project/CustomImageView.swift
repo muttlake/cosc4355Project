@@ -45,6 +45,7 @@ class CustomImageView: UIImageView {
       /* GCD, multithreaded solution. Async = nonblocking */
       DispatchQueue.main.async {
         self.image = photoImage
+        print("testphoto")
       }
     }.resume()
   }

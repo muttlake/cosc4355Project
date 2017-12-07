@@ -116,6 +116,7 @@ class ReviewFormViewController: UIViewController {
     super.viewDidLoad()
     let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKb))
     view.addGestureRecognizer(tap)
+    print("reviewing: \(aboutUser?.name ?? "DEFAULT")")
   }
   
   override func didReceiveMemoryWarning() {
