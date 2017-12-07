@@ -8,8 +8,9 @@
 
 import UIKit
 import Firebase
+import ToneAnalyzerV3
 
-class ReviewFormViewController: UIViewController {
+class ReviewFormViewController: UIViewController, UITextViewDelegate {
   
   var numStars: Int = -1
   
@@ -116,7 +117,9 @@ class ReviewFormViewController: UIViewController {
     super.viewDidLoad()
     let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKb))
     view.addGestureRecognizer(tap)
+    reviewWordsField.delegate = self
     print("reviewing: \(aboutUser?.name ?? "DEFAULT")")
+    testTA()
   }
   
   override func didReceiveMemoryWarning() {
@@ -143,16 +146,42 @@ class ReviewFormViewController: UIViewController {
     }
   }
   
+  let username = "00498f92-df6f-4a8a-a7b7-6079c4ab31bf"
+  let password = "WdrGdeOvcXhe"
+  let version = "2016-12-07" // use today's date for the most recent version
   
+  func testTA() {
+    let toneAnalyzer = ToneAnalyzer(username: username, password: password, version: version)
+    let text = reviewWordsField.text!
+    let failure = { (error: Error) in print(error) }
+    toneAnalyzer.getTone(ofText: text, failure: failure) { result in
+      // print(result.documentTone)
+      let joyScore = result.documentTone[0].tones[3].score
+      
+      DispatchQueue.main.async {
+        print(joyScore)
+        self.getGuessedRating(score: joyScore)
+      }
+    }
+  }
   
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destinationViewController.
-   // Pass the selected object to the new view controller.
-   }
-   */
+  func getGuessedRating(score: Double) {
+    switch score {
+    case 0.0 ..< 0.20:
+      stars1Button(self)
+    case 0.21 ..< 0.40:
+      stars2Button(self)
+    case 0.41 ..< 0.60:
+      stars3Button(self)
+    case 0.61 ..< 0.80:
+      stars4Button(self)
+    default:
+      stars5Button(self)
+    }
+  }
   
+  func textViewDidEndEditing(_ textView: UITextView) {
+    testTA()
+    print("user stopped typing")
+  }
 }
