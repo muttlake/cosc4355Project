@@ -108,7 +108,7 @@ class AcceptedBidViewController: UIViewController {
     self.navigationItem.title = posting?.title
     
     userImage.layer.masksToBounds = true
-    userImage.layer.cornerRadius = 95
+    userImage.layer.cornerRadius = userImage.frame.size.height/2
     
     self.makeTapGestureForProfileSegue(userPhoto: userImage)
     

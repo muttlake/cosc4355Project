@@ -67,7 +67,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
         /* Turns picture into a circle */
-        profilePicture.layer.cornerRadius = 64
+        profilePicture.layer.cornerRadius = profilePicture.frame.size.height/2
         profilePicture.layer.masksToBounds = true
         
         //Enable user to choose photo

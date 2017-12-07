@@ -101,7 +101,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    profilePicture.layer.cornerRadius = 64
+    profilePicture.layer.cornerRadius = profilePicture.frame.size.height/2
     profilePicture.layer.masksToBounds = true
     // Do any additional setup after loading the view.
     
