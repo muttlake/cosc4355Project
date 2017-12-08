@@ -54,7 +54,7 @@ class FeedViewController: UITableViewController, ListingsProtocol {
   
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == UITableViewCellEditingStyle.delete && !isContractor {
-      FIRDatabase.database().reference().child("projects").child(self.orderedListings[indexPath.row].posting_id).setValue(nil)
+      Database.database().reference().child("projects").child(self.orderedListings[indexPath.row].posting_id).setValue(nil)
       handleRefresh()
     }
   }
@@ -81,7 +81,7 @@ class FeedViewController: UITableViewController, ListingsProtocol {
     }
     
     /* Gets User Type */
-    FIRDatabase.database().reference().child("users").child((FIRAuth.auth()?.currentUser?.uid)!).observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
+    Database.database().reference().child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
       guard let userInfo = FIRDataSnapshot.value as? [String : Any] else { return }
       if (userInfo["userType"] as! String == "Contractor") {
         self.isContractor = true
@@ -98,7 +98,7 @@ class FeedViewController: UITableViewController, ListingsProtocol {
   }
   
   func fetchUsers() {
-    let rootRef = FIRDatabase.database().reference().child("users")
+    let rootRef = Database.database().reference().child("users")
     rootRef.observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
       guard let dictionaries = FIRDataSnapshot.value as? [String: AnyObject] else { return }
       dictionaries.forEach({ (key, value) in
@@ -118,13 +118,13 @@ class FeedViewController: UITableViewController, ListingsProtocol {
   
   /* If the user is a client, only fetch the projects they posted */
   func fetchUserProjects() {
-    let rootRef = FIRDatabase.database().reference().child("projects")
+    let rootRef = Database.database().reference().child("projects")
     rootRef.observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
       guard let dictionaries = FIRDataSnapshot.value as? [String: AnyObject] else { return }
       dictionaries.forEach({ (key, value) in
         guard let dictionary = value as? [String: Any] else { return }
         let project = Posting(from: dictionary)
-        if project.user_id == FIRAuth.getCurrentUserId() { self.listings.append(project) }
+        if project.user_id == Auth.getCurrentUserId() { self.listings.append(project) }
       })
       self.tableView?.reloadData()
       self.tableView?.refreshControl?.endRefreshing()
@@ -137,7 +137,7 @@ class FeedViewController: UITableViewController, ListingsProtocol {
   
   /* Fetches all data from projects folder */
   func fetchProjects() {
-    FIRDatabase.database().reference().child("projects").queryOrdered(byChild: "date").queryLimited(toLast: UInt(projectLimit)).observeSingleEvent(of: .value, with: { (snapshot) in
+    Database.database().reference().child("projects").queryOrdered(byChild: "date").queryLimited(toLast: UInt(projectLimit)).observeSingleEvent(of: .value, with: { (snapshot) in
       guard let dictionaries = snapshot.value as? [String: Any] else { return }
       dictionaries.forEach({ (key, value) in
         guard let dictionary = value as? [String: Any] else { return }
@@ -168,7 +168,7 @@ class FeedViewController: UITableViewController, ListingsProtocol {
         /* The project still doesn't have an accepted bid */
         performSegue(withIdentifier: "viewBidsSegue", sender: self)
       } else {
-        FIRDatabase.database().reference().child("bids/\(project.acceptedBid)").observeSingleEvent(of: .value, with: { (snap) in
+        Database.database().reference().child("bids/\(project.acceptedBid)").observeSingleEvent(of: .value, with: { (snap) in
           guard let dictionary = snap.value as? [String: Any] else { return }
           print(dictionary)
           self.bidToPass = Bid(from: dictionary, id: project.acceptedBid)

@@ -93,7 +93,7 @@ class MapsViewController: UIViewController, MapSettingProtocol{
     @IBOutlet weak var mapSettingView: UIView!
     
     var locationManager : CLLocationManager?
-    var postingReference : FIRDatabaseReference?
+  var postingReference : DatabaseReference?
     var maxTravelDistanceInMiles : Double = 2.0
     var isContractor = false
     var inRadiusProjects : [CustomAnnotation] = []
@@ -160,7 +160,7 @@ class MapsViewController: UIViewController, MapSettingProtocol{
     func setUpMap()
     {
         //maxTravelDistanceInMiles = 50.0
-        postingReference = FIRDatabase.database().reference().child("projects")
+      postingReference = Database.database().reference().child("projects")
         createGeoRegion()
         retrivePostingFromDatabase()
     }
@@ -223,7 +223,7 @@ class MapsViewController: UIViewController, MapSettingProtocol{
         
         //Go thru all projects in the database(Not using geofire)
         postingReference?.observeSingleEvent(of: .value, with: { (snapshot) in
-            for projectSnap in snapshot.children.allObjects as! [FIRDataSnapshot]
+          for projectSnap in snapshot.children.allObjects as! [DataSnapshot]
             {
                 let project = projectSnap.value as? [String: String]
                 
@@ -328,7 +328,7 @@ class MapsViewController: UIViewController, MapSettingProtocol{
     
     func getUserType()
     {
-        FIRDatabase.database().reference().child("users").child((FIRAuth.auth()?.currentUser?.uid)!).observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
+      Database.database().reference().child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
             
             guard let userInfo = FIRDataSnapshot.value as? [String : String] else { return }
             
@@ -346,7 +346,7 @@ class MapsViewController: UIViewController, MapSettingProtocol{
     
     func getProjectPosterProfileImage(poster: String, completion: @escaping (Data) -> ())
     {
-        FIRDatabase.database().reference().child("users").child(poster).observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
+      Database.database().reference().child("users").child(poster).observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
             guard let userInfo = FIRDataSnapshot.value as? [String : String] else { return }
             
             self.getImage(url: userInfo["profilePicture"]!, completion: { (data) in
@@ -377,11 +377,11 @@ class MapsViewController: UIViewController, MapSettingProtocol{
         let customAnnotation = annotation as! CustomAnnotation
         var postingDetails = [String: Any]()
         
-        let childRef = FIRDatabase.database().reference().child("projects").child(customAnnotation.posting_id!)
+        let childRef = Database.database().reference().child("projects").child(customAnnotation.posting_id!)
         
         childRef.observeSingleEvent(of: .value, with: { (snapshot) in
             
-            for projectSnap in snapshot.children.allObjects as! [FIRDataSnapshot]
+          for projectSnap in snapshot.children.allObjects as! [DataSnapshot]
             {
                 postingDetails[projectSnap.key] = projectSnap.value!
             }

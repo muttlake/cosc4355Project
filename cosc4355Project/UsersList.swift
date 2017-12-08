@@ -21,7 +21,7 @@ class UsersList {
   }
   
   static func fetchUsers() {
-    let rootRef = FIRDatabase.database().reference().child("users")
+    let rootRef = Database.database().reference().child("users")
     rootRef.observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
       guard let dictionaries = FIRDataSnapshot.value as? [String: AnyObject] else { return }
       dictionaries.forEach({ (key, value) in

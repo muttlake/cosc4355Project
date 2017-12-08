@@ -7,6 +7,8 @@
 //
 
 import XCTest
+import Firebase
+@testable import cosc4355Project
 
 class XCProjectTests: XCTestCase {
   
@@ -20,8 +22,8 @@ class XCProjectTests: XCTestCase {
     super.tearDown()
   }
   
-  func test() {
-    assert(true)
+  func testGetFormattedCurrency() {
+    XCTAssertEqual(Double.getFormattedCurrency(num: 100), 100.00)
   }
   
   

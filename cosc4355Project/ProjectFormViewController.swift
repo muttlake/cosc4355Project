@@ -101,17 +101,17 @@ class ProjectFormViewController: UIViewController, UIImagePickerControllerDelega
     if !validateFields(fields: title, description, bidDesired) { return }
     
     let imageName = NSUUID().uuidString
-    let storageRef = FIRStorage.storage().reference().child("projects").child("\(imageName).jpg")
+    let storageRef = Storage.storage().reference().child("projects").child("\(imageName).jpg")
     
     if let projectImage = uploadImage.image, let uploadData = UIImageJPEGRepresentation(projectImage, 0.1) {
-      storageRef.put(uploadData, metadata: nil) { (metadata, error) in
+      storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
         if let error = error { print(error); return }
         
         /* Set up date */
         let currentDate = Date.currentDate
         
         /* Get current user id */
-        guard let uid = FIRAuth.auth()?.currentUser?.uid else { print("Error: User not signed in"); return }
+        guard let uid = Auth.auth().currentUser?.uid else { print("Error: User not signed in"); return }
  
         /* Generate projectId, get values, then store into database */
         if let projectImageUrl = metadata?.downloadURL()?.absoluteString {
@@ -125,7 +125,7 @@ class ProjectFormViewController: UIViewController, UIImagePickerControllerDelega
   }
   
   private func registerInfoIntoDatabaseWithUID(uid: String, values: [String: AnyObject]) {
-    let ref = FIRDatabase.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
+    let ref = Database.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
     let projectsReference = ref.child("projects").child(uid)
     projectsReference.updateChildValues(values) { (err, ref) in
       if(err != nil) {

@@ -34,7 +34,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     if !isFieldsValid() { return }
     
     /* Standard user registration */
-    FIRAuth.auth()?.createUser(withEmail: emailText.text!, password: passwordText.text!) { (user, error) in
+    
+    Auth.auth().createUser(withEmail: emailText.text!, password: passwordText.text!) { (user, error) in
       if let error = error {
         print("Error creating new user: \(error)")
         return
@@ -43,9 +44,9 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
       guard let uid = user?.uid else { return }
       
       /* STORE USER PROFILE */
-      let storageRef = FIRStorage.storage().reference().child("profilePics").child("\(uid).jpg")
+      let storageRef = Storage.storage().reference().child("profilePics").child("\(uid).jpg")
       if let profilePic = self.profilePicture.image, let uploadData = UIImageJPEGRepresentation(profilePic, 0.1) {
-        storageRef.put(uploadData, metadata: nil) { (metadata, error) in
+        storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
           if let error = error { print(error); return }
           print("Succesful Photo Upload")
           if let projectImageUrl = metadata?.downloadURL()?.absoluteString {
@@ -159,7 +160,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
   }
   
   private func registerInfoIntoDatabaseWithUID(uid: String, values: [String: AnyObject]) {
-    let ref = FIRDatabase.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
+    let ref = Database.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
     let projectsReference = ref.child("users").child(uid)
     projectsReference.updateChildValues(values) { (err, ref) in
       if(err != nil) {

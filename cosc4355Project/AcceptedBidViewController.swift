@@ -51,7 +51,7 @@ class AcceptedBidViewController: UIViewController {
    
     let alertController = UIAlertController(title: "Pay", message: "Enter amount to pay", preferredStyle: .alert)
     let payAction = UIAlertAction(title: "Pay", style: .default) { (_: UIAlertAction) in
-      NotificationsUtil.notify(notifier_id: FIRAuth.getCurrentUserId(), notified_id: (self.user?.id)!, posting_id: (self.posting?.posting_id)!, notificationId: NSUUID().uuidString, notificationType: "paymentMade", notifier_name: (self.user?.name)!, notifier_image: (self.user?.profilePicture)!, posting_name: (self.posting?.title)!)
+      NotificationsUtil.notify(notifier_id: Auth.getCurrentUserId(), notified_id: (self.user?.id)!, posting_id: (self.posting?.posting_id)!, notificationId: NSUUID().uuidString, notificationType: "paymentMade", notifier_name: (self.user?.name)!, notifier_image: (self.user?.profilePicture)!, posting_name: (self.posting?.title)!)
     }
     let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
     alertController.addTextField(configurationHandler: nil)
@@ -60,7 +60,7 @@ class AcceptedBidViewController: UIViewController {
   }
   
   func notifyPaid() {
-    let notifier_id = FIRAuth.getCurrentUserId()
+    let notifier_id = Auth.getCurrentUserId()
     let notified_id = user?.id
     let posting_id = posting?.posting_id
     let notificationId = NSUUID().uuidString
@@ -71,7 +71,7 @@ class AcceptedBidViewController: UIViewController {
   }
   
   private func registerInfoIntoDatabaseWithUID(uid: String, values: [String: AnyObject]) {
-    let ref = FIRDatabase.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
+    let ref = Database.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
     let projectsReference = ref.child("Notification").child(uid)
     projectsReference.updateChildValues(values) { (err, ref) in
       if(err != nil) {
@@ -94,7 +94,7 @@ class AcceptedBidViewController: UIViewController {
     let alertController = UIAlertController(title: "Confirm", message: "Cancel the user's bid?", preferredStyle: .alert)
     let confirmAction = UIAlertAction(title: "Yes", style: .destructive) { (_: UIAlertAction) in
       self.updateBidAcceptedInDB(bidAmount: "0", sender: nil)
-       NotificationsUtil.notify(notifier_id: FIRAuth.getCurrentUserId(), notified_id: (self.user?.id)!, posting_id: (self.posting?.posting_id)!, notificationId: NSUUID().uuidString, notificationType: "bidCancelled", notifier_name: (self.user?.name)!, notifier_image: (self.user?.profilePicture)!, posting_name: (self.posting?.title)!)
+       NotificationsUtil.notify(notifier_id: Auth.getCurrentUserId(), notified_id: (self.user?.id)!, posting_id: (self.posting?.posting_id)!, notificationId: NSUUID().uuidString, notificationType: "bidCancelled", notifier_name: (self.user?.name)!, notifier_image: (self.user?.profilePicture)!, posting_name: (self.posting?.title)!)
       self.navigationController?.popViewController(animated: true)
     }
     let cancel = UIAlertAction(title: "No", style: .cancel, handler: nil)
@@ -116,7 +116,7 @@ class AcceptedBidViewController: UIViewController {
   }
   
   func fetchUserInfo() {
-    FIRDatabase.database().reference().child("users/\(bid?.bidder_id ?? "")").observeSingleEvent(of: .value, with: { (snap) in
+    Database.database().reference().child("users/\(bid?.bidder_id ?? "")").observeSingleEvent(of: .value, with: { (snap) in
       guard let dictionary = snap.value as? [String: Any] else { return }
       self.user = User(from: dictionary, id: (self.bid?.bidder_id)!)
       self.nameLabel.text = (self.user?.name)! + " • " + Double.getFormattedCurrency(num: (self.bid?.bidAmount)!)
@@ -132,7 +132,7 @@ class AcceptedBidViewController: UIViewController {
   }
   
   private func registerInfoIntoDatabaseWithUID(uid: String, values: [String: AnyObject], sender: UIButton?) {
-    let ref = FIRDatabase.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
+    let ref = Database.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
     let bidsReference = ref.child("projects").child(uid)
     bidsReference.updateChildValues(values) { (err, ref) in
       if(err != nil) {
