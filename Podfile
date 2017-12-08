@@ -9,5 +9,11 @@ target 'cosc4355Project' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
-  
+end
+
+target 'cosc4355ProjectTests' do
+  # Pods for XCProjectTests
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'Firebase/Storage'
 end
