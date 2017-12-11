@@ -117,7 +117,10 @@ class ReviewFormViewController: UIViewController, UITextViewDelegate {
     super.viewDidLoad()
     let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKb))
     view.addGestureRecognizer(tap)
+<<<<<<< HEAD
     reviewWordsField.delegate = self
+=======
+>>>>>>> 97b27e84d024891bfa3da24867f65a4ecaa39ca1
     print("reviewing: \(aboutUser?.name ?? "DEFAULT")")
   }
   

@@ -221,7 +221,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     ////////////// Allow user profile photo to be changed //////////////
     @objc func handlePhotoUploadCurrentUser() {
         //check if profile is current user's profile
+<<<<<<< HEAD
       if self.currentUserId == Auth.getCurrentUserId()
+=======
+        if self.currentUserId == FIRAuth.getCurrentUserId()
+>>>>>>> 97b27e84d024891bfa3da24867f65a4ecaa39ca1
         {
             self.handlePhotoUpload()
         }
@@ -260,10 +264,17 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         if let image = selectedImage {
             profilePicture.image = image
+<<<<<<< HEAD
           let current_user_id = Auth.getCurrentUserId()
           let storageRef = Storage.storage().reference().child("profilePics").child("\(current_user_id).jpg")
             if let profilePic = self.profilePicture.image, let uploadData = UIImageJPEGRepresentation(profilePic, 0.1) {
                 storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
+=======
+            let current_user_id = FIRAuth.getCurrentUserId()
+            let storageRef = FIRStorage.storage().reference().child("profilePics").child("\(current_user_id).jpg")
+            if let profilePic = self.profilePicture.image, let uploadData = UIImageJPEGRepresentation(profilePic, 0.1) {
+                storageRef.put(uploadData, metadata: nil) { (metadata, error) in
+>>>>>>> 97b27e84d024891bfa3da24867f65a4ecaa39ca1
                     if let error = error
                     {
                         print(error);
@@ -286,7 +297,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     private func registerInfoIntoDatabaseWithUID(uid: String, values: [String: AnyObject]) {
+<<<<<<< HEAD
       let ref = Database.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
+=======
+        let ref = FIRDatabase.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
+>>>>>>> 97b27e84d024891bfa3da24867f65a4ecaa39ca1
         let projectsReference = ref.child("users").child(uid)
         projectsReference.updateChildValues(values) { (err, ref) in
             if(err != nil) {

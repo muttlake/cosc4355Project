@@ -8,6 +8,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -248,6 +249,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qTC-HN-yJw">
                                 <rect key="frame" x="99" y="200" width="260" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -459,6 +461,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+<<<<<<< HEAD
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MPT-lE-R4n">
                                 <rect key="frame" x="16" y="255" width="288" height="1"/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -468,6 +471,16 @@
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="19" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVd-ac-3Ig">
                                 <rect key="frame" x="118" y="279" width="179" height="150"/>
+=======
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k06-4a-6Lu">
+                                <rect key="frame" x="78" y="299" width="269" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="19" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVd-ac-3Ig">
+                                <rect key="frame" x="66" y="386" width="281" height="145"/>
+
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+>>>>>>> 97b27e84d024891bfa3da24867f65a4ecaa39ca1
                                 <color key="backgroundColor" red="0.92229140228426398" green="0.92229140228426398" blue="0.92229140228426398" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="0Qf-31-NJY"/>
@@ -554,7 +567,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OZh-Lz-qGX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD
             <point key="canvasLocation" x="948.75" y="1923.5915492957747"/>
+=======
+
+            <point key="canvasLocation" x="952.79999999999995" y="1926.3868065967017"/>
+>>>>>>> 97b27e84d024891bfa3da24867f65a4ecaa39ca1
         </scene>
         <!--Projects Nearby-->
         <scene sceneID="Pxo-CM-Xw5">
@@ -585,7 +603,11 @@
                                 <state key="normal" title="Center"/>
                             </button>
                             <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TXg-WI-7vd">
+<<<<<<< HEAD
                                 <rect key="frame" x="0.0" y="170" width="320" height="128"/>
+=======
+                                <rect key="frame" x="0.0" y="269" width="375" height="128"/>
+>>>>>>> 97b27e84d024891bfa3da24867f65a4ecaa39ca1
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="IqN-4l-pdF" kind="embed" identifier="mapToContainer" id="cp7-eH-Dyv"/>
@@ -863,10 +885,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellId" rowHeight="72" id="um8-Gq-Ayg" customClass="UserCell" customModule="cosc4355Project" customModuleProvider="target">
+<<<<<<< HEAD
                                 <rect key="frame" x="0.0" y="28" width="320" height="72"/>
+=======
+                                <rect key="frame" x="0.0" y="28" width="375" height="72"/>
+>>>>>>> 97b27e84d024891bfa3da24867f65a4ecaa39ca1
                                 <autoresizingMask key="autoresizingMask"/>
+
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="um8-Gq-Ayg" id="sh9-Yy-tZG">
+<<<<<<< HEAD
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="71.5"/>
+=======
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+
+>>>>>>> 97b27e84d024891bfa3da24867f65a4ecaa39ca1
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xr2-Kc-BQZ" customClass="CustomImageView" customModule="cosc4355Project" customModuleProvider="target">
@@ -1623,7 +1655,11 @@
                         <viewControllerLayoutGuide type="bottom" id="jdZ-7J-g5R"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="rdI-gx-hWL">
+<<<<<<< HEAD
                         <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
+=======
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+>>>>>>> 97b27e84d024891bfa3da24867f65a4ecaa39ca1
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Radius" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uip-A9-zY1">

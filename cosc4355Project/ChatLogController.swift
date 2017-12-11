@@ -24,6 +24,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
   var messages = [Message]()
   
   func observeMessages() {
+<<<<<<< HEAD
     guard let uid = Auth.auth().currentUser?.uid, let toId = user?.id else {
       return
     }
@@ -33,6 +34,17 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
       
       let messageId = snapshot.key
       let messagesRef = Database.database().reference().child("messages").child(messageId)
+=======
+    guard let uid = FIRAuth.auth()?.currentUser?.uid, let toId = user?.id else {
+      return
+    }
+    
+    let userMessagesRef = FIRDatabase.database().reference().child("user-messages").child(uid).child(toId)
+    userMessagesRef.observe(.childAdded, with: { (snapshot) in
+      
+      let messageId = snapshot.key
+      let messagesRef = FIRDatabase.database().reference().child("messages").child(messageId)
+>>>>>>> 97b27e84d024891bfa3da24867f65a4ecaa39ca1
       messagesRef.observeSingleEvent(of: .value, with: { (snapshot) in
         
         guard let dictionary = snapshot.value as? [String: AnyObject] else {
@@ -104,6 +116,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
       //we selected an image
       handleImageSelectedForInfo(info as [String : AnyObject])
     }
+<<<<<<< HEAD
     
     dismiss(animated: true, completion: nil)
   }
@@ -171,14 +184,90 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         self.sendMessageWithImageUrl(imageUrl, image: selectedImage)
       })
     }
+=======
+    
+    dismiss(animated: true, completion: nil)
+  }
+  
+  fileprivate func handleVideoSelectedForUrl(_ url: URL) {
+    let filename = UUID().uuidString + ".mov"
+    let uploadTask = FIRStorage.storage().reference().child("message_movies").child(filename).putFile(url, metadata: nil, completion: { (metadata, error) in
+      
+      if error != nil {
+        print("Failed upload of video:", error!)
+        return
+      }
+      
+      if let videoUrl = metadata?.downloadURL()?.absoluteString {
+        if let thumbnailImage = self.thumbnailImageForFileUrl(url) {
+          
+          self.uploadToFirebaseStorageUsingImage(thumbnailImage, completion: { (imageUrl) in
+            let properties: [String: AnyObject] = ["imageUrl": imageUrl as AnyObject, "imageWidth": thumbnailImage.size.width as AnyObject, "imageHeight": thumbnailImage.size.height as AnyObject, "videoUrl": videoUrl as AnyObject]
+            self.sendMessageWithProperties(properties)
+            
+          })
+        }
+      }
+    })
+    
+    uploadTask.observe(.progress) { (snapshot) in
+      if let completedUnitCount = snapshot.progress?.completedUnitCount {
+        self.navigationItem.title = String(completedUnitCount)
+      }
+    }
+    
+    uploadTask.observe(.success) { (snapshot) in
+      self.navigationItem.title = self.user?.name
+    }
+  }
+  
+  fileprivate func thumbnailImageForFileUrl(_ fileUrl: URL) -> UIImage? {
+    let asset = AVAsset(url: fileUrl)
+    let imageGenerator = AVAssetImageGenerator(asset: asset)
+    
+    do {
+      
+      let thumbnailCGImage = try imageGenerator.copyCGImage(at: CMTimeMake(1, 60), actualTime: nil)
+      return UIImage(cgImage: thumbnailCGImage)
+      
+    } catch let err {
+      print(err)
+    }
+    
+    return nil
+  }
+  
+  fileprivate func handleImageSelectedForInfo(_ info: [String: AnyObject]) {
+    var selectedImageFromPicker: UIImage?
+    
+    if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+      selectedImageFromPicker = editedImage
+    } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+      
+      selectedImageFromPicker = originalImage
+    }
+    
+    if let selectedImage = selectedImageFromPicker {
+      uploadToFirebaseStorageUsingImage(selectedImage, completion: { (imageUrl) in
+        self.sendMessageWithImageUrl(imageUrl, image: selectedImage)
+      })
+    }
+>>>>>>> 97b27e84d024891bfa3da24867f65a4ecaa39ca1
   }
   
   fileprivate func uploadToFirebaseStorageUsingImage(_ image: UIImage, completion: @escaping (_ imageUrl: String) -> ()) {
     let imageName = UUID().uuidString
+<<<<<<< HEAD
     let ref = Storage.storage().reference().child("message_images").child(imageName)
 
     if let uploadData = UIImageJPEGRepresentation(image, 0.2) {
       ref.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+=======
+    let ref = FIRStorage.storage().reference().child("message_images").child(imageName)
+    
+    if let uploadData = UIImageJPEGRepresentation(image, 0.2) {
+      ref.put(uploadData, metadata: nil, completion: { (metadata, error) in
+>>>>>>> 97b27e84d024891bfa3da24867f65a4ecaa39ca1
         
         if error != nil {
           print("Failed to upload image:", error!)
@@ -284,7 +373,11 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
       cell.profileImageView.loadImage(url: profileImageUrl)
     }
     
+<<<<<<< HEAD
     if message.fromId == Auth.auth().currentUser?.uid {
+=======
+    if message.fromId == FIRAuth.auth()?.currentUser?.uid {
+>>>>>>> 97b27e84d024891bfa3da24867f65a4ecaa39ca1
       //outgoing blue
       cell.bubbleView.backgroundColor = ChatMessageCell.blueColor
       cell.textView.textColor = UIColor.white
@@ -356,10 +449,17 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
   }
   
   fileprivate func sendMessageWithProperties(_ properties: [String: AnyObject]) {
+<<<<<<< HEAD
     let ref = Database.database().reference().child("messages")
     let childRef = ref.childByAutoId()
     let toId = user!.id
     let fromId = Auth.auth().currentUser!.uid
+=======
+    let ref = FIRDatabase.database().reference().child("messages")
+    let childRef = ref.childByAutoId()
+    let toId = user!.id
+    let fromId = FIRAuth.auth()!.currentUser!.uid
+>>>>>>> 97b27e84d024891bfa3da24867f65a4ecaa39ca1
     let timestamp = Int(Date().timeIntervalSince1970)
     
     var values: [String: AnyObject] = ["toId": toId as AnyObject, "fromId": fromId as AnyObject, "timestamp": timestamp as AnyObject]
@@ -376,12 +476,20 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
       
       self.inputContainerView.inputTextField.text = nil
       
+<<<<<<< HEAD
       let userMessagesRef = Database.database().reference().child("user-messages").child(fromId).child(toId)
+=======
+      let userMessagesRef = FIRDatabase.database().reference().child("user-messages").child(fromId).child(toId)
+>>>>>>> 97b27e84d024891bfa3da24867f65a4ecaa39ca1
       
       let messageId = childRef.key
       userMessagesRef.updateChildValues([messageId: 1])
       
+<<<<<<< HEAD
       let recipientUserMessagesRef = Database.database().reference().child("user-messages").child(toId).child(fromId)
+=======
+      let recipientUserMessagesRef = FIRDatabase.database().reference().child("user-messages").child(toId).child(fromId)
+>>>>>>> 97b27e84d024891bfa3da24867f65a4ecaa39ca1
       recipientUserMessagesRef.updateChildValues([messageId: 1])
     }
   }

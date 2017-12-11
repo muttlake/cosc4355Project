@@ -93,7 +93,11 @@ class NotificationViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == UITableViewCellEditingStyle.delete {
+<<<<<<< HEAD
       Database.database().reference().child("Notification").child(self.orderedListings[indexPath.row].notification_key).setValue(nil)
+=======
+      FIRDatabase.database().reference().child("Notification").child(self.orderedListings[indexPath.row].notification_key).setValue(nil)
+>>>>>>> 97b27e84d024891bfa3da24867f65a4ecaa39ca1
       fetchNotifications()
       self.tableView?.reloadData()
     }
