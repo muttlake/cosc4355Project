@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class NotificationViewController: UITableViewController {
-  
+ 
   var listings: [Notifications] = []
   var users = [String: User]()
   var orderedListings: [Notifications] {
@@ -51,10 +51,8 @@ class NotificationViewController: UITableViewController {
       print("Failed retrieving user notifications with error: \(error)")
     }
   }
-  func checkNotification() -> Int{
-    fetchNotifications()
-    return self.listings.count
-  }
+    
+    
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return listings.count
@@ -90,10 +88,16 @@ class NotificationViewController: UITableViewController {
     cell.row = indexPath.row
     return cell
   }
-  
+    func deleteNotification(notificationID:String)  {
+        
+        Database.database().reference().child("Notification").child(notificationID).setValue(nil){ (error, ref) -> Void in
+          
+        }
+        
+    }
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == UITableViewCellEditingStyle.delete {
-      Database.database().reference().child("Notification").child(self.orderedListings[indexPath.row].notification_key).setValue(nil)
+      deleteNotification(notificationID: self.orderedListings[indexPath.row].notification_key)
       fetchNotifications()
       self.tableView?.reloadData()
     }
