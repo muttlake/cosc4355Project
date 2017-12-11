@@ -322,7 +322,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="hUk-r1-wTM">
-                                <rect key="frame" x="10" y="80.5" width="300" height="407.5"/>
+                                <rect key="frame" x="10" y="81" width="300" height="407.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write a Review" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xlv-GX-dqM">
                                         <rect key="frame" x="0.0" y="0.0" width="233" height="41"/>
@@ -330,8 +330,8 @@
                                         <color key="textColor" red="0.078431372549019607" green="0.078431372549019607" blue="0.078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Star rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TsH-La-GAA">
-                                        <rect key="frame" x="0.0" y="56" width="105" height="24"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Star Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TsH-La-GAA">
+                                        <rect key="frame" x="0.0" y="56" width="111" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="wOI-AU-kVZ"/>
                                         </constraints>
@@ -400,14 +400,13 @@
                                         <color key="textColor" red="0.078431372550000003" green="0.078431372550000003" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MSr-30-srT">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MSr-30-srT">
                                         <rect key="frame" x="0.0" y="181.5" width="300" height="164"/>
                                         <color key="backgroundColor" red="1" green="0.92553013559999997" blue="0.92538142199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" red="0.74394834844559588" green="0.74394834844559588" blue="0.74394834844559588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="164" id="HiO-Yw-QPW"/>
                                         </constraints>
-                                        <string key="text">WHY ISNT THIS WORKING WHY ISNT THIS WORKING WHY ISNT THIS WORKING WHY ISNT THIS WORKING WHY ISNT THIS WORKING WHY ISNT THIS WORKING WHY ISNT THIS WORKING WHY ISNT THIS WORKING WHY ISNT THIS WORKING WHY ISNT THIS WORKING WHY ISNT THIS WORKING WHY ISNT THIS WORKING </string>
                                         <color key="textColor" red="0.078431372550000003" green="0.078431372550000003" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -437,6 +436,12 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="1m7-mE-3mn"/>
+                                    <constraint firstItem="MSr-30-srT" firstAttribute="leading" secondItem="hUk-r1-wTM" secondAttribute="leading" id="Nxw-0V-Vkf"/>
+                                    <constraint firstAttribute="height" constant="407.5" id="ofp-1d-kpz"/>
+                                    <constraint firstAttribute="trailing" secondItem="MSr-30-srT" secondAttribute="trailing" id="s61-OK-4oJ"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.9882352941176471" green="0.9882352941176471" blue="0.9882352941176471" alpha="1" colorSpace="calibratedRGB"/>
