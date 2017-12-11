@@ -105,7 +105,7 @@ class BidsTableViewController: UITableViewController {
   }
   
   private func registerInfoIntoDatabaseWithUID(uid: String, values: [String: AnyObject], sender: UIButton) {
-    let ref = FIRDatabase.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
+    let ref = Database.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
     let reviewsReference = ref.child("projects").child(uid)
     reviewsReference.updateChildValues(values) { (err, ref) in
       if(err != nil) {
@@ -128,7 +128,7 @@ class BidsTableViewController: UITableViewController {
       print("\(key) \(value)")
     }
 
-    NotificationsUtil.notify(notifier_id: FIRAuth.getCurrentUserId(), notified_id: listings[sender.tag].bidder_id, posting_id: (self.currentPosting?.posting_id)!, notificationId: NSUUID().uuidString, notificationType: "bidAccepted", notifier_name: (self.currentUser?.name)!, notifier_image: (self.currentUser?.profilePicture)!, posting_name: (self.currentPosting?.title)!)
+    NotificationsUtil.notify(notifier_id: Auth.getCurrentUserId(), notified_id: listings[sender.tag].bidder_id, posting_id: (self.currentPosting?.posting_id)!, notificationId: NSUUID().uuidString, notificationType: "bidAccepted", notifier_name: (self.currentUser?.name)!, notifier_image: (self.currentUser?.profilePicture)!, posting_name: (self.currentPosting?.title)!)
     
     updateBidAcceptedInDB(bidAmount: listings[sender.tag].id, sender: sender)
   }
@@ -142,7 +142,7 @@ class BidsTableViewController: UITableViewController {
   
   func fetchBidderInfo() {
     for bid in listings {
-      FIRDatabase.database().reference().child("users").observeSingleEvent(of: .value, with: { (snapshot) in
+      Database.database().reference().child("users").observeSingleEvent(of: .value, with: { (snapshot) in
         guard let dictionaries = snapshot.value as? [String: Any] else { return }
         dictionaries.forEach({ (key, value) in
           guard let dictionary = value as? [String: Any] else { return }
@@ -181,7 +181,7 @@ class BidsTableViewController: UITableViewController {
   
   /* Fetches data from bids folder according to project id and current user id */
   func fetchBids() {
-    FIRDatabase.database().reference().child("bids").observeSingleEvent(of: .value, with: { (snapshot) in
+    Database.database().reference().child("bids").observeSingleEvent(of: .value, with: { (snapshot) in
       guard let dictionaries = snapshot.value as? [String: Any] else { return }
       dictionaries.forEach({ (key, value) in
         guard let dictionary = value as? [String: Any] else { return }
@@ -200,9 +200,9 @@ class BidsTableViewController: UITableViewController {
   }
   
   func fetchUserInfo() {
-    FIRDatabase.database().reference().child("users/\(FIRAuth.getCurrentUserId())").observeSingleEvent(of: .value, with: { (snap) in
+    Database.database().reference().child("users/\(Auth.getCurrentUserId())").observeSingleEvent(of: .value, with: { (snap) in
       guard let dictionary = snap.value as? [String: Any] else { return }
-      self.currentUser = User(from: dictionary, id: (FIRAuth.getCurrentUserId()))
+      self.currentUser = User(from: dictionary, id: (Auth.getCurrentUserId()))
       
     })
   }

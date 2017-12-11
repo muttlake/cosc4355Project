@@ -48,9 +48,9 @@ extension UIAlertController {
 }
 
 /* Gets current ID from FIRAuth */
-extension FIRAuth {
+extension Auth {
   static func getCurrentUserId() -> String {
-    return (auth()?.currentUser?.uid)!
+    return (auth().currentUser?.uid)!
   }
 }
 

@@ -41,16 +41,16 @@ class BidFormViewController: UIViewController, UITextFieldDelegate {
     guard let bidAmount = bidAmountField.text, let user_id = userWhoPostedId, let posting_id = postingId else { return }
     
     let bidId = NSUUID().uuidString
-    let values = ["bidAmount": bidAmount, "expectedTime": Date.currentDate, "user_id": user_id, "bidder_id": FIRAuth.getCurrentUserId(), "posting_id": posting_id, "id": bidId]
+    let values = ["bidAmount": bidAmount, "expectedTime": Date.currentDate, "user_id": user_id, "bidder_id": Auth.getCurrentUserId(), "posting_id": posting_id, "id": bidId]
     self.registerInfoIntoDatabaseWithUID(uid: bidId, values: values as [String: AnyObject])
     
-    NotificationsUtil.notify(notifier_id: FIRAuth.getCurrentUserId(), notified_id: user_id, posting_id: posting_id, notificationId: NSUUID().uuidString, notificationType: "bidOffered", notifier_name: (self.currentUser?.name)!, notifier_image: (self.currentUser?.profilePicture)!,posting_name: projectTitleString!)
+    NotificationsUtil.notify(notifier_id: Auth.getCurrentUserId(), notified_id: user_id, posting_id: posting_id, notificationId: NSUUID().uuidString, notificationType: "bidOffered", notifier_name: (self.currentUser?.name)!, notifier_image: (self.currentUser?.profilePicture)!,posting_name: projectTitleString!)
     
     self.navigationController?.popViewController(animated: true)
   }
   
   private func registerInfoIntoDatabaseWithUID(uid: String, values: [String: AnyObject]) {
-    let ref = FIRDatabase.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
+    let ref = Database.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
     let projectsReference = ref.child("bids").child(uid)
     projectsReference.updateChildValues(values) { (err, ref) in
       if(err != nil) {
@@ -61,7 +61,7 @@ class BidFormViewController: UIViewController, UITextFieldDelegate {
   }
   
   func fetchForCertainId(child: String, id: String) {
-    FIRDatabase.database().reference().child(child).child(id).observeSingleEvent(of: .value, with: { (snap) in
+    Database.database().reference().child(child).child(id).observeSingleEvent(of: .value, with: { (snap) in
       guard let dictionary = snap.value as? [String: Any] else { return }
       switch child {
       case "users":
@@ -75,9 +75,9 @@ class BidFormViewController: UIViewController, UITextFieldDelegate {
   }
   
   func fetchUserInfo() {
-    FIRDatabase.database().reference().child("users/\(FIRAuth.getCurrentUserId())").observeSingleEvent(of: .value, with: { (snap) in
+    Database.database().reference().child("users/\(Auth.getCurrentUserId())").observeSingleEvent(of: .value, with: { (snap) in
       guard let dictionary = snap.value as? [String: Any] else { return }
-      self.currentUser = User(from: dictionary, id: (FIRAuth.getCurrentUserId()))
+      self.currentUser = User(from: dictionary, id: (Auth.getCurrentUserId()))
       
     })
   }

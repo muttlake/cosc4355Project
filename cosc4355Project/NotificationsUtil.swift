@@ -16,7 +16,7 @@ class NotificationsUtil {
   }
   
   static private func registerInfoIntoDatabaseWithUID(uid: String, values: [String: AnyObject]) {
-    let ref = FIRDatabase.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
+    let ref = Database.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
     let projectsReference = ref.child("Notification").child(uid)
     projectsReference.updateChildValues(values) { (err, ref) in
       if(err != nil) {

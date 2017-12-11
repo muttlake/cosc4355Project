@@ -74,7 +74,7 @@ class ReviewsForUserCollector {
     
     
     func getAllReviewsForUser(user_id: String, completion: @escaping (Bool) -> ()) {
-        FIRDatabase.database().reference().child("reviews").observeSingleEvent(of: .value, with: { (snapshot) in
+      Database.database().reference().child("reviews").observeSingleEvent(of: .value, with: { (snapshot) in
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
             dictionaries.forEach({ (key, value) in
                 guard let dictionary = value as? [String: Any] else { return }

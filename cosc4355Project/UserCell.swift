@@ -15,13 +15,13 @@ class UserCell: UITableViewCell {
     didSet {
       setupNameAndProfileImage()
       
-      detailTextLabel?.text = message?.text
+      secondaryLabel?.text = message?.text
       
       if let seconds = message?.timestamp?.doubleValue {
         let timestampDate = Date(timeIntervalSince1970: seconds)
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "hh:mm:ss a"
+        dateFormatter.dateFormat = "hh:mm a"
         timeLabel.text = dateFormatter.string(from: timestampDate)
       }
     }
@@ -30,13 +30,13 @@ class UserCell: UITableViewCell {
   fileprivate func setupNameAndProfileImage() {
     
     if let id = message?.chatPartnerId() {
-      let ref = FIRDatabase.database().reference().child("users").child(id)
+      let ref = Database.database().reference().child("users").child(id)
       ref.observeSingleEvent(of: .value, with: { (snapshot) in
         
         if let dictionary = snapshot.value as? [String: AnyObject] {
-          self.textLabel?.text = dictionary["name"] as? String
+          self.mainLabel?.text = dictionary["name"] as? String
           
-          if let profileImageUrl = dictionary["profileImageUrl"] as? String {
+          if let profileImageUrl = dictionary["profilePicture"] as? String {
             self.profileImageView.loadImage(url: profileImageUrl)
           }
         }
@@ -47,34 +47,23 @@ class UserCell: UITableViewCell {
   
   override func layoutSubviews() {
     super.layoutSubviews()
-    
-    textLabel?.frame = CGRect(x: 64, y: textLabel!.frame.origin.y - 2, width: textLabel!.frame.width, height: textLabel!.frame.height)
-    
-    detailTextLabel?.frame = CGRect(x: 64, y: detailTextLabel!.frame.origin.y + 2, width: detailTextLabel!.frame.width, height: detailTextLabel!.frame.height)
+ 
+    profileImageView.layer.cornerRadius = 24
+    profileImageView.layer.masksToBounds = true
   }
   
-  let profileImageView: CustomImageView = {
-    let imageView = CustomImageView()
-    imageView.translatesAutoresizingMaskIntoConstraints = false
-    imageView.layer.cornerRadius = 24
-    imageView.layer.masksToBounds = true
-    imageView.contentMode = .scaleAspectFill
-    return imageView
-  }()
+  @IBOutlet weak var profileImageView: CustomImageView!
   
-  let timeLabel: UILabel = {
-    let label = UILabel()
-    //        label.text = "HH:MM:SS"
-    label.font = UIFont.systemFont(ofSize: 13)
-    label.textColor = UIColor.darkGray
-    label.translatesAutoresizingMaskIntoConstraints = false
-    return label
-  }()
+  @IBOutlet weak var timeLabel: UILabel!
+  
+  @IBOutlet weak var mainLabel: UILabel!
+  
+  @IBOutlet weak var secondaryLabel: UILabel!
+  
   
   override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
-    
-    addSubview(profileImageView)
+
     addSubview(timeLabel)
     
     //ios 9 constraint anchors
