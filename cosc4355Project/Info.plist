@@ -24,14 +24,12 @@
 	<string>Reparo wants to use images from your camera.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>We want your location so that you can see nearby projects.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We want your location so that you can see nearby projects?</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>HI BRO!</string>
-
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string></string>
-
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

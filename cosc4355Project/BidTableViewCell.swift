@@ -20,13 +20,21 @@ class BidTableViewCell: UITableViewCell {
   
   var isAccepted = false
  
-  @IBOutlet weak var acceptButton: UIButton!
+  @IBOutlet weak var acceptButton: UIButton! {
+    didSet {
+      acceptButton.layer.masksToBounds = true
+      acceptButton.layer.cornerRadius = 10
+      acceptButton.layer.borderWidth = 1
+      acceptButton.layer.borderColor = acceptButton.titleLabel?.textColor.cgColor
+    }
+  }
 
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    // Initialization code
   }
+  
+  
   
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
