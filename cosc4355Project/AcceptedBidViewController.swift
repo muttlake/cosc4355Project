@@ -113,6 +113,24 @@ class AcceptedBidViewController: UIViewController {
     self.makeTapGestureForProfileSegue(userPhoto: userImage)
     
     fetchUserInfo()
+    
+    let reviewsCollection = ReviewsForUserCollector(user_id: (self.bid?.bidder_id)!)
+    reviewsCollection.calculateUserRating(completion: { (success) -> () in
+        if success {
+            print("Now average rating is: ", reviewsCollection.averageRating)
+            var averageRatingString: NSString = ""
+            if reviewsCollection.hasReviews {
+                averageRatingString = NSString(format: "%.2f Stars Average", reviewsCollection.averageRating)
+            } else {
+                averageRatingString = "No reviews yet."
+            }
+            self.ratingLabel.text = String(averageRatingString)
+        }
+        else
+        {
+            print("Error retrieving averageRating")
+        }
+    })
   }
   
   func fetchUserInfo() {
