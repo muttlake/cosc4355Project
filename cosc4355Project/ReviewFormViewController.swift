@@ -28,14 +28,15 @@ class ReviewFormViewController: UIViewController, UITextViewDelegate {
   @IBOutlet weak var stars4Outlet: UIButton!
   @IBOutlet weak var stars5Outlet: UIButton!
   
-  @IBAction func stars0Button(_ sender: Any) {
-    self.numStars = 0
-    stars1Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
-    stars2Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
-    stars3Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
-    stars4Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
-    stars5Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
-  }
+ /* Reviewing 0 stars makes little sense */
+//  @IBAction func stars0Button(_ sender: Any) {
+//    self.numStars = 0
+//    stars1Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
+//    stars2Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
+//    stars3Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
+//    stars4Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
+//    stars5Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
+//  }
   
   @IBAction func stars1Button(_ sender: Any) {
     self.numStars = 1
