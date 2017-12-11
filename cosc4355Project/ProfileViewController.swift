@@ -37,7 +37,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBAction func logoutButton(_ sender: UIButton) {
         do {
-            try FIRAuth.auth()?.signOut()
+          try Auth.auth().signOut()
             performSegue(withIdentifier: "logoutSegue", sender: self)
         } catch let error {
             print("Sign out failed: \(error)")
@@ -63,11 +63,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         else //user is looking at their own profile
         {
-            currentUserId = FIRAuth.getCurrentUserId()
+          currentUserId = Auth.getCurrentUserId()
         }
         
         /* Turns picture into a circle */
-        profilePicture.layer.cornerRadius = 64
+        profilePicture.layer.cornerRadius = profilePicture.frame.size.height/2
         profilePicture.layer.masksToBounds = true
         
         //Enable user to choose photo
@@ -99,7 +99,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func fetchUserProfile() {
-        FIRDatabase.database().reference().child("users").child(currentUserId).observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
+      Database.database().reference().child("users").child(currentUserId).observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
             let userValues = FIRDataSnapshot.value as? [String: AnyObject]
             self.nameLabel.text = userValues?["name"] as? String
             self.profilePicture.loadImage(url: (userValues?["profilePicture"] as? String) ?? "")
@@ -122,7 +122,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func fetchReviewersPhotos() {
         for review in reviews {
-            FIRDatabase.database().reference().child("users").observeSingleEvent(of: .value, with: { (snapshot) in
+          Database.database().reference().child("users").observeSingleEvent(of: .value, with: { (snapshot) in
                 guard let dictionaries = snapshot.value as? [String: Any] else { return }
                 dictionaries.forEach({ (key, value) in
                     guard let dictionary = value as? [String: Any] else { return }
@@ -177,7 +177,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
     /* Fetches all data from projects folder */
     func fetchReviews() {
-        FIRDatabase.database().reference().child("reviews").observeSingleEvent(of: .value, with: { (snapshot) in
+      Database.database().reference().child("reviews").observeSingleEvent(of: .value, with: { (snapshot) in
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
             dictionaries.forEach({ (key, value) in
                 guard let dictionary = value as? [String: Any] else { return }
@@ -221,7 +221,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     ////////////// Allow user profile photo to be changed //////////////
     @objc func handlePhotoUploadCurrentUser() {
         //check if profile is current user's profile
-        if self.currentUserId == FIRAuth.getCurrentUserId()
+      if self.currentUserId == Auth.getCurrentUserId()
         {
             self.handlePhotoUpload()
         }
@@ -260,10 +260,10 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         if let image = selectedImage {
             profilePicture.image = image
-            let current_user_id = FIRAuth.getCurrentUserId()
-            let storageRef = FIRStorage.storage().reference().child("profilePics").child("\(current_user_id).jpg")
+          let current_user_id = Auth.getCurrentUserId()
+          let storageRef = Storage.storage().reference().child("profilePics").child("\(current_user_id).jpg")
             if let profilePic = self.profilePicture.image, let uploadData = UIImageJPEGRepresentation(profilePic, 0.1) {
-                storageRef.put(uploadData, metadata: nil) { (metadata, error) in
+                storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
                     if let error = error
                     {
                         print(error);
@@ -286,7 +286,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     private func registerInfoIntoDatabaseWithUID(uid: String, values: [String: AnyObject]) {
-        let ref = FIRDatabase.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
+      let ref = Database.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
         let projectsReference = ref.child("users").child(uid)
         projectsReference.updateChildValues(values) { (err, ref) in
             if(err != nil) {

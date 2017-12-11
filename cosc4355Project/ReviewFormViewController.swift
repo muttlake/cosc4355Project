@@ -8,8 +8,9 @@
 
 import UIKit
 import Firebase
+import ToneAnalyzerV3
 
-class ReviewFormViewController: UIViewController {
+class ReviewFormViewController: UIViewController, UITextViewDelegate {
   
   var numStars: Int = -1
   
@@ -116,6 +117,8 @@ class ReviewFormViewController: UIViewController {
     super.viewDidLoad()
     let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKb))
     view.addGestureRecognizer(tap)
+    reviewWordsField.delegate = self
+    print("reviewing: \(aboutUser?.name ?? "DEFAULT")")
   }
   
   override func didReceiveMemoryWarning() {
@@ -126,13 +129,13 @@ class ReviewFormViewController: UIViewController {
   func registerReviewIntoDatabase() {
     let reviewId = NSUUID().uuidString
 
-    let values = ["user_id": FIRAuth.getCurrentUserId(), "about_id": newReview!.about_id, "posting_id": newReview!.posting_id, "stars": newReview!.stars, "reviewWords": newReview!.reviewWords, "reviewTime": newReview!.reviewTime] as [String : Any]
-    NotificationsUtil.notify(notifier_id: FIRAuth.getCurrentUserId(), notified_id:newReview!.about_id, posting_id: newReview!.posting_id, notificationId: NSUUID().uuidString, notificationType: "reviewMade", notifier_name: "", notifier_image: "", posting_name:  "")
+    let values = ["user_id": Auth.getCurrentUserId(), "about_id": newReview!.about_id, "posting_id": newReview!.posting_id, "stars": newReview!.stars, "reviewWords": newReview!.reviewWords, "reviewTime": newReview!.reviewTime] as [String : Any]
+    NotificationsUtil.notify(notifier_id: Auth.getCurrentUserId(), notified_id:newReview!.about_id, posting_id: newReview!.posting_id, notificationId: NSUUID().uuidString, notificationType: "reviewMade", notifier_name: "", notifier_image: "", posting_name:  "")
     self.registerInfoIntoDatabaseWithUID(uid: reviewId, values: values as [String: AnyObject])
   }
   
   private func registerInfoIntoDatabaseWithUID(uid: String, values: [String: AnyObject]) {
-    let ref = FIRDatabase.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
+    let ref = Database.database().reference(fromURL: "https://cosc4355project.firebaseio.com/")
     let reviewsReference = ref.child("reviews").child(uid)
     reviewsReference.updateChildValues(values) { (err, ref) in
       if(err != nil) {
@@ -142,16 +145,41 @@ class ReviewFormViewController: UIViewController {
     }
   }
   
+  let username = "00498f92-df6f-4a8a-a7b7-6079c4ab31bf"
+  let password = "WdrGdeOvcXhe"
+  let version = "2016-12-07" // use today's date for the most recent version
   
+  func watsonTA() {
+    let toneAnalyzer = ToneAnalyzer(username: username, password: password, version: version)
+    let text = reviewWordsField.text!
+    let failure = { (error: Error) in print(error) }
+    toneAnalyzer.getTone(ofText: text, failure: failure) { result in
+      // print(result.documentTone)
+      let joyScore = result.documentTone[0].tones[3].score
+      
+      DispatchQueue.main.async {
+        print(joyScore)
+        self.getGuessedRating(score: joyScore)
+      }
+    }
+  }
   
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destinationViewController.
-   // Pass the selected object to the new view controller.
-   }
-   */
+  func getGuessedRating(score: Double) {
+    switch score {
+    case 0.0 ..< 0.10:
+      stars1Button(self)
+    case 0.11 ..< 0.40:
+      stars2Button(self)
+    case 0.41 ..< 0.75:
+      stars3Button(self)
+    case 0.76 ..< 0.90:
+      stars4Button(self)
+    default:
+      stars5Button(self)
+    }
+  }
   
+  func textViewDidEndEditing(_ textView: UITextView) {
+    watsonTA()
+  }
 }
