@@ -119,6 +119,10 @@ class ReviewFormViewController: UIViewController, UITextViewDelegate {
     let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKb))
     view.addGestureRecognizer(tap)
     reviewWordsField.delegate = self
+    reviewWordsField.layer.masksToBounds = true
+    reviewWordsField.layer.cornerRadius = 5
+    reviewWordsField.layer.borderColor = (UIColor(r: 110/255, g: 142/255, b: 219/255)).cgColor
+    reviewWordsField.layer.borderWidth = 1
     print("reviewing: \(aboutUser?.name ?? "DEFAULT")")
   }
   
