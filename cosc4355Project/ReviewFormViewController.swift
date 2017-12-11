@@ -28,15 +28,14 @@ class ReviewFormViewController: UIViewController, UITextViewDelegate {
   @IBOutlet weak var stars4Outlet: UIButton!
   @IBOutlet weak var stars5Outlet: UIButton!
   
- /* Reviewing 0 stars makes little sense */
-//  @IBAction func stars0Button(_ sender: Any) {
-//    self.numStars = 0
-//    stars1Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
-//    stars2Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
-//    stars3Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
-//    stars4Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
-//    stars5Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
-//  }
+  @IBAction func stars0Button(_ sender: Any) {
+    self.numStars = 0
+    stars1Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
+    stars2Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
+    stars3Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
+    stars4Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
+    stars5Outlet.setImage(UIImage(named: "singleStarEmpty"), for: .normal)
+  }
   
   @IBAction func stars1Button(_ sender: Any) {
     self.numStars = 1
@@ -119,10 +118,6 @@ class ReviewFormViewController: UIViewController, UITextViewDelegate {
     let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKb))
     view.addGestureRecognizer(tap)
     reviewWordsField.delegate = self
-    reviewWordsField.layer.masksToBounds = true
-    reviewWordsField.layer.cornerRadius = 5
-    reviewWordsField.layer.borderColor = (UIColor(r: 110/255, g: 142/255, b: 219/255)).cgColor
-    reviewWordsField.layer.borderWidth = 1
     print("reviewing: \(aboutUser?.name ?? "DEFAULT")")
   }
   
