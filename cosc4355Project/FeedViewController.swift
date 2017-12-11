@@ -54,15 +54,7 @@ class FeedViewController: UITableViewController, ListingsProtocol {
   
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == UITableViewCellEditingStyle.delete && !isContractor {
-<<<<<<< HEAD
       Database.database().reference().child("projects").child(self.orderedListings[indexPath.row].posting_id).setValue(nil)
-=======
-<<<<<<< HEAD
-      Database.database().reference().child("projects").child(self.orderedListings[indexPath.row].posting_id).setValue(nil)
-=======
-      FIRDatabase.database().reference().child("projects").child(self.orderedListings[indexPath.row].posting_id).setValue(nil)
->>>>>>> 97b27e84d024891bfa3da24867f65a4ecaa39ca1
->>>>>>> 98a5eda5efcea4b47378254d6c01bd3d21404e20
       handleRefresh()
     }
   }

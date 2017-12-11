@@ -8,14 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		06DAA3191FD63F04001A78A1 /* MapSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DAA3181FD63F04001A78A1 /* MapSettingViewController.swift */; };
-<<<<<<< HEAD
 		13E89F25982CA6B38CA18382 /* libPods-cosc4355ProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF68D6AF7689B715EAA1F8F2 /* libPods-cosc4355ProjectTests.a */; };
-=======
-<<<<<<< HEAD
-		13E89F25982CA6B38CA18382 /* libPods-cosc4355ProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF68D6AF7689B715EAA1F8F2 /* libPods-cosc4355ProjectTests.a */; };
-=======
->>>>>>> 97b27e84d024891bfa3da24867f65a4ecaa39ca1
->>>>>>> 98a5eda5efcea4b47378254d6c01bd3d21404e20
 		202BC0511F967BC00085A228 /* ReviewFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202BC0501F967BC00085A228 /* ReviewFormViewController.swift */; };
 		CB069E1D1F9ED10F00208B03 /* AcceptedBidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB069E1C1F9ED10F00208B03 /* AcceptedBidViewController.swift */; };
 		CB28661A1FD9B89C00E741F3 /* ToneAnalyzerV3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB2866191FD9B89C00E741F3 /* ToneAnalyzerV3.framework */; };
@@ -93,14 +86,7 @@
 
 /* Begin PBXFileReference section */
 		06DAA3181FD63F04001A78A1 /* MapSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapSettingViewController.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		0E3267FC9CBEF1A2B60A54A0 /* Pods-XCProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCProjectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XCProjectTests/Pods-XCProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
-=======
-<<<<<<< HEAD
-		0E3267FC9CBEF1A2B60A54A0 /* Pods-XCProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCProjectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XCProjectTests/Pods-XCProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
-=======
->>>>>>> 97b27e84d024891bfa3da24867f65a4ecaa39ca1
->>>>>>> 98a5eda5efcea4b47378254d6c01bd3d21404e20
 		202BC0501F967BC00085A228 /* ReviewFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewFormViewController.swift; sourceTree = "<group>"; };
 		2F34BC55FFBBA1687456CF9B /* Pods-cosc4355Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cosc4355Project.release.xcconfig"; path = "Pods/Target Support Files/Pods-cosc4355Project/Pods-cosc4355Project.release.xcconfig"; sourceTree = "<group>"; };
 		314D7A86609F89122C75B6B3 /* libPods-XCProjectTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XCProjectTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -772,16 +758,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = cosc4355Project/Info.plist;
-<<<<<<< HEAD
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-=======
-<<<<<<< HEAD
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-=======
-
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
->>>>>>> 97b27e84d024891bfa3da24867f65a4ecaa39ca1
->>>>>>> 98a5eda5efcea4b47378254d6c01bd3d21404e20
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = team1.rb.cosc4355Project;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -802,16 +779,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = cosc4355Project/Info.plist;
-<<<<<<< HEAD
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-=======
-<<<<<<< HEAD
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-=======
-
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
->>>>>>> 97b27e84d024891bfa3da24867f65a4ecaa39ca1
->>>>>>> 98a5eda5efcea4b47378254d6c01bd3d21404e20
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = team1.rb.cosc4355Project;
 				PRODUCT_NAME = "$(TARGET_NAME)";
