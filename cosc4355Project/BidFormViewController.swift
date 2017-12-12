@@ -37,6 +37,8 @@ class BidFormViewController: UIViewController, UITextFieldDelegate {
   var userWhoPosted: User?
   var posting: Posting?
   
+  
+  
   @IBAction func makeBid(_ sender: UIButton) {
     guard let bidAmount = bidAmountField.text, let user_id = userWhoPostedId, let posting_id = postingId else { return }
     

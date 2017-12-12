@@ -1082,13 +1082,16 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="bidCell" rowHeight="93" id="t73-G4-UPX" customClass="BidTableViewCell" customModule="cosc4355Project" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="93"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t73-G4-UPX" id="3P9-Py-Xhn" customClass="BidTableViewCell" customModule="cosc4355Project" customModuleProvider="target">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t73-G4-UPX" id="3P9-Py-Xhn">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="92.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d5G-0R-NKq" customClass="CustomImageView" customModule="cosc4355Project" customModuleProvider="target">
-                                            <rect key="frame" x="26" y="12" width="70" height="70"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d5G-0R-NKq" customClass="CustomImageView" customModule="cosc4355Project" customModuleProvider="target">
+                                            <rect key="frame" x="16" y="12" width="70" height="70"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="70" id="PUN-gi-v1s"/>
+                                                <constraint firstAttribute="width" constant="70" id="zxJ-13-XII"/>
+                                            </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EVR-hk-c4h">
                                             <rect key="frame" x="92.5" y="20.5" width="45" height="20.5"/>
@@ -1105,7 +1108,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="DK8-Km-nNR">
-                                            <rect key="frame" x="251" y="20.5" width="100" height="60.5"/>
+                                            <rect key="frame" x="251" y="17.5" width="100" height="60.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fmx-5y-e1k">
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="20.5"/>
@@ -1129,7 +1132,9 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="DK8-Km-nNR" secondAttribute="bottom" constant="1" id="Hfv-4x-FvB"/>
+                                        <constraint firstItem="d5G-0R-NKq" firstAttribute="leading" secondItem="3P9-Py-Xhn" secondAttribute="leadingMargin" id="Gyw-5M-uyp"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="DK8-Km-nNR" secondAttribute="bottom" constant="4" id="Hfv-4x-FvB"/>
+                                        <constraint firstItem="d5G-0R-NKq" firstAttribute="bottom" secondItem="3P9-Py-Xhn" secondAttribute="bottomMargin" id="b5Q-gf-rTC"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <constraints>
@@ -1156,7 +1161,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mff-H1-sQP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4136.25" y="499.64788732394368"/>
+            <point key="canvasLocation" x="4135.1999999999998" y="498.80059970014997"/>
         </scene>
         <!--Bid Accepted-->
         <scene sceneID="45E-QE-Bzf">
@@ -1904,7 +1909,7 @@
         <segue reference="e8d-IR-9jH"/>
         <segue reference="qq0-Lt-nZh"/>
         <segue reference="ZDJ-KR-xJL"/>
-        <segue reference="d9k-8p-2mR"/>
-        <segue reference="eUM-GX-vT4"/>
+        <segue reference="SIz-M7-chQ"/>
+        <segue reference="TzZ-ZX-Nd0"/>
     </inferredMetricsTieBreakers>
 </document>
