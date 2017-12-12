@@ -109,7 +109,7 @@ class MapsViewController: UIViewController, MapSettingDelegate{
         locationManager?.delegate = self
         mapView.delegate = self
         
-        
+        getUserType()
         /*
          let button = UIButton()
          button.frame = CGRect(0, 0, 51, 31) //won't work if you don't set frame
