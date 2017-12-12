@@ -46,10 +46,10 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         print("Sign out successful")
     }
   
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(true)
-    logoutOutlet.isHidden = cameFromBids ? true : false
-  }
+//  override func viewWillAppear(_ animated: Bool) {
+//    super.viewWillAppear(true)
+//    logoutOutlet.isHidden = cameFromBids ? true : false
+//  }
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,10 +60,12 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             //currentUserID should be set now
             print("Just Segued here: currentUserId: ", currentUserId)
             //didSegueHere = false
+            logoutOutlet.isHidden = true
         }
         else //user is looking at their own profile
         {
           currentUserId = Auth.getCurrentUserId()
+            logoutOutlet.isHidden = false
         }
         
         /* Turns picture into a circle */

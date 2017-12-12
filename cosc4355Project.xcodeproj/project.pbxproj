@@ -66,7 +66,6 @@
 		FB9A27361FDD0C2C00199981 /* ProfileViewController_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9A27351FDD0C2C00199981 /* ProfileViewController_Tests.swift */; };
 		FB9A27381FDD15D500199981 /* ReviewFormViewController_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9A27371FDD15D500199981 /* ReviewFormViewController_Tests.swift */; };
 		FB9A273A1FDD1BFA00199981 /* ReviewViewController_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9A27391FDD1BFA00199981 /* ReviewViewController_Tests.swift */; };
-		FB9A273C1FDE26C900199981 /* ProfileViewController_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9A273B1FDE26C900199981 /* ProfileViewController_UITests.swift */; };
 		FB9A273E1FDE2F1E00199981 /* Notification_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9A273D1FDE2F1E00199981 /* Notification_Tests.swift */; };
 		FBA7D7171FB56F55003A23FE /* ReviewsForUserCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA7D7161FB56F55003A23FE /* ReviewsForUserCollector.swift */; };
 		FBF617261F9999A30050F10C /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF617251F9999A30050F10C /* ReviewViewController.swift */; };
@@ -165,7 +164,6 @@
 		FB9A27351FDD0C2C00199981 /* ProfileViewController_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController_Tests.swift; sourceTree = "<group>"; };
 		FB9A27371FDD15D500199981 /* ReviewFormViewController_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFormViewController_Tests.swift; sourceTree = "<group>"; };
 		FB9A27391FDD1BFA00199981 /* ReviewViewController_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController_Tests.swift; sourceTree = "<group>"; };
-		FB9A273B1FDE26C900199981 /* ProfileViewController_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController_UITests.swift; sourceTree = "<group>"; };
 		FB9A273D1FDE2F1E00199981 /* Notification_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification_Tests.swift; sourceTree = "<group>"; };
 		FBA7D7161FB56F55003A23FE /* ReviewsForUserCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsForUserCollector.swift; sourceTree = "<group>"; };
 		FBF617251F9999A30050F10C /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
@@ -349,7 +347,6 @@
 				FB9A27351FDD0C2C00199981 /* ProfileViewController_Tests.swift */,
 				FB9A27371FDD15D500199981 /* ReviewFormViewController_Tests.swift */,
 				FB9A27391FDD1BFA00199981 /* ReviewViewController_Tests.swift */,
-				FB9A273B1FDE26C900199981 /* ProfileViewController_UITests.swift */,
 				FB9A273D1FDE2F1E00199981 /* Notification_Tests.swift */,
 			);
 			path = cosc4355ProjectTests;
@@ -648,7 +645,6 @@
 				FB9A273A1FDD1BFA00199981 /* ReviewViewController_Tests.swift in Sources */,
 				CBF41E481FDA12C70061C0BF /* cosc4355ProjectTests.swift in Sources */,
 				FB9A27341FDD0B2700199981 /* ReviewsTableViewCell_Tests.swift in Sources */,
-				FB9A273C1FDE26C900199981 /* ProfileViewController_UITests.swift in Sources */,
 				FB9A273E1FDE2F1E00199981 /* Notification_Tests.swift in Sources */,
 				FB9A27321FDD079E00199981 /* Review_Tests.swift in Sources */,
 			);
