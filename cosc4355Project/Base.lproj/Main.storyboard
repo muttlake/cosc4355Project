@@ -386,7 +386,7 @@
                                             <constraint firstAttribute="height" constant="41" id="gaT-fF-J5y"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
-                                        <color key="textColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.14117647058823529" green="0.31764705882352939" blue="0.44705882352941173" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Star Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TsH-La-GAA">
@@ -1984,7 +1984,7 @@
         <image name="pp" width="260" height="194"/>
         <image name="projectdetails_panel" width="341" height="80"/>
         <image name="register" width="254" height="47"/>
-        <image name="review_button" width="254" height="47"/>
+        <image name="review_button" width="180" height="34"/>
         <image name="signin" width="254" height="47"/>
         <image name="signup" width="254" height="47"/>
         <image name="singleStarEmpty" width="442" height="365"/>
