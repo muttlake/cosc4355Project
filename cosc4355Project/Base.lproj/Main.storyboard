@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -240,7 +240,7 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPic" translatesAutoresizingMaskIntoConstraints="NO" id="dq8-L2-uDo" customClass="CustomImageView" customModule="cosc4355Project" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPic" translatesAutoresizingMaskIntoConstraints="NO" id="dq8-L2-uDo" customClass="CustomImageView" customModule="cosc4355Project" customModuleProvider="target">
                                 <rect key="frame" x="132.5" y="71" width="110" height="110"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="110" id="46y-I5-Lfp"/>
@@ -1910,7 +1910,7 @@
         <segue reference="e8d-IR-9jH"/>
         <segue reference="qq0-Lt-nZh"/>
         <segue reference="ZDJ-KR-xJL"/>
-        <segue reference="d9k-8p-2mR"/>
-        <segue reference="eTU-mh-IAE"/>
+        <segue reference="SIz-M7-chQ"/>
+        <segue reference="eUM-GX-vT4"/>
     </inferredMetricsTieBreakers>
 </document>
