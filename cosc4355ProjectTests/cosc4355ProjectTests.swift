@@ -60,12 +60,12 @@ class cosc4355ProjectTests: XCTestCase {
         Auth.auth().signIn(withEmail:"abc@gmail.com", password:"abcdefgkjhkjh") { [unowned self] (user, error) in
             
             if let error = error {
-                rightEmailAndPassword = true
-                XCTAssertTrue(rightEmailAndPassword == true)
+                wrongEmailAndPassword = true
+                XCTAssertTrue(wrongEmailAndPassword == true)
                
             }else{
                 // should not go to here, test fails if go to here
-                XCTAssertTrue(rightEmailAndPassword == true)
+                XCTAssertTrue(wrongEmailAndPassword == true)
             }
         }
         
