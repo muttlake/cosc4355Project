@@ -216,6 +216,7 @@ class FeedViewController: UITableViewController, ListingsProtocol {
       dvc.posterImagePhoto = currentCell.userPhoto.image
       dvc.postingId = currentCell.posting_id
       dvc.userWhoPostedId = currentCell.poster_id
+      dvc.ownerTitleHolder = UsersList.getUsers()[currentCell.poster_id!]?.name
     } else if segue.identifier == "viewBidsSegue" {
       let dvc = segue.destination as! BidsTableViewController
       dvc.currentPosting = orderedListings[tableView.getSelectedIndex()] as? Posting

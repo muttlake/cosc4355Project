@@ -243,6 +243,7 @@ class MapsViewController: UIViewController, MapSettingDelegate{
             dvc.projectDescriptionString = customAnnotation.postingDetails["description"]
             dvc.postingId = customAnnotation.postingDetails["posting_id"]
             dvc.userWhoPostedId = customAnnotation.postingDetails["user_id"]
+          dvc.ownerTitleHolder = UsersList.getUsers()[customAnnotation.postingDetails["user_id"]!]?.name
             //Disable textbox/button if user is client
             if isContractor == false
             {

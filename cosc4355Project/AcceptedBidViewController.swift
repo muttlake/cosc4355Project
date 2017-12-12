@@ -21,7 +21,7 @@ class AcceptedBidViewController: UIViewController {
   
   @IBOutlet weak var userImage: CustomImageView!
   
-  @IBOutlet weak var ratingLabel: UILabel!
+  // @IBOutlet weak var ratingLabel: UILabel!
   
   @IBOutlet weak var contactInfoLabel: UILabel!
   
@@ -121,10 +121,14 @@ class AcceptedBidViewController: UIViewController {
             var averageRatingString: NSString = ""
             if reviewsCollection.hasReviews {
                 averageRatingString = NSString(format: "%.2f Stars Average", reviewsCollection.averageRating)
+              
+              self.bidderRating.image = UIImage(named: String(Int(reviewsCollection.averageRating)) + "stars")
+              print(String(Int(reviewsCollection.averageRating)) + "stars")
             } else {
                 averageRatingString = "No reviews yet."
+              self.bidderRating.image = UIImage(named: "0stars")
             }
-            self.ratingLabel.text = String(averageRatingString)
+            // self.ratingLabel.text = String(averageRatingString)
         }
         else
         {
@@ -133,13 +137,16 @@ class AcceptedBidViewController: UIViewController {
     })
   }
   
+  @IBOutlet weak var bidderRating: UIImageView!
+  
+  
   func fetchUserInfo() {
     Database.database().reference().child("users/\(bid?.bidder_id ?? "")").observeSingleEvent(of: .value, with: { (snap) in
       guard let dictionary = snap.value as? [String: Any] else { return }
       self.user = User(from: dictionary, id: (self.bid?.bidder_id)!)
       self.nameLabel.text = (self.user?.name)! + " • " + Double.getFormattedCurrency(num: (self.bid?.bidAmount)!)
       self.userImage.loadImage(url: (self.user?.profilePicture) ?? "")
-      self.ratingLabel.text = "5 Star"
+      // self.ratingLabel.text = "5 Star"
       self.contactInfoLabel.text = self.user?.email
     })
   }

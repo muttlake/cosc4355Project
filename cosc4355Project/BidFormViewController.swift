@@ -25,6 +25,10 @@ class BidFormViewController: UIViewController, UITextFieldDelegate {
   
   var projectTitleString: String?
   
+  @IBOutlet weak var ownerTitle: UILabel!
+  
+  var ownerTitleHolder: String?
+  
   var projectDescriptionString: String?
   
   var projectImagePhoto: UIImage?
@@ -131,8 +135,9 @@ class BidFormViewController: UIViewController, UITextFieldDelegate {
     projectDescription.text = projectDescriptionString ?? "DEFAULT DESC"
     projectImage.image = projectImagePhoto!
     posterImage.image = posterImagePhoto!
+    ownerTitle.text = ownerTitleHolder ?? "DEFAULT OWNER"
     
-    makeTapGestureForProfileSegue(userPhoto: posterImage)
+    makeTapGestureForProfileSegue(userPhoto: projectImage)
     // print(postingId ?? "empty1")
     // print(userWhoPostedId ?? "empty2")
   }
