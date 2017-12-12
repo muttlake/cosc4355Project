@@ -261,7 +261,7 @@
                                 <rect key="frame" x="0.0" y="339" width="320" height="130"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reviewCell" rowHeight="100" id="c9a-oI-9Sw" customClass="ReviewTableViewCell" customModule="cosc4355Project" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reviewCell" rowHeight="100" id="c9a-oI-9Sw" customClass="ReviewTableViewCell" customModule="cosc4355Project" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c9a-oI-9Sw" id="Tap-fi-bQo">
@@ -1998,7 +1998,7 @@
         <segue reference="e8d-IR-9jH"/>
         <segue reference="qq0-Lt-nZh"/>
         <segue reference="ZDJ-KR-xJL"/>
-        <segue reference="SIz-M7-chQ"/>
-        <segue reference="TzZ-ZX-Nd0"/>
+        <segue reference="d9k-8p-2mR"/>
+        <segue reference="eUM-GX-vT4"/>
     </inferredMetricsTieBreakers>
 </document>
