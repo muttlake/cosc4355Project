@@ -39,7 +39,37 @@ class cosc4355ProjectTests: XCTestCase {
        vc.findNotification(notificationID:"testing",completion:{(success) in   XCTAssertTrue(success == false)})
     
    }
-    
+       
+    func testLogin(){
+        FirebaseApp.configure()
+        var rightEmailAndPassword = false;
+        var wrongEmailAndPassword = false;
+        // correct email and password
+        Auth.auth().signIn(withEmail:"abc@gmail.com", password:"abcdefg") { [unowned self] (user, error) in
+            
+            if let error = error {
+                 // should not go to here, test fails if go to here
+                XCTAssertTrue(rightEmailAndPassword == true)
+            }else{
+                  rightEmailAndPassword = true
+                  XCTAssertTrue(rightEmailAndPassword == true)
+                
+            }
+           }
+    // wrong password
+        Auth.auth().signIn(withEmail:"abc@gmail.com", password:"abcdefgkjhkjh") { [unowned self] (user, error) in
+            
+            if let error = error {
+                rightEmailAndPassword = true
+                XCTAssertTrue(rightEmailAndPassword == true)
+               
+            }else{
+                // should not go to here, test fails if go to here
+                XCTAssertTrue(rightEmailAndPassword == true)
+            }
+        }
+        
+    }
   
   func testPerformanceExample() {
     // This is an example of a performance test case.
