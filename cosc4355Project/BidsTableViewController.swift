@@ -41,26 +41,27 @@ class BidsTableViewController: UITableViewController {
     
     let reviewsCollection = ReviewsForUserCollector(user_id: currentBid.bidder_id)
     reviewsCollection.calculateUserRating(completion: { (success) -> () in
-        if success {
-            print("Now average rating is: ", reviewsCollection.averageRating)
-            var averageRatingString: NSString = ""
-            if reviewsCollection.hasReviews {
-                averageRatingString = NSString(format: "%.2f Stars Average", reviewsCollection.averageRating)
-            } else {
-                averageRatingString = "No reviews yet."
-            }
-            cell.bidderRating.text = String(averageRatingString)
+      if success {
+        print("Now average rating is: ", reviewsCollection.averageRating)
+        var averageRatingString: NSString = ""
+        if reviewsCollection.hasReviews {
+          averageRatingString = NSString(format: "%.2f Stars Average", reviewsCollection.averageRating)
+        } else {
+          averageRatingString = "No reviews yet."
         }
-        else
-        {
-            print("Error retrieving averageRating")
-        }
+        cell.bidderRating.image = UIImage(named: String(Int(reviewsCollection.averageRating)) + "stars")
+        print(String(Int(reviewsCollection.averageRating)) + "stars")
+      }
+      else
+      {
+        cell.bidderRating.image = UIImage(named: "0stars")
+        print("Error retrieving averageRating")
+      }
     })
     
     //let averageRatingString = String(averageRatingForUser) + " Stars"
     
     //cell.bidderRating.text = averageRatingString
-    cell.bidderRating.text = ""
     print("Current Bidder ID is :", currentBid.bidder_id)
     cell.bidderBid.text = Double.getFormattedCurrency(num: currentBid.bidAmount)
     cell.acceptButton.tag = indexPath.row
@@ -71,7 +72,6 @@ class BidsTableViewController: UITableViewController {
     
     return cell
   }
-  
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     profileSegueUserId = listings[indexPath.row].bidder_id
@@ -127,7 +127,7 @@ class BidsTableViewController: UITableViewController {
     for (key, value) in biddersInfo {
       print("\(key) \(value)")
     }
-
+    
     NotificationsUtil.notify(notifier_id: Auth.getCurrentUserId(), notified_id: listings[sender.tag].bidder_id, posting_id: (self.currentPosting?.posting_id)!, notificationId: NSUUID().uuidString, notificationType: "bidAccepted", notifier_name: (self.currentUser?.name)!, notifier_image: (self.currentUser?.profilePicture)!, posting_name: (self.currentPosting?.title)!)
     
     updateBidAcceptedInDB(bidAmount: listings[sender.tag].id, sender: sender)
@@ -206,10 +206,10 @@ class BidsTableViewController: UITableViewController {
       
     })
   }
-    
-    
-    /* Fetches all data from projects folder */
-
+  
+  
+  /* Fetches all data from projects folder */
+  
 }
 
 

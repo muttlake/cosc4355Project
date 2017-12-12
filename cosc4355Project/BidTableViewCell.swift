@@ -10,11 +10,16 @@ import UIKit
 
 class BidTableViewCell: UITableViewCell {
   
-  @IBOutlet weak var bidderPhoto: CustomImageView!
+  @IBOutlet weak var bidderPhoto: CustomImageView! {
+    didSet {
+      bidderPhoto.layer.masksToBounds = true
+      bidderPhoto.layer.cornerRadius = bidderPhoto.layer.frame.height / 2
+    }
+  }
   
   @IBOutlet weak var bidderName: UILabel!
   
-  @IBOutlet weak var bidderRating: UILabel!
+  @IBOutlet weak var bidderRating: UIImageView!
   
   @IBOutlet weak var bidderBid: UILabel!
   
