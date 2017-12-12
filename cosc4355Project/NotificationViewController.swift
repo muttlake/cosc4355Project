@@ -88,6 +88,24 @@ class NotificationViewController: UITableViewController {
     cell.row = indexPath.row
     return cell
   }
+     func findNotification(notificationID:String, completion:@escaping (Bool)->()){
+        var contain = false
+        let rootRef = Database.database().reference().child("Notification")
+        rootRef.observeSingleEvent(of: .value, with: { (FIRDataSnapshot) in
+            guard let dictionaries = FIRDataSnapshot.value as? [String: AnyObject] else { return }
+            dictionaries.forEach({ (key, value) in
+                guard let dictionary = value as? [String: Any] else { return }
+                let notification = Notifications(from: dictionary, id: key )
+                if notification.notification_key == notificationID {
+                    contain = true
+                }
+            })
+             completion(contain)
+        }) { (error) in
+            print("Failed retrieving user notifications with error: \(error)")
+        }
+        
+    }
     func deleteNotification(notificationID:String)  {
         
         Database.database().reference().child("Notification").child(notificationID).setValue(nil){ (error, ref) -> Void in
