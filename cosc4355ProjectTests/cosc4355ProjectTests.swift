@@ -34,8 +34,11 @@ class cosc4355ProjectTests: XCTestCase {
   func testNotification(){
         NotificationsUtil.notify(notifier_id: "testing", notified_id: "testing", posting_id: "testing", notificationId:"testing", notificationType: "testing", notifier_name: "testing", notifier_image: "",posting_name: "testing")
        let vc = NotificationViewController()
+       vc.findNotification(notificationID:"testing",completion:{(success) in   XCTAssertTrue(success == true)})
        vc.deleteNotification(notificationID:"testing")
-  }
+       vc.findNotification(notificationID:"testing",completion:{(success) in   XCTAssertTrue(success == false)})
+    
+   }
     
   
   func testPerformanceExample() {
