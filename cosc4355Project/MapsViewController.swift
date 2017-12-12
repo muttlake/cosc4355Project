@@ -246,8 +246,8 @@ class MapsViewController: UIViewController, MapSettingDelegate{
             //Disable textbox/button if user is client
             if isContractor == false
             {
-                //dvc.bidButtonIsHidden = true
-                //dvc.bidTextFieldIsHidden = true
+                dvc.bidButtonisHidden = true
+                dvc.bidAmountFieldIsHidden = true
             }
         }
     }
@@ -506,7 +506,7 @@ extension MapsViewController: MKMapViewDelegate
         
         dispatchGroup.notify(queue: .main, execute: {
             self.selectedAnnotation.removeAll()
-            calloutView.profileImage.image = customAnnotation.posterPic
+            calloutView.profileImage.image = customAnnotation.projPhoto
             view.addSubview(calloutView)
             mapView.setCenter((view.annotation?.coordinate)!, animated: true)
             self.selectedAnnotation.append(customAnnotation)
