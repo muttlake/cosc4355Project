@@ -1215,7 +1215,7 @@
                                     <action selector="pay:" destination="ppk-QV-W7L" eventType="touchUpInside" id="SyA-Ha-ir3"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NkI-3u-DKk" customClass="CustomImageView" customModule="cosc4355Project" customModuleProvider="target">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NkI-3u-DKk" customClass="CustomImageView" customModule="cosc4355Project" customModuleProvider="target">
                                 <rect key="frame" x="123.5" y="64" width="128" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="128" id="fem-a4-CT7"/>
@@ -1910,7 +1910,7 @@
         <segue reference="e8d-IR-9jH"/>
         <segue reference="qq0-Lt-nZh"/>
         <segue reference="ZDJ-KR-xJL"/>
-        <segue reference="SIz-M7-chQ"/>
+        <segue reference="d9k-8p-2mR"/>
         <segue reference="eUM-GX-vT4"/>
     </inferredMetricsTieBreakers>
 </document>
