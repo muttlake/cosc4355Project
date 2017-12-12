@@ -87,6 +87,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
         reviewsTableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
         reviewsTableView.rowHeight = 100
+        reviewsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         
         /* Adding refresh feature on newsfeed to reload projects */
         let refreshControl = UIRefreshControl()
