@@ -1984,7 +1984,7 @@
         <image name="pp" width="260" height="194"/>
         <image name="projectdetails_panel" width="341" height="80"/>
         <image name="register" width="254" height="47"/>
-        <image name="review_button" width="180" height="34"/>
+        <image name="review_button" width="254" height="47"/>
         <image name="signin" width="254" height="47"/>
         <image name="signup" width="254" height="47"/>
         <image name="singleStarEmpty" width="442" height="365"/>
