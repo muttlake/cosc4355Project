@@ -21,6 +21,8 @@ class BidFormViewController: UIViewController, UITextFieldDelegate {
   
   @IBOutlet weak var bidAmountField: UITextField!
   
+  @IBOutlet weak var bidButton: UIButton!
+  
   var projectTitleString: String?
   
   var projectDescriptionString: String?
@@ -36,6 +38,9 @@ class BidFormViewController: UIViewController, UITextFieldDelegate {
   
   var userWhoPosted: User?
   var posting: Posting?
+  
+  var bidAmountFieldIsHidden = false
+  var bidButtonisHidden = false
   
   
   
@@ -113,6 +118,9 @@ class BidFormViewController: UIViewController, UITextFieldDelegate {
     fetchForCertainId(child: "users", id: userWhoPostedId ?? "")
     fetchForCertainId(child: "projects", id: postingId ?? "")
     bidAmountField.delegate = self
+    
+    bidButton.isHidden = bidButtonisHidden
+    bidAmountField.isHidden = bidButtonisHidden
     
     let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKb))
     view.addGestureRecognizer(tap)

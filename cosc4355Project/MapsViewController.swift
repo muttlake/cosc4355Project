@@ -340,8 +340,8 @@ class MapsViewController: UIViewController, MapSettingDelegate{
         region.notifyOnExit = true
         region.notifyOnEntry = false
         locationManager?.startMonitoring(for: region)
-        let circle = MKCircle(center: coordinate, radius: 1609.34)
-        mapView.add(circle)
+        //let circle = MKCircle(center: coordinate, radius: 1609.34)
+        //mapView.add(circle)
     }
     
     
